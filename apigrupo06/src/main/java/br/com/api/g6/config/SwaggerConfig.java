@@ -28,7 +28,7 @@ public class SwaggerConfig {
 				.title("Documentação da Api de Teste ")
 				.description("Projeto de Aula")
 				.license("Apache license version 2.0")
-				.version("2.8.0")
+				.version("2.9.0")
 				.build();
 			return apiInfo;
 	}
