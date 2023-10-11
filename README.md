@@ -8,6 +8,7 @@
 <p>Breve descrição</p>
 
 ## Instalação e execução do projeto
+<p>instalçacao e execução</p>
 
 ## Funcionalidades do projeto
 1. O sistema armazena informações sobre os produtos, sendo eles: código, nome, descrição, quantidade em estoque, data de fabricação e valor unitário e código do usuário vendedor.
