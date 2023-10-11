@@ -13,6 +13,8 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	// precisa pular linha para reconhecer a anotação?
+	
 	private String nome;
 	private String descricao;
 	
