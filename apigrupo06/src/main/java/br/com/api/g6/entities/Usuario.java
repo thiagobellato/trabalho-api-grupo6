@@ -37,6 +37,7 @@ public class Usuario {
 		this.nome = nome;
 		this.telefonePrincipal = telefonePrincipal;
 		this.nomeUsuario = nomeUsuario;
+		this.senha = senha;
 		this.email = email;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
@@ -74,6 +75,14 @@ public class Usuario {
 		this.nomeUsuario = nomeUsuario;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
