@@ -28,7 +28,7 @@ public class SwaggerConfig {
 				.title("Documentação de API projeto final")
 				.description("Projeto final da disciplina de APIrestful")
 				.license("Apache license version 2.0")
-				.version("3.0.0")
+				.version("3.1.0")
 				.build();
 			return apiInfo;
 	}
