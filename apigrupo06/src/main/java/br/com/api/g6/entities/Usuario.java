@@ -1,11 +1,15 @@
 package br.com.api.g6.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,24 +18,41 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "usuario_id")
 	private Integer id;
 	
+	@Column(name = "usuario_nome")
 	private String nome;
-	// private String endereço (como usar a pk de outra tabela)
+
+	@Column(name = "usuario_telefonePrincipal")
 	private String telefonePrincipal;
+	
+	@Column(name = "usuario_nomeUsuario")
 	private String nomeUsuario;
+	
+	@Column(name = "usuario_senha")
 	private String senha;
+	
+	@Column(name = "usuario_email")
 	private String email;
+	
+	@Column(name = "usuario_cpf")
 	private String cpf;
+	
+	@Column(name = "usuario_dataNascimento")
 	private Date dataNascimento;
 	
+	@OneToMany
+	@JoinColumn(name = "usuario_id")
+	private List<Produto> produtos;
+
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(Integer id, String nome, String telefonePrincipal, String nomeUsuario, String email, String cpf,
-			Date dataNascimento) {
+	public Usuario(Integer id, String nome, String telefonePrincipal, String nomeUsuario, String senha, String email,
+			String cpf, Date dataNascimento, List<Produto> produtos) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -41,6 +62,7 @@ public class Usuario {
 		this.email = email;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
+		this.produtos = produtos;
 	}
 
 	public Integer getId() {
@@ -82,7 +104,7 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -107,9 +129,22 @@ public class Usuario {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", telefonePrincipal=" + telefonePrincipal + ", nomeUsuario="
-				+ nomeUsuario + ", email=" + email + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + "]";
-	}	
+				+ nomeUsuario + ", senha=" + senha + ", email=" + email + ", cpf=" + cpf + ", dataNascimento="
+				+ dataNascimento + ", produtos=" + produtos + "]";
+	}
+	
+	
+	
+
 }
