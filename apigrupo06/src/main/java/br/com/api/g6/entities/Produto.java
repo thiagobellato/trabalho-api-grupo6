@@ -11,9 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -40,9 +38,15 @@ public class Produto {
 	@Column(name = "prod_valor_unitario")
 	private Double valor_unitario;
 
-	@ManyToMany
-	@JoinTable(name = "pedido_produto", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "pedido_id"))
+	@OneToMany
+	@JoinColumn(name = "categoria_id")
+	private List<Categoria> categorias;
+	//OneToMany/ManyToOne????
 
+	@ManyToMany
+	@JoinTable(name="pedido_produto",
+	joinColumns=@JoinColumn(name="produto_id"),
+	inverseJoinColumns=@JoinColumn(name="pedido_id"))	
 	private List<Pedido> pedidos;
 
 	public Produto() {

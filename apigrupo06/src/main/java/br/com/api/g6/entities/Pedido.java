@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,31 +28,28 @@ public class Pedido {
 	private Integer quantidade;
 	@Column(name="pedido_date")
 	private Date data;
+	//private String comprador;
+	//private String vendedor;
 	
 	@ManyToMany
 	@JoinTable(name="pedido_produto",
 	joinColumns=@JoinColumn(name="pedido_id"),
 	inverseJoinColumns=@JoinColumn(name="produto_id"))
+		
 	private List<Produto> produtos;
-	
-	@OneToMany
-	@JoinColumn(name = "usuario_id")
-	private List<Usuario> asuarios;
 
 	public Pedido() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pedido(Integer id, String produto, Integer quantidade, Date data, List<Produto> produtos,
-			List<Usuario> asuarios) {
+	public Pedido(Integer id, String produto, Integer quantidade, Date data, List<Produto> produtos) {
 		super();
 		this.id = id;
 		this.produto = produto;
 		this.quantidade = quantidade;
 		this.data = data;
 		this.produtos = produtos;
-		this.asuarios = asuarios;
 	}
 
 	public Integer getId() {
@@ -96,18 +92,10 @@ public class Pedido {
 		this.produtos = produtos;
 	}
 
-	public List<Usuario> getAsuarios() {
-		return asuarios;
-	}
-
-	public void setAsuarios(List<Usuario> asuarios) {
-		this.asuarios = asuarios;
-	}
-
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", produto=" + produto + ", quantidade=" + quantidade + ", data=" + data
-				+ ", produtos=" + produtos + ", asuarios=" + asuarios + "]";
+				+ ", produtos=" + produtos + "]";
 	}
-
+	
 }

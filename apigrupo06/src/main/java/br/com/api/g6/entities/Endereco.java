@@ -19,28 +19,28 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "endereco_id")
 	private Integer id;
-
+	
 	@Column(name = "endereco_rua")
 	private String rua;
-
+	
 	@Column(name = "endereco_numero")
 	private String numero;
-
+	
 	@Column(name = "endereco_complemento")
 	private String complemento;
-
+	
 	@Column(name = "endereco_bairro")
 	private String bairro;
-
+	
 	@Column(name = "endereco_cidade")
 	private String cidade;
-
+	
 	@Column(name = "endereco_estado")
 	private String estado;
-
+	
 	@Column(name = "endereco_pais")
 	private String pais;
-
+	
 	@Column(name = "endereco_cep")
 	private String cep;
 
@@ -54,7 +54,7 @@ public class Endereco {
 	}
 
 	public Endereco(Integer id, String rua, String numero, String complemento, String bairro, String cidade,
-			String estado, String pais, String cep) {
+			String estado, String pais, String cep, List<Usuario> usuarios) {
 		super();
 		this.id = id;
 		this.rua = rua;
@@ -65,6 +65,7 @@ public class Endereco {
 		this.estado = estado;
 		this.pais = pais;
 		this.cep = cep;
+		this.usuarios = usuarios;
 	}
 
 	public Integer getId() {
@@ -139,11 +140,19 @@ public class Endereco {
 		this.cep = cep;
 	}
 
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
 	@Override
 	public String toString() {
 		return "Endereco [id=" + id + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
 				+ ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", pais=" + pais + ", cep=" + cep
-				+ "]";
+				+ ", usuarios=" + usuarios + "]";
 	}
 
 }
