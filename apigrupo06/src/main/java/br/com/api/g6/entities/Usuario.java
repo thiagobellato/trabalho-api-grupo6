@@ -43,13 +43,12 @@ public class Usuario {
 	private Date dataNascimento;
 	
 	@OneToMany
-	@JoinColumn(name = "usuario_id")
+	@JoinColumn(name = "produto_id")
 	private List<Produto> produtos;
 
-	public Usuario() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@OneToMany
+	@JoinColumn(name = "enderecos_id")
+	private List<Endereco> enderecos;
 
 	public Usuario(Integer id, String nome, String telefonePrincipal, String nomeUsuario, String senha, String email,
 			String cpf, Date dataNascimento, List<Produto> produtos) {
@@ -63,6 +62,26 @@ public class Usuario {
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
 		this.produtos = produtos;
+	}
+
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Usuario(Integer id, String nome, String telefonePrincipal, String nomeUsuario, String senha, String email,
+			String cpf, Date dataNascimento, List<Produto> produtos, List<Endereco> enderecos) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.telefonePrincipal = telefonePrincipal;
+		this.nomeUsuario = nomeUsuario;
+		this.senha = senha;
+		this.email = email;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+		this.produtos = produtos;
+		this.enderecos = enderecos;
 	}
 
 	public Integer getId() {
@@ -137,14 +156,19 @@ public class Usuario {
 		this.produtos = produtos;
 	}
 
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", telefonePrincipal=" + telefonePrincipal + ", nomeUsuario="
 				+ nomeUsuario + ", senha=" + senha + ", email=" + email + ", cpf=" + cpf + ", dataNascimento="
-				+ dataNascimento + ", produtos=" + produtos + "]";
+				+ dataNascimento + ", produtos=" + produtos + ", enderecos=" + enderecos + "]";
 	}
-	
-	
-	
 
 }
