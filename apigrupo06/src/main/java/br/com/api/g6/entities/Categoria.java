@@ -30,16 +30,18 @@ public class Categoria {
 	@JoinColumn(name = "produto_id")
 	private List<Produto> produtos;
 
-	public Categoria(Integer id, String nome, String descricao) {
-		super();
+	@OneToMany
+	@JoinColumn(name = "produto_id")
+	private List<Produto> produtos;
+
+	public Categoria(Integer id, String nome, String descricao, List<Produto> produtos) {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
+		this.produtos = produtos;
 	}
 
 	public Categoria() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getId() {
@@ -66,9 +68,17 @@ public class Categoria {
 		this.descricao = descricao;
 	}
 
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nome=" + nome + ", descricao=" + descricao + "]";
+		return "Categoria [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", produtos=" + produtos + "]";
 	}
 
 }

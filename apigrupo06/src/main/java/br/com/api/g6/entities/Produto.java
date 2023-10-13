@@ -40,16 +40,9 @@ public class Produto {
 	@Column(name = "prod_valor_unitario")
 	private Double valor_unitario;
 
-	@OneToMany
-	@JoinColumn(name = "categoria_id")
-	private List<Categoria> categorias;
-	//OneToMany/ManyToOne????
-
 	@ManyToMany
-	@JoinTable(name="pedido_produto",
-	joinColumns=@JoinColumn(name="produto_id"),
-	inverseJoinColumns=@JoinColumn(name="pedido_id"))
-		
+	@JoinTable(name = "pedido_produto", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "pedido_id"))
+
 	private List<Pedido> pedidos;
 
 	public Produto() {
@@ -140,6 +133,5 @@ public class Produto {
 				+ data_de_fabricacao + ", qntd_produto=" + qntd_produto + ", valor_unitario=" + valor_unitario
 				+ ", categorias=" + categorias + ", pedidos=" + pedidos + "]";
 	}
-	
-	
+
 }

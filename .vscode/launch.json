@@ -1,0 +1,14 @@
+{
+   "configurations": [
+      {
+         "type": "java",
+         "name": "Spring Boot-Apigrupo06Application<g6>",
+         "request": "launch",
+         "cwd": "${workspaceFolder}",
+         "mainClass": "br.com.api.g6.Apigrupo06Application",
+         "projectName": "g6",
+         "args": "",
+         "envFile": "${workspaceFolder}/.env"
+      }
+   ]
+}
