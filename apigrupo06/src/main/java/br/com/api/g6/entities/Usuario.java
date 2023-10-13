@@ -45,12 +45,7 @@ public class Usuario {
 	@OneToMany
 	@JoinColumn(name = "produto_id")
 	private List<Produto> produtos;
-
-	@OneToMany
-	@JoinColumn(name = "enderecos_id")
-	private List<Endereco> enderecos;
 	
-
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
