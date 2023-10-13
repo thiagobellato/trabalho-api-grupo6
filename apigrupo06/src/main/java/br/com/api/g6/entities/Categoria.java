@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +25,10 @@ public class Categoria {
 
 	@Column(name = "categoria_descricao")
 	private String descricao;
+	
+	@OneToMany
+	@JoinColumn(name = "produto_id")
+	private List<Produto> produtos;
 
 	public Categoria(Integer id, String nome, String descricao) {
 		super();
