@@ -25,6 +25,10 @@ public class Categoria {
 
 	@Column(name = "categoria_descricao")
 	private String descricao;
+	
+	@OneToMany
+	@JoinColumn(name = "produto_id")
+	private List<Produto> produtos;
 
 	@OneToMany
 	@JoinColumn(name = "produto_id")

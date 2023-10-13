@@ -11,7 +11,8 @@
 	</parent>
 	<groupId>br.com.api</groupId>
 	<artifactId>g6</artifactId>
-	<version>3.8.0</version>
+	<version>3.10.0</version>
+
 	<name>apigrupo06</name>
 	<description>Trabalho final API G6</description>
 	<properties>
