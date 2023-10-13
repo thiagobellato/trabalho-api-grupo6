@@ -2,7 +2,6 @@ package br.com.api.g6.entities;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,49 +19,35 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "usuario_id")
 	private Integer id;
-	
+
 	@Column(name = "usuario_nome")
 	private String nome;
 
 	@Column(name = "usuario_telefonePrincipal")
 	private String telefonePrincipal;
-	
+
 	@Column(name = "usuario_nomeUsuario")
 	private String nomeUsuario;
-	
+
 	@Column(name = "usuario_senha")
 	private String senha;
-	
+
 	@Column(name = "usuario_email")
 	private String email;
-	
+
 	@Column(name = "usuario_cpf")
 	private String cpf;
-	
+
 	@Column(name = "usuario_dataNascimento")
 	private Date dataNascimento;
-	
+
 	@OneToMany
 	@JoinColumn(name = "produto_id")
 	private List<Produto> produtos;
 
 	@OneToMany
-	@JoinColumn(name = "enderecos_id")
+	@JoinColumn(name = "usuario_id")
 	private List<Endereco> enderecos;
-
-	public Usuario(Integer id, String nome, String telefonePrincipal, String nomeUsuario, String senha, String email,
-			String cpf, Date dataNascimento, List<Produto> produtos) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.telefonePrincipal = telefonePrincipal;
-		this.nomeUsuario = nomeUsuario;
-		this.senha = senha;
-		this.email = email;
-		this.cpf = cpf;
-		this.dataNascimento = dataNascimento;
-		this.produtos = produtos;
-	}
 
 	public Usuario() {
 		super();

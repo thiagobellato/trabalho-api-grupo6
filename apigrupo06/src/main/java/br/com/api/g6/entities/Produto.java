@@ -38,24 +38,13 @@ public class Produto {
 	@Column(name = "prod_valor_unitario")
 	private Double valor_unitario;
 
-	@OneToMany
-	@JoinColumn(name = "categoria_id")
-	private List<Categoria> categorias;
-	//OneToMany/ManyToOne????
-
-	@ManyToMany
-	@JoinTable(name="pedido_produto",
-	joinColumns=@JoinColumn(name="produto_id"),
-	inverseJoinColumns=@JoinColumn(name="pedido_id"))	
-	private List<Pedido> pedidos;
-
 	public Produto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Produto(Integer id, String nome, String descricao, Date data_de_fabricacao, Integer qntd_produto,
-			Double valor_unitario, List<Categoria> categorias, List<Pedido> pedidos) {
+			Double valor_unitario) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -63,8 +52,6 @@ public class Produto {
 		this.data_de_fabricacao = data_de_fabricacao;
 		this.qntd_produto = qntd_produto;
 		this.valor_unitario = valor_unitario;
-		this.categorias = categorias;
-		this.pedidos = pedidos;
 	}
 
 	public Integer getId() {
@@ -115,27 +102,10 @@ public class Produto {
 		this.valor_unitario = valor_unitario;
 	}
 
-	public List<Categoria> getCategorias() {
-		return categorias;
-	}
-
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
-	}
-
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
-
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", data_de_fabricacao="
-				+ data_de_fabricacao + ", qntd_produto=" + qntd_produto + ", valor_unitario=" + valor_unitario
-				+ ", categorias=" + categorias + ", pedidos=" + pedidos + "]";
+				+ data_de_fabricacao + ", qntd_produto=" + qntd_produto + ", valor_unitario=" + valor_unitario + "]";
 	}
 
 }
