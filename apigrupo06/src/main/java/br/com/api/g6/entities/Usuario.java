@@ -45,12 +45,29 @@ public class Usuario {
 	@OneToMany
 	@JoinColumn(name = "produto_id")
 	private List<Produto> produtos;
-	
+
+	@OneToMany
+	@JoinColumn(name = "enderecos_id")
+	private List<Endereco> enderecos;
+
+	public Usuario(Integer id, String nome, String telefonePrincipal, String nomeUsuario, String senha, String email,
+			String cpf, Date dataNascimento, List<Produto> produtos) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.telefonePrincipal = telefonePrincipal;
+		this.nomeUsuario = nomeUsuario;
+		this.senha = senha;
+		this.email = email;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+		this.produtos = produtos;
+	}
+
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public Usuario(Integer id, String nome, String telefonePrincipal, String nomeUsuario, String senha, String email,
 			String cpf, Date dataNascimento, List<Produto> produtos, List<Endereco> enderecos) {
@@ -67,106 +84,85 @@ public class Usuario {
 		this.enderecos = enderecos;
 	}
 
-
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
 	public String getTelefonePrincipal() {
 		return telefonePrincipal;
 	}
-
 
 	public void setTelefonePrincipal(String telefonePrincipal) {
 		this.telefonePrincipal = telefonePrincipal;
 	}
 
-
 	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
-
 
 	public void setNomeUsuario(String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
 
-
 	public String getSenha() {
 		return senha;
 	}
-
 
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
 	public String getCpf() {
 		return cpf;
 	}
-
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
-
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
 
-
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
-
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
-
 
 	@Override
 	public String toString() {
@@ -175,6 +171,4 @@ public class Usuario {
 				+ dataNascimento + ", produtos=" + produtos + ", enderecos=" + enderecos + "]";
 	}
 
-	
-	
 }
