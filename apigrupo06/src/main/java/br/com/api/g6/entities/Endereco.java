@@ -16,47 +16,51 @@ public class Endereco {
 	@Column(name = "endereco_id")
 	private Integer id;
 
-	@Column(name = "endereco_rua")
-	private String rua;
+	@Column(name = "cep")
+	private String cep;
+
+	@Column(name = "logradouro")
+	private String logradouro;
+
+	@Column(name = "complemento")
+	private String complemento;
 
 	@Column(name = "endereco_numero")
 	private String numero;
 
-	@Column(name = "endereco_complemento")
-	private String complemento;
+	@Column(name = "endereco_complemento2")
+	private String complemento2;
 
-	@Column(name = "endereco_bairro")
+	@Column(name = "bairro")
 	private String bairro;
 
-	@Column(name = "endereco_cidade")
-	private String cidade;
+	@Column(name = "localidade")
+	private String localidade;
 
-	@Column(name = "endereco_estado")
-	private String estado;
+	@Column(name = "uf")
+	private String uf;
 
 	@Column(name = "endereco_pais")
 	private String pais;
-
-	@Column(name = "endereco_cep")
-	private String cep;
 
 	public Endereco() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Endereco(Integer id, String rua, String numero, String complemento, String bairro, String cidade,
-			String estado, String pais, String cep) {
+	public Endereco(Integer id, String cep, String logradouro, String complemento, String numero, String complemento2,
+			String bairro, String localidade, String uf, String pais) {
 		super();
 		this.id = id;
-		this.rua = rua;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.estado = estado;
-		this.pais = pais;
 		this.cep = cep;
+		this.logradouro = logradouro;
+		this.complemento = complemento;
+		this.numero = numero;
+		this.complemento2 = complemento2;
+		this.bairro = bairro;
+		this.localidade = localidade;
+		this.uf = uf;
+		this.pais = pais;
 	}
 
 	public Integer getId() {
@@ -67,20 +71,20 @@ public class Endereco {
 		this.id = id;
 	}
 
-	public String getRua() {
-		return rua;
+	public String getCep() {
+		return cep;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
-	public String getNumero() {
-		return numero;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getComplemento() {
@@ -91,6 +95,22 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento2() {
+		return complemento2;
+	}
+
+	public void setComplemento2(String complemento2) {
+		this.complemento2 = complemento2;
+	}
+
 	public String getBairro() {
 		return bairro;
 	}
@@ -99,20 +119,20 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 
-	public String getCidade() {
-		return cidade;
+	public String getLocalidade() {
+		return localidade;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public String getPais() {
@@ -123,19 +143,11 @@ public class Endereco {
 		this.pais = pais;
 	}
 
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
-				+ ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", pais=" + pais + ", cep=" + cep
-				+ "]";
+		return "Endereco [id=" + id + ", cep=" + cep + ", logradouro=" + logradouro + ", complemento=" + complemento
+				+ ", numero=" + numero + ", complemento2=" + complemento2 + ", bairro=" + bairro + ", localidade="
+				+ localidade + ", uf=" + uf + ", pais=" + pais + "]";
 	}
 
 }
