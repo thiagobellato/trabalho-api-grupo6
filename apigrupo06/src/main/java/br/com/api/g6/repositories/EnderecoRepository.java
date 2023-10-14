@@ -8,6 +8,6 @@ import br.com.api.g6.entities.Endereco;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
 
-	@Query(value = "select count(*) from g6marketplace", nativeQuery = true)
+	@Query(value = "select count(*) from endereco", nativeQuery = true)
 	public Integer contar();
 }
