@@ -20,6 +20,9 @@ public class Usuario {
 	@Column(name = "usuario_id")
 	private Integer id;
 
+	@Column(name = "usuario_ativo")
+	private Boolean ativo;
+
 	@Column(name = "usuario_nome")
 	private String nome;
 
@@ -54,10 +57,11 @@ public class Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(Integer id, String nome, String telefonePrincipal, String nomeUsuario, String senha, String email,
-			String cpf, Date dataNascimento, List<Produto> produtos, List<Endereco> enderecos) {
+	public Usuario(Integer id, Boolean ativo, String nome, String telefonePrincipal, String nomeUsuario, String senha,
+			String email, String cpf, Date dataNascimento, List<Produto> produtos, List<Endereco> enderecos) {
 		super();
 		this.id = id;
+		this.ativo = ativo;
 		this.nome = nome;
 		this.telefonePrincipal = telefonePrincipal;
 		this.nomeUsuario = nomeUsuario;
@@ -75,6 +79,14 @@ public class Usuario {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public String getNome() {
@@ -151,9 +163,9 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", telefonePrincipal=" + telefonePrincipal + ", nomeUsuario="
-				+ nomeUsuario + ", senha=" + senha + ", email=" + email + ", cpf=" + cpf + ", dataNascimento="
-				+ dataNascimento + ", produtos=" + produtos + ", enderecos=" + enderecos + "]";
+		return "Usuario [id=" + id + ", ativo=" + ativo + ", nome=" + nome + ", telefonePrincipal=" + telefonePrincipal
+				+ ", nomeUsuario=" + nomeUsuario + ", senha=" + senha + ", email=" + email + ", cpf=" + cpf
+				+ ", dataNascimento=" + dataNascimento + ", produtos=" + produtos + ", enderecos=" + enderecos + "]";
 	}
 
 }
