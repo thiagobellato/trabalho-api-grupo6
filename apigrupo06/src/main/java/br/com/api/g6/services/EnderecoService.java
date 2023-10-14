@@ -1,10 +1,14 @@
 package br.com.api.g6.services;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.api.g6.entities.Endereco;
 import br.com.api.g6.repositories.EnderecoRepository;
 
+@Service
 public class EnderecoService {
 
 	@Autowired
