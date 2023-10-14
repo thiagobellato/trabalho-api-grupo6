@@ -52,6 +52,7 @@ public class CategoriaService {
 		}
 		registroAntigo.setId(id);
 		return categoriaRepository.save(registroAntigo);
+		//Precisa incluir a lista de produtos?
 	}
 	
 }
