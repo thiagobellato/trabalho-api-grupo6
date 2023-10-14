@@ -1,17 +1,11 @@
 package br.com.api.g6.entities;
 
-import java.util.Date;
-import java.util.List;
-
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,38 +14,38 @@ public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "prod_id")
+	@Column(name = "id_produto")
 	private Integer id;
 
-	@Column(name = "prod_nome")
+	@Column(name = "nome_produto")
 	private String nome;
 
-	@Column(name = "prod_descricao")
+	@Column(name = "descricao_produto")
 	private String descricao;
 
-	@Column(name = "prod_data_de_fabricacao")
-	private Date data_de_fabricacao;
+	@Column(name = "data_de_fabricacao_produto")
+	private LocalDate dataDeFabricacao;
 
-	@Column(name = "prod_qntd")
-	private Integer qntd_produto;
+	@Column(name = "qntd_produto")
+	private Integer qntd;
 
-	@Column(name = "prod_valor_unitario")
-	private Double valor_unitario;
+	@Column(name = "valor_unitario_produto")
+	private Double valorUnitario;
 
 	public Produto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Produto(Integer id, String nome, String descricao, Date data_de_fabricacao, Integer qntd_produto,
-			Double valor_unitario) {
+	public Produto(Integer id, String nome, String descricao, LocalDate dataDeFabricacao, Integer qntd,
+			Double valorUnitario) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
-		this.data_de_fabricacao = data_de_fabricacao;
-		this.qntd_produto = qntd_produto;
-		this.valor_unitario = valor_unitario;
+		this.dataDeFabricacao = dataDeFabricacao;
+		this.qntd = qntd;
+		this.valorUnitario = valorUnitario;
 	}
 
 	public Integer getId() {
@@ -78,34 +72,33 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Date getData_de_fabricacao() {
-		return data_de_fabricacao;
+	public LocalDate getDataDeFabricacao() {
+		return dataDeFabricacao;
 	}
 
-	public void setData_de_fabricacao(Date data_de_fabricacao) {
-		this.data_de_fabricacao = data_de_fabricacao;
+	public void setDataDeFabricacao(LocalDate dataDeFabricacao) {
+		this.dataDeFabricacao = dataDeFabricacao;
 	}
 
-	public Integer getQntd_produto() {
-		return qntd_produto;
+	public Integer getQntd() {
+		return qntd;
 	}
 
-	public void setQntd_produto(Integer qntd_produto) {
-		this.qntd_produto = qntd_produto;
+	public void setQntd(Integer qntd) {
+		this.qntd = qntd;
 	}
 
-	public Double getValor_unitario() {
-		return valor_unitario;
+	public Double getValorUnitario() {
+		return valorUnitario;
 	}
 
-	public void setValor_unitario(Double valor_unitario) {
-		this.valor_unitario = valor_unitario;
+	public void setValorUnitario(Double valorUnitario) {
+		this.valorUnitario = valorUnitario;
 	}
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", data_de_fabricacao="
-				+ data_de_fabricacao + ", qntd_produto=" + qntd_produto + ", valor_unitario=" + valor_unitario + "]";
+		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", dataDeFabricacao="
+				+ dataDeFabricacao + ", qntd=" + qntd + ", valorUnitario=" + valorUnitario + "]";
 	}
-
 }
