@@ -32,6 +32,11 @@ public class EnderecoController {
 		return enderecoService.salvar(objetoEndereco);
 	}
 
+	@GetMapping("/{id}")
+	public Endereco acharId(@PathVariable Integer id) {
+		return enderecoService.acharId(id);
+	}
+
 	@GetMapping("/listar")
 	public List<Endereco> listar() {
 		return enderecoService.listar();
