@@ -36,7 +36,7 @@ public class ProdutoController {
 	public Produto acharId(@PathVariable Integer id) {
 		return produtoService.acharId(id);
 	}
-	
+
 	@GetMapping("/listar")
 	public List<Produto> listar() {
 		return produtoService.listar();
@@ -51,4 +51,5 @@ public class ProdutoController {
 	public Produto atualizar(@PathVariable Integer id, @RequestBody Produto objetoProduto) {
 		return produtoService.atualizar(id, objetoProduto);
 	}
+
 }

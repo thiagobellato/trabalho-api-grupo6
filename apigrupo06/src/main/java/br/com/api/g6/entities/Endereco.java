@@ -13,7 +13,7 @@ public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "endereco_id")
+	@Column(name = "id_endereco")
 	private Integer id;
 
 	@Column(name = "cep_endereco")
@@ -22,7 +22,7 @@ public class Endereco {
 	@Column(name = "rua_endereco")
 	private String logradouro;
 
-	@Column(name = "endereco_numero")
+	@Column(name = "numero_endereco")
 	private String numero;
 
 	@Column(name = "complemento_endereco")
