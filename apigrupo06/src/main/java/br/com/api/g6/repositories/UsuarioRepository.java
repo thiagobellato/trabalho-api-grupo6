@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import br.com.api.g6.entities.Usuario;
 
-@Repository 
-public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
-	
-	@Query(value="select count(*) from g6marketplace", nativeQuery = true)
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+
+	@Query(value = "select count(*) from g6marketplace", nativeQuery = true)
 	public Integer contar();
+
 }

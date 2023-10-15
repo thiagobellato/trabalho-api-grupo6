@@ -51,4 +51,5 @@ public class EnderecoController {
 	public Endereco atualizar(@PathVariable Integer id, @RequestBody Endereco objetoEndereco) {
 		return enderecoService.atualizar(id, objetoEndereco);
 	}
+
 }

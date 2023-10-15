@@ -101,4 +101,5 @@ public class Produto {
 		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", dataDeFabricacao="
 				+ dataDeFabricacao + ", qntd=" + qntd + ", valorUnitario=" + valorUnitario + "]";
 	}
+
 }

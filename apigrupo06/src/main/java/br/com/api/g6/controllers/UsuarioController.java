@@ -42,11 +42,6 @@ public class UsuarioController {
 		return usuarioService.listar();
 	}
 
-//	@DeleteMapping("/delete/{id}")
-//	public void apagar(@PathVariable Integer id) {
-//		categoriaService.apagar(id);
-//	}
-
 	@DeleteMapping("/desativar/{id}")
 	public void apagarLogico(@PathVariable Integer id) {
 		usuarioService.apagarLogico(id);
@@ -56,5 +51,5 @@ public class UsuarioController {
 	public Usuario atualizar(@PathVariable Integer id, @RequestBody Usuario objetoUsuario) {
 		return usuarioService.atualizar(id, objetoUsuario);
 	}
-
+	
 }

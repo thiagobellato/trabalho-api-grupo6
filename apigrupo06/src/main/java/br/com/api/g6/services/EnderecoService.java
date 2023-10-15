@@ -50,4 +50,5 @@ public class EnderecoService {
 		}
 		return enderecoRepository.save(registroAntigo);
 	}
+
 }

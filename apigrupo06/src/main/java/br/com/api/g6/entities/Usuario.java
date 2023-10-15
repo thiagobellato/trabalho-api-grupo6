@@ -1,6 +1,6 @@
 package br.com.api.g6.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,39 +17,42 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "usuario_id")
+	@Column(name = "id_usuario")
 	private Integer id;
 
-	@Column(name = "usuario_ativo")
+	@Column(name = "ativo_usuario")
 	private Boolean ativo;
 
-	@Column(name = "usuario_nome")
+	@Column(name = "nome_usuario")
 	private String nome;
 
-	@Column(name = "usuario_telefonePrincipal")
+	@Column(name = "telefone_principal_usuario")
 	private String telefonePrincipal;
 
-	@Column(name = "usuario_nomeUsuario")
-	private String nomeUsuario;
+	@Column(name = "telefone_secundario_usuario")
+	private String telefoneSecundario;
 
-	@Column(name = "usuario_senha")
+	@Column(name = "login_usuario")
+	private String login;
+
+	@Column(name = "senha_usuario")
 	private String senha;
 
-	@Column(name = "usuario_email")
+	@Column(name = "email_usuario")
 	private String email;
 
-	@Column(name = "usuario_cpf")
+	@Column(name = "cpf_usuario")
 	private String cpf;
 
-	@Column(name = "usuario_dataNascimento")
-	private Date dataNascimento;
+	@Column(name = "data_de_nascimento_usuario")
+	private LocalDate dataDeNascimento;
 
 	@OneToMany
-	@JoinColumn(name = "produto_id")
+	@JoinColumn(name = "id_usuario")
 	private List<Produto> produtos;
 
 	@OneToMany
-	@JoinColumn(name = "usuario_id")
+	@JoinColumn(name = "id_usuario")
 	private List<Endereco> enderecos;
 
 	public Usuario() {
@@ -57,18 +60,20 @@ public class Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(Integer id, Boolean ativo, String nome, String telefonePrincipal, String nomeUsuario, String senha,
-			String email, String cpf, Date dataNascimento, List<Produto> produtos, List<Endereco> enderecos) {
+	public Usuario(Integer id, Boolean ativo, String nome, String telefonePrincipal, String telefoneSecundario,
+			String login, String senha, String email, String cpf, LocalDate dataDeNascimento, List<Produto> produtos,
+			List<Endereco> enderecos) {
 		super();
 		this.id = id;
 		this.ativo = ativo;
 		this.nome = nome;
 		this.telefonePrincipal = telefonePrincipal;
-		this.nomeUsuario = nomeUsuario;
+		this.telefoneSecundario = telefoneSecundario;
+		this.login = login;
 		this.senha = senha;
 		this.email = email;
 		this.cpf = cpf;
-		this.dataNascimento = dataNascimento;
+		this.dataDeNascimento = dataDeNascimento;
 		this.produtos = produtos;
 		this.enderecos = enderecos;
 	}
@@ -105,12 +110,20 @@ public class Usuario {
 		this.telefonePrincipal = telefonePrincipal;
 	}
 
-	public String getNomeUsuario() {
-		return nomeUsuario;
+	public String getTelefoneSecundario() {
+		return telefoneSecundario;
 	}
 
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+	public void setTelefoneSecundario(String telefoneSecundario) {
+		this.telefoneSecundario = telefoneSecundario;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getSenha() {
@@ -137,12 +150,12 @@ public class Usuario {
 		this.cpf = cpf;
 	}
 
-	public Date getDataNascimento() {
-		return dataNascimento;
+	public LocalDate getDataDeNascimento() {
+		return dataDeNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setDataDeNascimento(LocalDate dataDeNascimento) {
+		this.dataDeNascimento = dataDeNascimento;
 	}
 
 	public List<Produto> getProdutos() {
@@ -164,8 +177,9 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", ativo=" + ativo + ", nome=" + nome + ", telefonePrincipal=" + telefonePrincipal
-				+ ", nomeUsuario=" + nomeUsuario + ", senha=" + senha + ", email=" + email + ", cpf=" + cpf
-				+ ", dataNascimento=" + dataNascimento + ", produtos=" + produtos + ", enderecos=" + enderecos + "]";
+				+ ", telefoneSecundario=" + telefoneSecundario + ", login=" + login + ", senha=" + senha + ", email="
+				+ email + ", cpf=" + cpf + ", dataDeNascimento=" + dataDeNascimento + ", produtos=" + produtos
+				+ ", enderecos=" + enderecos + "]";
 	}
 
 }

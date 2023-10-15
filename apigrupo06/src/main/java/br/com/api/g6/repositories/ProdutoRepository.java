@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import br.com.api.g6.entities.Produto;
 
-@Repository 
-public interface ProdutoRepository extends JpaRepository<Produto,Integer> {
-	
-	@Query(value="select count(*) from produto", nativeQuery = true)
+@Repository
+public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
+
+	@Query(value = "select count(*) from produto", nativeQuery = true)
 	public Integer contar();
+
 }

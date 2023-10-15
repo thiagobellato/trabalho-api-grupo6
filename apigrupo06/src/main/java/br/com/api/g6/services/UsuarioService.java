@@ -27,10 +27,6 @@ public class UsuarioService {
 	public List<Usuario> listar() {
 		return usuarioRepository.findAll();
 	}
-//	
-//	public void apagar(Integer id) {
-//		usuarioRepository.deleteById(id);
-//	}
 
 	public void apagarLogico(Integer id) {
 		Usuario objetoUsuario = acharId(id);
@@ -45,18 +41,20 @@ public class UsuarioService {
 		if (objetoUsuario.getAtivo() != null) {
 			registroAntigo.setAtivo(null);
 		}
-		if (objetoUsuario.getDataNascimento() != null) {
-			registroAntigo.setDataNascimento(objetoUsuario.getDataNascimento());
+		if (objetoUsuario.getDataDeNascimento() != null) {
+			registroAntigo.setDataDeNascimento(objetoUsuario.getDataDeNascimento());
 		}
 		if (objetoUsuario.getTelefonePrincipal() != null) {
 			registroAntigo.setTelefonePrincipal(objetoUsuario.getTelefonePrincipal());
 		}
+		if (objetoUsuario.getTelefoneSecundario() != null) {
+			registroAntigo.setTelefoneSecundario(objetoUsuario.getTelefoneSecundario());
+		}
 		if (objetoUsuario.getSenha() != null) {
 			registroAntigo.setSenha(objetoUsuario.getSenha());
 		}
-		
 		registroAntigo.setId(id);
 		return usuarioRepository.save(registroAntigo);
 	}
-
+	
 }
