@@ -47,8 +47,8 @@ public class ProdutoService {
 			registroAntigo.setNome(objetoProduto.getNome());
 		}
 
-		if (objetoProduto.getQntd() != null) {
-			registroAntigo.setQntd(objetoProduto.getQntd());
+		if (objetoProduto.getQuantidade() != null) {
+			registroAntigo.setQuantidade(objetoProduto.getQuantidade());
 		}
 
 		if (objetoProduto.getValorUnitario() != null) {
