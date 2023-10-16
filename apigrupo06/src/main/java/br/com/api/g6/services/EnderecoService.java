@@ -1,10 +1,8 @@
 package br.com.api.g6.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.com.api.g6.entities.Endereco;
 import br.com.api.g6.repositories.EnderecoRepository;
 
@@ -36,18 +34,23 @@ public class EnderecoService {
 
 	public Endereco atualizar(Integer id, Endereco objetoEndereco) {
 		Endereco registroAntigo = acharId(id);
+		
 		if (objetoEndereco.getCep() != null) {
 			registroAntigo.setCep(objetoEndereco.getCep());
 		}
+
 		if (objetoEndereco.getComplemento2() != null) {
 			registroAntigo.setComplemento2(objetoEndereco.getComplemento2());
 		}
+
 		if (objetoEndereco.getNumero() != null) {
 			registroAntigo.setNumero(objetoEndereco.getNumero());
 		}
+
 		if (objetoEndereco.getPais() != null) {
 			registroAntigo.setPais(objetoEndereco.getPais());
 		}
+
 		return enderecoRepository.save(registroAntigo);
 	}
 

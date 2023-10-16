@@ -10,5 +10,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 	@Query(value = "select count(*) from g6marketplace", nativeQuery = true)
 	public Integer contar();
-
 }

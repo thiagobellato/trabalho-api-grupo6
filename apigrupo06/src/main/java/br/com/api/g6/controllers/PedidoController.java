@@ -1,7 +1,6 @@
 package br.com.api.g6.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.api.g6.entities.Pedido;
 import br.com.api.g6.services.PedidoService;
 
 @RestController
 @RequestMapping("/pedido")
 public class PedidoController {
-	
+
 	@Autowired
 	PedidoService pedidoService;
 
@@ -47,15 +45,14 @@ public class PedidoController {
 		pedidoService.apagar(id);
 	}
 
-//	@DeleteMapping("/desativar/{id}")
-//	public void apagarLogico(@PathVariable Integer id) {
-//		pedidoService.apagarLogico(id);
-//	}
+	// @DeleteMapping("/desativar/{id}")
+	// public void apagarLogico(@PathVariable Integer id) {
+	// pedidoService.apagarLogico(id);
+	// }
 
-//	@PutMapping("/atualizar/{id}")
-//	public Pedido atualizar(@PathVariable Integer id, @RequestBody Pedido objetoPedido) {
-//		return pedidoService.atualizar(id, objetoPedido);
-//	}
-
-
+	// @PutMapping("/atualizar/{id}")
+	// public Pedido atualizar(@PathVariable Integer id, @RequestBody Pedido
+	// objetoPedido) {
+	// return pedidoService.atualizar(id, objetoPedido);
+	// }
 }

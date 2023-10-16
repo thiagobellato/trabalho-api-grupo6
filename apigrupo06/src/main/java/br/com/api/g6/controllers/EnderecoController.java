@@ -1,7 +1,6 @@
 package br.com.api.g6.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.api.g6.entities.Endereco;
 import br.com.api.g6.services.EnderecoService;
 
@@ -51,5 +49,4 @@ public class EnderecoController {
 	public Endereco atualizar(@PathVariable Integer id, @RequestBody Endereco objetoEndereco) {
 		return enderecoService.atualizar(id, objetoEndereco);
 	}
-
 }

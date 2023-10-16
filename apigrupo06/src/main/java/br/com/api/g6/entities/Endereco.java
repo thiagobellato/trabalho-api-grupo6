@@ -45,7 +45,6 @@ public class Endereco {
 
 	public Endereco() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Endereco(Integer id, String cep, String logradouro, String numero, String complemento, String complemento2,
@@ -145,9 +144,8 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", cep=" + cep + ", logradouro=" + logradouro + ", numero=" + numero
-				+ ", complemento=" + complemento + ", complemento2=" + complemento2 + ", bairro=" + bairro
-				+ ", localidade=" + localidade + ", uf=" + uf + ", pais=" + pais + "]";
+		return "Endereco [id = " + id + ", cep = " + cep + ", logradouro = " + logradouro + ", numero = " + numero
+				+ ", complemento = " + complemento + ", complemento2 = " + complemento2 + ", bairro = " + bairro
+				+ ", localidade = " + localidade + ", uf = " + uf + ", pais = " + pais + "]";
 	}
-
 }

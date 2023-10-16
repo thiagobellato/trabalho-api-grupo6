@@ -30,6 +30,7 @@ public class UsuarioService {
 
 	public void apagarLogico(Integer id) {
 		Usuario objetoUsuario = acharId(id);
+
 		if (objetoUsuario != null) {
 			objetoUsuario.setAtivo(false);
 			usuarioRepository.save(objetoUsuario);
@@ -38,23 +39,28 @@ public class UsuarioService {
 
 	public Usuario atualizar(Integer id, Usuario objetoUsuario) {
 		Usuario registroAntigo = acharId(id);
+
 		if (objetoUsuario.getAtivo() != null) {
 			registroAntigo.setAtivo(null);
 		}
+
 		if (objetoUsuario.getDataDeNascimento() != null) {
 			registroAntigo.setDataDeNascimento(objetoUsuario.getDataDeNascimento());
 		}
+
 		if (objetoUsuario.getTelefonePrincipal() != null) {
 			registroAntigo.setTelefonePrincipal(objetoUsuario.getTelefonePrincipal());
 		}
+
 		if (objetoUsuario.getTelefoneSecundario() != null) {
 			registroAntigo.setTelefoneSecundario(objetoUsuario.getTelefoneSecundario());
 		}
+
 		if (objetoUsuario.getSenha() != null) {
 			registroAntigo.setSenha(objetoUsuario.getSenha());
 		}
+
 		registroAntigo.setId(id);
 		return usuarioRepository.save(registroAntigo);
 	}
-	
 }

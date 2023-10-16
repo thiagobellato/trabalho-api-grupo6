@@ -2,7 +2,6 @@ package br.com.api.g6.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -28,9 +27,9 @@ public class SwaggerConfig {
 				.title("Documentação de API projeto final")
 				.description("Projeto final da disciplina de APIrestful")
 				.license("Apache license version 2.0")
-      
+
 				.version("3.17.0")
 				.build();
-			return apiInfo;
+		return apiInfo;
 	}
 }

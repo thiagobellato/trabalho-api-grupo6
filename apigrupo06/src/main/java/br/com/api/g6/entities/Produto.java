@@ -34,7 +34,6 @@ public class Produto {
 
 	public Produto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Produto(Integer id, String nome, String descricao, LocalDate dataDeFabricacao, Integer qntd,
@@ -98,8 +97,7 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", dataDeFabricacao="
-				+ dataDeFabricacao + ", qntd=" + qntd + ", valorUnitario=" + valorUnitario + "]";
+		return "Produto [id = " + id + ", nome = " + nome + ", descricao = " + descricao + ", dataDeFabricacao = "
+				+ dataDeFabricacao + ", qntd = " + qntd + ", valorUnitario = " + valorUnitario + "]";
 	}
-
 }
