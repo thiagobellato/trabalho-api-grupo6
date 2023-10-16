@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.api.g6.dto.EnderecoDTO;
 import br.com.api.g6.entities.Endereco;
 import br.com.api.g6.repositories.EnderecoRepository;
 
@@ -21,7 +22,7 @@ public class EnderecoService {
 		return enderecoRepository.contar();
 	}
 
-	public Endereco salvar(Endereco objetoEndereco) {
+	public Endereco salvar(EnderecoDTO objetoEndereco) {
 		Endereco viaCep = pesquisarEndereco(objetoEndereco.getCep());
 		Endereco enderecoNovo = new Endereco();
 		enderecoNovo.setBairro(viaCep.getBairro());
@@ -34,7 +35,7 @@ public class EnderecoService {
 		enderecoNovo.setPais(objetoEndereco.getPais());
 		enderecoNovo.setNumero(objetoEndereco.getNumero());
 		
-		return enderecoRepository.save(objetoEndereco);
+		return enderecoRepository.save(enderecoNovo);
 	}
 
 	public Endereco acharId(Integer id) {
