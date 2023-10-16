@@ -1,8 +1,13 @@
 package br.com.api.g6.services;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import br.com.api.g6.entities.Endereco;
 import br.com.api.g6.repositories.EnderecoRepository;
 
@@ -17,6 +22,18 @@ public class EnderecoService {
 	}
 
 	public Endereco salvar(Endereco objetoEndereco) {
+		Endereco viaCep = pesquisarEndereco(objetoEndereco.getCep());
+		Endereco enderecoNovo = new Endereco();
+		enderecoNovo.setBairro(viaCep.getBairro());
+		enderecoNovo.setCep(objetoEndereco.getCep());
+		enderecoNovo.setComplemento(viaCep.getComplemento());
+		enderecoNovo.setLocalidade(viaCep.getLocalidade());
+		enderecoNovo.setLogradouro(viaCep.getLogradouro());
+		enderecoNovo.setUf(viaCep.getUf());
+		enderecoNovo.setComplemento2(objetoEndereco.getComplemento2());
+		enderecoNovo.setPais(objetoEndereco.getPais());
+		enderecoNovo.setNumero(objetoEndereco.getNumero());
+		
 		return enderecoRepository.save(objetoEndereco);
 	}
 
@@ -34,7 +51,7 @@ public class EnderecoService {
 
 	public Endereco atualizar(Integer id, Endereco objetoEndereco) {
 		Endereco registroAntigo = acharId(id);
-		
+
 		if (objetoEndereco.getCep() != null) {
 			registroAntigo.setCep(objetoEndereco.getCep());
 		}
@@ -52,6 +69,14 @@ public class EnderecoService {
 		}
 
 		return enderecoRepository.save(registroAntigo);
+	}
+
+	public Endereco pesquisarEndereco(String cep) {
+		RestTemplate restTemplate = new RestTemplate();
+		String uri = "http://viacep.com.br/ws/{cep}/json/";
+		Map<String, String> params = new HashMap<>();
+		params.put("cep", cep);
+		return restTemplate.getForObject(uri, Endereco.class, params);
 	}
 
 }

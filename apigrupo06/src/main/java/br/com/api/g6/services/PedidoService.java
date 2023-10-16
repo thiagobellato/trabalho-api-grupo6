@@ -70,9 +70,9 @@ public class PedidoService {
 			registroAntigo.setProdutos(objetoPedido.getProdutos());
 		}
 
-		if (objetoPedido.getQuantidade() != null) {
-			registroAntigo.setQuantidade(objetoPedido.getQuantidade());
-		}
+//		if (objetoPedido.getQuantidade() != null) {
+//			registroAntigo.setQuantidade(objetoPedido.getQuantidade());
+//		}
 
 		if (objetoPedido.getData() != null) {
 			registroAntigo.setData(objetoPedido.getData());
