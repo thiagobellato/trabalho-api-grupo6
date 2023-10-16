@@ -55,13 +55,17 @@ public class Usuario {
 	@JoinColumn(name = "id_usuario")
 	private List<Endereco> enderecos;
 
+	@OneToMany
+	@JoinColumn(name = "id_usuario")
+	private List<Pedido> pedidos;
+
 	public Usuario() {
 		super();
 	}
 
 	public Usuario(Integer id, Boolean ativo, String nome, String telefonePrincipal, String telefoneSecundario,
 			String login, String senha, String email, String cpf, LocalDate dataDeNascimento, List<Produto> produtos,
-			List<Endereco> enderecos) {
+			List<Endereco> enderecos, List<Pedido> pedidos) {
 		super();
 		this.id = id;
 		this.ativo = ativo;
@@ -75,6 +79,7 @@ public class Usuario {
 		this.dataDeNascimento = dataDeNascimento;
 		this.produtos = produtos;
 		this.enderecos = enderecos;
+		this.pedidos = pedidos;
 	}
 
 	public Integer getId() {
@@ -173,13 +178,20 @@ public class Usuario {
 		this.enderecos = enderecos;
 	}
 
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 	@Override
 	public String toString() {
-		return "Usuario [id = " + id + ", ativo = " + ativo + ", nome = " + nome + ", telefonePrincipal = "
-				+ telefonePrincipal
-				+ ", telefoneSecundario = " + telefoneSecundario + ", login = " + login + ", senha = " + senha
-				+ ", email = "
-				+ email + ", cpf = " + cpf + ", dataDeNascimento = " + dataDeNascimento + ", produtos = " + produtos
-				+ ", enderecos = " + enderecos + "]";
+
+		return "Usuario [id=" + id + ", ativo=" + ativo + ", nome=" + nome + ", telefonePrincipal=" + telefonePrincipal
+				+ ", telefoneSecundario=" + telefoneSecundario + ", login=" + login + ", senha=" + senha + ", email="
+				+ email + ", cpf=" + cpf + ", dataDeNascimento=" + dataDeNascimento + ", produtos=" + produtos
+				+ ", enderecos=" + enderecos + ", pedidos=" + pedidos + "]";
 	}
 }
