@@ -27,7 +27,7 @@ public class Produto {
 	private LocalDate dataDeFabricacao;
 
 	@Column(name = "qntd_produto")
-	private Integer qntd;
+	private Integer quantidade;
 
 	@Column(name = "valor_unitario_produto")
 	private Double valorUnitario;
@@ -36,14 +36,14 @@ public class Produto {
 		super();
 	}
 
-	public Produto(Integer id, String nome, String descricao, LocalDate dataDeFabricacao, Integer qntd,
+	public Produto(Integer id, String nome, String descricao, LocalDate dataDeFabricacao, Integer quantidade,
 			Double valorUnitario) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.dataDeFabricacao = dataDeFabricacao;
-		this.qntd = qntd;
+		this.quantidade = quantidade;
 		this.valorUnitario = valorUnitario;
 	}
 
@@ -79,12 +79,12 @@ public class Produto {
 		this.dataDeFabricacao = dataDeFabricacao;
 	}
 
-	public Integer getQntd() {
-		return qntd;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQntd(Integer qntd) {
-		this.qntd = qntd;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public Double getValorUnitario() {
@@ -98,6 +98,6 @@ public class Produto {
 	@Override
 	public String toString() {
 		return "Produto [id = " + id + ", nome = " + nome + ", descricao = " + descricao + ", dataDeFabricacao = "
-				+ dataDeFabricacao + ", qntd = " + qntd + ", valorUnitario = " + valorUnitario + "]";
+				+ dataDeFabricacao + ", quantidade = " + quantidade + ", valorUnitario = " + valorUnitario + "]";
 	}
 }

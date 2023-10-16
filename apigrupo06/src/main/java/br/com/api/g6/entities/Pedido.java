@@ -1,6 +1,6 @@
 package br.com.api.g6.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,14 +21,11 @@ public class Pedido {
 	@Column(name = "pedido_id")
 	private Integer id;
 
-	@Column(name = "pedido_produto")
-	private String produto;
-
-	@Column(name = "pedido_quantidade")
-	private Integer quantidade;
-
 	@Column(name = "pedido_date")
-	private Date data;
+	private LocalDate data;
+
+	@Column(name = "pedido_situacao")
+	private Boolean ativo;
 
 	@ManyToMany
 	@JoinTable(name = "pedido_produto", joinColumns = @JoinColumn(name = "pedido_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
@@ -38,12 +35,10 @@ public class Pedido {
 		super();
 	}
 
-	public Pedido(Integer id, String produto, Integer quantidade, Date data, List<Produto> produtos) {
-		super();
+	public Pedido(Integer id, LocalDate data, Boolean ativo, List<Produto> produtos) {
 		this.id = id;
-		this.produto = produto;
-		this.quantidade = quantidade;
 		this.data = data;
+		this.ativo = ativo;
 		this.produtos = produtos;
 	}
 
@@ -55,28 +50,20 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public String getProduto() {
-		return produto;
-	}
-
-	public void setProduto(String produto) {
-		this.produto = produto;
-	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public List<Produto> getProdutos() {
@@ -89,7 +76,6 @@ public class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [id = " + id + ", produto = " + produto + ", quantidade = " + quantidade + ", data = " + data
-				+ ", produtos = " + produtos + "]";
+		return "Pedido [id=" + id + ", data=" + data + ", ativo=" + ativo + ", produtos=" + produtos + "]";
 	}
 }
