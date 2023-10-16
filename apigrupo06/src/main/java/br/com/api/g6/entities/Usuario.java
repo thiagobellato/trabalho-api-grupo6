@@ -61,7 +61,6 @@ public class Usuario {
 
 	public Usuario() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Usuario(Integer id, Boolean ativo, String nome, String telefonePrincipal, String telefoneSecundario,
@@ -189,10 +188,10 @@ public class Usuario {
 
 	@Override
 	public String toString() {
+
 		return "Usuario [id=" + id + ", ativo=" + ativo + ", nome=" + nome + ", telefonePrincipal=" + telefonePrincipal
 				+ ", telefoneSecundario=" + telefoneSecundario + ", login=" + login + ", senha=" + senha + ", email="
 				+ email + ", cpf=" + cpf + ", dataDeNascimento=" + dataDeNascimento + ", produtos=" + produtos
 				+ ", enderecos=" + enderecos + ", pedidos=" + pedidos + "]";
 	}
-
 }

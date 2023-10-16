@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import br.com.api.g6.entities.Pedido;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido,Integer>{
+public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 
-	@Query(value="select count(*) from g6marketplace", nativeQuery = true)
+	@Query(value = "select count(*) from g6marketplace", nativeQuery = true)
 	public Integer contar();
 }

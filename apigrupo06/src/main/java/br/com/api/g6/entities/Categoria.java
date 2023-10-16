@@ -1,7 +1,6 @@
 package br.com.api.g6.entities;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,14 +24,13 @@ public class Categoria {
 
 	@Column(name = "categoria_descricao")
 	private String descricao;
-	
+
 	@OneToMany
 	@JoinColumn(name = "categoria_id")
 	private List<Produto> produtos;
 
 	public Categoria() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Categoria(Integer id, String nome, String descricao, List<Produto> produtos) {
@@ -77,8 +75,7 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", produtos=" + produtos + "]";
+		return "Categoria [id = " + id + ", nome = " + nome + ", descricao = " + descricao + ", produtos = " + produtos
+				+ "]";
 	}
-
-	
 }

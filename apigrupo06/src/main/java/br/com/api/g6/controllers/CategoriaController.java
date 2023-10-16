@@ -1,7 +1,6 @@
 package br.com.api.g6.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.api.g6.entities.Categoria;
 import br.com.api.g6.services.CategoriaService;
 
@@ -47,14 +45,13 @@ public class CategoriaController {
 		categoriaService.apagar(id);
 	}
 
-//	@DeleteMapping("/desativar/{id}")
-//	public void apagarLogico(@PathVariable Integer id) {
-//		categoriaService.apagarLogico(id);
-//	}
+	// @DeleteMapping("/desativar/{id}")
+	// public void apagarLogico(@PathVariable Integer id) {
+	// categoriaService.apagarLogico(id);
+	// }
 
 	@PutMapping("/atualizar/{id}")
 	public Categoria atualizar(@PathVariable Integer id, @RequestBody Categoria objetoCategoria) {
 		return categoriaService.atualizar(id, objetoCategoria);
 	}
-
 }
