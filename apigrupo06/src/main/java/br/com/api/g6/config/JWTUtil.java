@@ -3,6 +3,7 @@ package br.com.api.g6.config;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.api.g6.entities.User;
 import io.jsonwebtoken.Jwts;
 
+@Component
 public class JWTUtil {
 
 	@Value("${jwt-secret}")
