@@ -10,6 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "usuario")
@@ -20,30 +26,41 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	private Integer id;
 
+	@AssertTrue /* diz que o boolean começa ativo */
 	@Column(name = "ativo_usuario")
 	private Boolean ativo;
 
+	@NotNull
 	@Column(name = "nome_usuario")
 	private String nome;
 
+	@NotNull
 	@Column(name = "telefone_principal_usuario")
 	private String telefonePrincipal;
 
 	@Column(name = "telefone_secundario_usuario")
 	private String telefoneSecundario;
 
+	@NotNull
 	@Column(name = "login_usuario")
 	private String login;
 
+	@Size(min = 6, max = 15)
+	@NotNull
 	@Column(name = "senha_usuario")
 	private String senha;
 
+	@Email
+	@NotNull
 	@Column(name = "email_usuario")
 	private String email;
 
+	@NotNull
+	@Size(max = 11, min = 11)
 	@Column(name = "cpf_usuario")
 	private String cpf;
 
+	@NotNull
 	@Column(name = "data_de_nascimento_usuario")
 	private LocalDate dataDeNascimento;
 
@@ -72,8 +89,8 @@ public class Usuario {
 		this.nome = nome;
 		this.telefonePrincipal = telefonePrincipal;
 		this.telefoneSecundario = telefoneSecundario;
-		this.login = login;
-		this.senha = senha;
+		this.login = login; /* PRECISA TIRAR? */
+		this.senha = senha; /* PRECISA TIRAR? */
 		this.email = email;
 		this.cpf = cpf;
 		this.dataDeNascimento = dataDeNascimento;
@@ -189,9 +206,11 @@ public class Usuario {
 	@Override
 	public String toString() {
 
-		return "Usuario [id=" + id + ", ativo=" + ativo + ", nome=" + nome + ", telefonePrincipal=" + telefonePrincipal
-				+ ", telefoneSecundario=" + telefoneSecundario + ", login=" + login + ", senha=" + senha + ", email="
-				+ email + ", cpf=" + cpf + ", dataDeNascimento=" + dataDeNascimento + ", produtos=" + produtos
-				+ ", enderecos=" + enderecos + ", pedidos=" + pedidos + "]";
+		return "Usuario [id = " + id + ", ativo = " + ativo + ", nome = " + nome + ", telefonePrincipal = "
+				+ telefonePrincipal
+				+ ", telefoneSecundario = " + telefoneSecundario + ", login = " + login + ", senha = " + senha
+				+ ", email = "
+				+ email + ", cpf=" + cpf + ", dataDeNascimento = " + dataDeNascimento + ", produtos = " + produtos
+				+ ", enderecos = " + enderecos + ", pedidos = " + pedidos + "]";
 	}
 }

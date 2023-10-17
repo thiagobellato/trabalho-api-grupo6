@@ -6,8 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Since;
 
 @Entity
 @Table(name = "endereco")
@@ -18,18 +22,22 @@ public class Endereco {
 	@Column(name = "id_endereco")
 	private Integer id;
 
+	@NotNull
+	@Size(min = 8, max = 8)
 	@Column(name = "cep_endereco")
 	private String cep;
 
 	@Column(name = "rua_endereco")
 	private String logradouro;
 
+	@NotNull
 	@Column(name = "numero_endereco")
 	private String numero;
 
 	@Column(name = "complemento_endereco")
 	private String complemento;
 
+   @NotNull
 	@Column(name = "complemento2_endereco")
 	private String complemento2;
 
@@ -42,6 +50,7 @@ public class Endereco {
 	@Column(name = "uf_endereco")
 	private String uf;
 
+	@NotNull
 	@Column(name = "pais_endereco")
 	private String pais;
 
