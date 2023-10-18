@@ -1,0 +1,55 @@
+			usuario(comprador)/salvar(post)
+			Título:Cadastro de Usuário
+			Corpo:	
+					Seja Bem Vindo(a) **nome**!!!				
+			Seu cadastro foi realizado com sucesso. Seu nome de usúario é **nome_usuario**.
+			Att,
+			G6 <TechStore>
+			LOGO	
+			
+			usuario(comprador)/delete(cadastro)
+			Título:Conta Desativada
+			Corpo:	
+				**nome**, que pena que você foi embora!!!				
+			Seu cadastro continuará em nossa base de dados,caso queira reativa-lo, **clique aqui**.
+			Att,
+			G6 <TechStore>
+			LOGO	
+		
+			pedido(comprador)/salvar(post)
+			Título:Confirmação de Pedido
+			Corpo:	
+				Pedido realizado com sucesso!!!
+				Seu pedido está sendo processado, assim que for aprovado enviaremos um email de confirmação.	
+					produto 1x
+					produto 1x
+					produto 1x
+					produto 1x
+					
+					total R$
+		
+					endereço:
+				
+			Att,
+			G6 <TechStore>
+			LOGO	
+			
+			pedido(comprador)/salvar(post)
+			Título:Confirmação de Pedido
+			Corpo:	
+				Pedido realizado com sucesso!!!
+				Seu pedido está sendo processado, assim que for aprovado enviaremos um email de confirmação.	
+					produto 1x
+					produto 1x
+					produto 1x
+					produto 1x
+					
+					total R$
+		
+					endereço:
+				
+			Att,
+			G6 <TechStore>
+			LOGO	
+			
+			
