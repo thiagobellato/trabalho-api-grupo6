@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import br.com.api.g6.repositories.UsuarioRepository;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -40,26 +41,54 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da
-																	// API
-				http.cors()
+	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da API
+		http.cors()
 				.and()
 				.csrf()
 				.disable()
 				.httpBasic()
 				.disable()
 				.authorizeHttpRequests()
-				.antMatchers("/categoria/count")
+				/* PERMISSÃO TOTAL CATEGORIA */
+				.antMatchers(
+						"/categoria/count",
+						"/endereco/count",
+						"/pedido/count",
+						"/produto/count",
+						"/usuario/count")
 				.permitAll()
-				.antMatchers("/categoria/salvar", "/categoria/delete{id}")
+				/* ACESSOS NA ENTIDADE CATEGORIA */
+				.antMatchers(
+						"/categoria/")
 				.hasRole("VENDEDOR")
-				.antMatchers("/categoria/listar")
+				.antMatchers(
+						"/categoria/")
+				.hasRole("COMPRADOR")
+				/* ACESSOS NA ENTIDADE ENDEREÇO */
+				.antMatchers("/endereco/")
+				.hasRole("VENDEDOR")
+				.antMatchers("/endereco/")
+				.hasRole("COMPRADOR")
+				/* ACESSOS NA ENTIDADE PEDIDO */
+				.antMatchers("/pedido/")
+				.hasRole("VENDEDOR")
+				.antMatchers("/pedido/")
+				.hasRole("COMPRADOR")
+				/* ACESSOS NA ENTIDADE PRODUTO */
+				.antMatchers("/produto/")
+				.hasRole("VENDEDOR")
+				.antMatchers("/produto/")
+				.hasRole("COMPRADOR")
+				/* ACESSOS NA ENTIDADE USUARIO */
+				.antMatchers("/usuario/")
+				.hasRole("VENDEDOR")
+				.antMatchers("/usuario/")
 				.hasRole("COMPRADOR")
 				.and()
 				.userDetailsService(uds)
 				.exceptionHandling()
 				.authenticationEntryPoint((request, response, authException) -> response
-				.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"))
+						.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"))
 				.and()
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
