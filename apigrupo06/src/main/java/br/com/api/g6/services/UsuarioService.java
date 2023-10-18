@@ -1,8 +1,10 @@
 package br.com.api.g6.services;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import br.com.api.g6.entities.Usuario;
 import br.com.api.g6.repositories.UsuarioRepository;
 
@@ -56,11 +58,23 @@ public class UsuarioService {
 			registroAntigo.setTelefoneSecundario(objetoUsuario.getTelefoneSecundario());
 		}
 
-		if (objetoUsuario.getSenha() != null) {
-			registroAntigo.setSenha(objetoUsuario.getSenha());
+		if (objetoUsuario.getPassword() != null) {
+			registroAntigo.setPassword(objetoUsuario.getPassword());
 		}
 
-		registroAntigo.setId(id);
+		registroAntigo.setIdUser(id);
 		return usuarioRepository.save(registroAntigo);
+	}
+
+	public Usuario findByEmail(String email) {
+		return usuarioRepository.findByEmail(email).get();
+	}
+
+	public Usuario save(Usuario usuario) {
+		return usuarioRepository.save(usuario);
+	}
+
+	public List<Usuario> listarTodos() {
+		return usuarioRepository.findAll();
 	}
 }

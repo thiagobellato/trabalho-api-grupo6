@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name = "produto")
@@ -17,18 +21,24 @@ public class Produto {
 	@Column(name = "id_produto")
 	private Integer id;
 
+	@NotNull
 	@Column(name = "nome_produto")
 	private String nome;
 
+	@NotNull
+	@Size(max = 100)
 	@Column(name = "descricao_produto")
 	private String descricao;
 
+	@NotNull
 	@Column(name = "data_de_fabricacao_produto")
 	private LocalDate dataDeFabricacao;
 
+	@NotNull
 	@Column(name = "qntd_produto")
 	private Integer quantidade;
 
+	@NotNull
 	@Column(name = "valor_unitario_produto")
 	private Double valorUnitario;
 
