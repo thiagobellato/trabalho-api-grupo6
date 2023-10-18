@@ -21,10 +21,10 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUser;
-
 	private String nomeUsuario;
 
 	private String email;
+
 
 //	@OneToOne
 //	@JoinColumn(name = "endereco_id")
@@ -40,7 +40,6 @@ public class User {
 	public User() {
 		super();
 	}
-
 	public User(Integer idUser, String nomeUsuario, String email, Set<Role> roles, String password) {
 		super();
 		this.idUser = idUser;
@@ -90,11 +89,11 @@ public class User {
 		this.roles = roles;
 	}
 
-
 	@Override
 	public String toString() {
 		return "User [idUser=" + idUser + ", nomeUsuario=" + nomeUsuario + ", email=" + email
 				+ ", roles=" + roles + ", password=" + password + "]"; 
+
 	}
 
 }

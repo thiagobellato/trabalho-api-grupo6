@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "categoria")
@@ -19,9 +22,12 @@ public class Categoria {
 	@Column(name = "categoria_id")
 	private Integer id;
 
+	@NotNull
 	@Column(name = "categoria_nome")
 	private String nome;
 
+	@NotNull
+	@Size(max = 100)
 	@Column(name = "categoria_descricao")
 	private String descricao;
 

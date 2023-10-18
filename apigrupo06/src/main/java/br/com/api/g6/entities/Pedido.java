@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pedido")
@@ -21,9 +23,11 @@ public class Pedido {
 	@Column(name = "pedido_id")
 	private Integer id;
 
+	@NotNull
 	@Column(name = "pedido_date")
 	private LocalDate data;
 
+	@AssertTrue
 	@Column(name = "pedido_situacao")
 	private Boolean ativo;
 
