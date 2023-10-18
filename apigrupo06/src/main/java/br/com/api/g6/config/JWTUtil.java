@@ -13,7 +13,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.api.g6.entities.User;
+import br.com.api.g6.entities.Usuario;
 import io.jsonwebtoken.Jwts;
 
 @Component
@@ -45,16 +45,16 @@ public class JWTUtil {
 		}
 	}
 
-	public String generateTokenWithUserData(User user) throws IllegalArgumentException, JWTCreationException {
+	public String generateTokenWithUsuarioData(Usuario usuario) throws IllegalArgumentException, JWTCreationException {
 		ObjectMapper mapper = new ObjectMapper();
-		String userJson = null;
+		String usuarioJson = null;
 		try {
-			userJson = mapper.writeValueAsString(user);
+			usuarioJson = mapper.writeValueAsString(usuario);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 
-		return JWT.create().withSubject(subject).withClaim("usuario", userJson).withIssuedAt(new Date())
+		return JWT.create().withSubject(subject).withClaim("usuario", usuarioJson).withIssuedAt(new Date())
 				.withIssuer(companyProjectName).sign(Algorithm.HMAC256(secret));
 	}
 
@@ -66,13 +66,13 @@ public class JWTUtil {
 
 		// Pegando o email dentro da chave usuario (string json que contem os dados do
 		// usuario)
-		User user = new User();
+		Usuario usuario = new Usuario();
 		try {
-			user = mapper.readValue(jwt.getClaim("usuario").asString(), User.class);
+			usuario = mapper.readValue(jwt.getClaim("usuario").asString(), Usuario.class);
 		} catch (JsonProcessingException e) {
 			throw new Exception("Ocorreu um erro e nao foi possivel converter o usario a partir da string json - " + e);
 		}
-		return user.getEmail();
+		return usuario.getEmail();
 	}
 
 }
