@@ -2,12 +2,16 @@ package br.com.api.g6.entities;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.AssertTrue;
@@ -17,21 +21,23 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
-@Table(name = "usuario")
+@Table(name = "nomeUsuario")
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
-	private Integer id;
+	private Integer idUser;
 
 	@AssertTrue /* diz que o boolean começa ativo */
 	@Column(name = "ativo_usuario")
 	private Boolean ativo;
 
 	@NotNull
-	@Column(name = "nome_usuario")
+	@Column(name = "nome_completo_usuario") 
 	private String nome;
 
 	@NotNull
@@ -43,12 +49,13 @@ public class Usuario {
 
 	@NotNull
 	@Column(name = "login_usuario")
-	private String login;
+	private String nomeUsuario;
 
 	@Size(min = 6, max = 15)
 	@NotNull
 	@Column(name = "senha_usuario")
-	private String senha;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private String password;
 
 	@Email
 	@NotNull
@@ -64,6 +71,10 @@ public class Usuario {
 	@Column(name = "data_de_nascimento_usuario")
 	private LocalDate dataDeNascimento;
 
+	@ManyToMany
+	@JoinTable(name = "usuario_role", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
+	
 	@OneToMany
 	@JoinColumn(name = "id_usuario")
 	private List<Produto> produtos;
@@ -78,33 +89,37 @@ public class Usuario {
 
 	public Usuario() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(Integer id, Boolean ativo, String nome, String telefonePrincipal, String telefoneSecundario,
-			String login, String senha, String email, String cpf, LocalDate dataDeNascimento, List<Produto> produtos,
-			List<Endereco> enderecos, List<Pedido> pedidos) {
+	public Usuario(Integer idUser, @AssertTrue Boolean ativo, @NotNull String nome, @NotNull String telefonePrincipal,
+			String telefoneSecundario, @NotNull String nomeUsuario, @Size(min = 6, max = 15) @NotNull String password,
+			@Email @NotNull String email, @NotNull @Size(max = 11, min = 11) String cpf,
+			@NotNull LocalDate dataDeNascimento, Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos,
+			List<Pedido> pedidos) {
 		super();
-		this.id = id;
+		this.idUser = idUser;
 		this.ativo = ativo;
 		this.nome = nome;
 		this.telefonePrincipal = telefonePrincipal;
 		this.telefoneSecundario = telefoneSecundario;
-		this.login = login; /* PRECISA TIRAR? */
-		this.senha = senha; /* PRECISA TIRAR? */
+		this.nomeUsuario = nomeUsuario;
+		this.password = password;
 		this.email = email;
 		this.cpf = cpf;
 		this.dataDeNascimento = dataDeNascimento;
+		this.roles = roles;
 		this.produtos = produtos;
 		this.enderecos = enderecos;
 		this.pedidos = pedidos;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdUser() {
+		return idUser;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
 	}
 
 	public Boolean getAtivo() {
@@ -139,20 +154,20 @@ public class Usuario {
 		this.telefoneSecundario = telefoneSecundario;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getNomeUsuario() {
+		return nomeUsuario;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -177,6 +192,14 @@ public class Usuario {
 
 	public void setDataDeNascimento(LocalDate dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public List<Produto> getProdutos() {
@@ -205,12 +228,11 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-
-		return "Usuario [id = " + id + ", ativo = " + ativo + ", nome = " + nome + ", telefonePrincipal = "
-				+ telefonePrincipal
-				+ ", telefoneSecundario = " + telefoneSecundario + ", login = " + login + ", senha = " + senha
-				+ ", email = "
-				+ email + ", cpf=" + cpf + ", dataDeNascimento = " + dataDeNascimento + ", produtos = " + produtos
-				+ ", enderecos = " + enderecos + ", pedidos = " + pedidos + "]";
+		return "Usuario [idUser=" + idUser + ", ativo=" + ativo + ", nome=" + nome + ", telefonePrincipal="
+				+ telefonePrincipal + ", telefoneSecundario=" + telefoneSecundario + ", nomeUsuario=" + nomeUsuario
+				+ ", password=" + password + ", email=" + email + ", cpf=" + cpf + ", dataDeNascimento="
+				+ dataDeNascimento + ", roles=" + roles + ", produtos=" + produtos + ", enderecos=" + enderecos
+				+ ", pedidos=" + pedidos + "]";
 	}
+
 }

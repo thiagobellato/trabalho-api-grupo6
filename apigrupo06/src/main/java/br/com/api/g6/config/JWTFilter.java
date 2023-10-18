@@ -43,7 +43,7 @@ public class JWTFilter extends OncePerRequestFilter {
                 }catch(JWTVerificationException exc){
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Token JWT Inválido");
                 } catch (Exception e) {
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Não foi possível obter os dados do Usuario a partir do Token - "+e);
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Não foi possível obter os dados do User a partir do Token - "+e);
                 }
             }
         }
