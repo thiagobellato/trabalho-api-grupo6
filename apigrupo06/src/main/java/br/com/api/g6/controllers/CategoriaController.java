@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.api.g6.entities.Categoria;
 import br.com.api.g6.services.CategoriaService;
 import br.com.api.g6.services.EmailService;
+import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("/categoria")
@@ -30,7 +31,7 @@ public class CategoriaController {
 	CategoriaService categoriaService;
 
 	@GetMapping("/count")
-	public Integer getCount() {
+	public Integer getCount() throws MessagingException {
 		emailService.envioEmail();
 		return categoriaService.getCount();
 	}

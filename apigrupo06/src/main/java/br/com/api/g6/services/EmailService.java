@@ -14,8 +14,6 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import br.com.api.g6.dto.UserDTO;
-
 @Configuration
 @Service
 public class EmailService {
