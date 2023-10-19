@@ -48,7 +48,7 @@ public class CategoriaController {
 
 	@GetMapping("/listar")
 	public List<Categoria> listar() {
-		emailService.envioEmailTeste();
+		emailService.envioEmailCarrouselTeste();
 		return categoriaService.listar();
 	}
 

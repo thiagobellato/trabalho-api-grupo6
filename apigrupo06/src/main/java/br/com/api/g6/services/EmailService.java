@@ -149,4 +149,151 @@ public class EmailService {
 		}
 
 	}
+
+	public void envioEmailCarrouselTeste() {
+		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
+
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
+			helper.setFrom("grupo6apiserratec@gmail.com");
+			helper.setTo("julialimafc048@gmail.com");
+			helper.setSubject("Teste do carrousel!");
+
+			StringBuilder builder = new StringBuilder();
+			builder.append("<html>\r\n" + //
+					"\r\n" + //
+					"<head>\r\n" + //
+					"   <style>\r\n" + //
+					"      * {\r\n" + //
+					"         padding: 0;\r\n" + //
+					"         margin: 0;\r\n" + //
+					"         box-sizing: border-box;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      .conteinerCarrousel {\r\n" + //
+					"         position: relative;\r\n" + //
+					"         padding: 20px;\r\n" + //
+					"         max-width: 640px;\r\n" + //
+					"         margin: 0 auto;\r\n" + //
+					"         border: 3px solid var(--cor04);\r\n" + //
+					"         border-radius: 5px;\r\n" + //
+					"         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.466);\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      .carrousel {\r\n" + //
+					"         overflow-x: auto;\r\n" + //
+					"         -ms-overflow-style: none;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      .carrousel::-webkit-scrollbar {\r\n" + //
+					"         display: none;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      .galeria {\r\n" + //
+					"         display: flex;\r\n" + //
+					"         flex-flow: row nowrap;\r\n" + //
+					"         gap: 15px;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      .setaEsquerda,\r\n" + //
+					"      .setaDireita {\r\n" + //
+					"         position: absolute;\r\n" + //
+					"         top: 0;\r\n" + //
+					"         left: 0;\r\n" + //
+					"         right: auto;\r\n" + //
+					"         bottom: 0;\r\n" + //
+					"         font-size: 20px;\r\n" + //
+					"         line-height: 250px;\r\n" + //
+					"         width: 30px;\r\n" + //
+					"         border: none;\r\n" + //
+					"         color: black;\r\n" + //
+					"         opacity: 1;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      .setaDireita {\r\n" + //
+					"         left: auto;\r\n" + //
+					"         right: 0;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      .item {\r\n" + //
+					"         width: 400px;\r\n" + //
+					"         height: 400px;\r\n" + //
+					"         flex-shrink: 0;\r\n" + //
+					"         opacity: 1;\r\n" + //
+					"         background-color: var(--cor04);\r\n" + //
+					"         padding: 1.5px;\r\n" + //
+					"      }\r\n" + //
+					"   </style>\r\n" + //
+					"</head>\r\n" + //
+					"\r\n" + //
+					"<body>\r\n" + //
+					"   <div class=\"conteinerCarrousel\"\r\n" + //
+					"      id=\"FOTOS\">\r\n" + //
+					"      <button class=\"setaEsquerda control\"\r\n" + //
+					"         aria-label=\"Previous image\">setaesquerda</button>\r\n" + //
+					"      <button class=\"setaDireita control\"\r\n" + //
+					"         aria-label=\"Next image\">setadireita</button>\r\n" + //
+					"      <div class=\"carrousel\">\r\n" + //
+					"         <div class=\"galeria\">\r\n" + //
+					"            <img src=\"logo_g6_tech_store.png\"\r\n" + //
+					"               alt=\"Teste carrousel\"\r\n" + //
+					"               class=\"item currentItem\">\r\n" + //
+					"            <img src=\"logo_g6_tech_store.png\"\r\n" + //
+					"               alt=\"Teste carrousel\"\r\n" + //
+					"               class=\"item\">\r\n" + //
+					"            <img src=\"logo_g6_tech_store.png\"\r\n" + //
+					"               alt=\"Teste carrousel\"\r\n" + //
+					"               class=\"item\">\r\n" + //
+					"            <img src=\"logo_g6_tech_store.png\"\r\n" + //
+					"               alt=\"Teste carrousel\"\r\n" + //
+					"               class=\"item\">\r\n" + //
+					"         </div>\r\n" + //
+					"      </div>\r\n" + //
+					"   </div>\r\n" + //
+					"   <script>\r\n" + //
+					"      const controls = document.querySelectorAll(\".control\");\r\n" + //
+					"      let currentItem = 0;\r\n" + //
+					"      const items = document.querySelectorAll(\".item\");\r\n" + //
+					"      const maxItems = items.length;\r\n" + //
+					"\r\n" + //
+					"      controls.forEach((control) => {\r\n" + //
+					"         control.addEventListener(\"click\", (e) => {\r\n" + //
+					"            isLeft = e.target.classList.contains(\"setaEsquerda\");\r\n" + //
+					"\r\n" + //
+					"            if (isLeft) {\r\n" + //
+					"               currentItem -= 1;\r\n" + //
+					"            } else {\r\n" + //
+					"               currentItem += 1;\r\n" + //
+					"            }\r\n" + //
+					"\r\n" + //
+					"            if (currentItem >= maxItems) {\r\n" + //
+					"               currentItem = 0;\r\n" + //
+					"            }\r\n" + //
+					"\r\n" + //
+					"            if (currentItem < 0) {\r\n" + //
+					"               currentItem = maxItems - 1;\r\n" + //
+					"            }\r\n" + //
+					"\r\n" + //
+					"            items.forEach((item) => item.classList.remove(\"currentItem\"));\r\n" + //
+					"\r\n" + //
+					"            items[currentItem].scrollIntoView({\r\n" + //
+					"               behavior: \"smooth\",\r\n" + //
+					"               inline: \"center\",\r\n" + //
+					"               block: \"nearest\"\r\n" + //
+					"            });\r\n" + //
+					"\r\n" + //
+					"            items[currentItem].classList.add(\"currentItem\");\r\n" + //
+					"         });\r\n" + //
+					"      });\r\n" + //
+					"   </script>\r\n" + //
+					"</body>\r\n" + //
+					"\r\n" + //
+					"</html>");
+			helper.setText(builder.toString(), true);
+			emailSender.send(mensagemCadastro);
+
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
 }
