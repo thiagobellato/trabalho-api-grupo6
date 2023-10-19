@@ -32,7 +32,8 @@ public class CategoriaController {
 
 	@GetMapping("/count")
 	public Integer getCount() throws MessagingException {
-		emailService.envioEmail();
+		//emailService.envioEmail();
+		//emailService.envioEmailTeste();
 		return categoriaService.getCount();
 	}
 
