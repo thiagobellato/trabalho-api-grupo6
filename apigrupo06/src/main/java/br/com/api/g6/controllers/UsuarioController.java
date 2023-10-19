@@ -49,12 +49,16 @@ public class UsuarioController {
 	@Autowired
 	RoleRepository roleRepository;
 
+	// Você está injetando uma instância de JWTUtil para manipular tokens JWT.
 	@Autowired
 	private JWTUtil jwtUtil;
 
+	// Você está injetando um AuthenticationManager para gerenciar a autenticação do
+	// usuário.
 	@Autowired
 	private AuthenticationManager authManager;
 
+	// Você está injetando um codificador de senhas para criptografar senhas.
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -102,11 +106,20 @@ public class UsuarioController {
 		// Aqui, estamos verificando se as roles fornecidas estão vazias. Se estiverem
 		// vazias, adicionamos a role de COMPRADOR. Se não estiverem vazias, iteramos
 		// sobre as roles e adicionamos as roles correspondentes ao conjunto roles.
+
+		// Se a lista de strings de roles (strRoles) for nula, isso significa que o
+		// usuário não especificou nenhuma role. Nesse caso, o código encontra a role de
+		// ROLE_COMPRADOR no repositório (roleRepository) e a adiciona ao conjunto de
+		// roles (roles).
 		if (strRoles == null) {
 			Role usuarioRole = roleRepository.findByName(TipoRoleEnum.ROLE_COMPRADOR)
 					.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
 			roles.add(usuarioRole);
 		} else {
+			// Se strRoles não for nulo, o código itera sobre as roles fornecidas. Se a
+			// string de role for "VENDEDOR", ele encontra a ROLE_VENDEDOR no repositório e
+			// a adiciona ao conjunto roles. Se a string de role for "COMPRADOR", ele
+			// encontra a ROLE_COMPRADOR no repositório e a adiciona ao conjunto roles.
 			strRoles.forEach(role -> {
 				switch (role) {
 				case "VENDEDOR":
@@ -191,7 +204,7 @@ public class UsuarioController {
 			// Finalmente, você está retornando um mapa contendo o token JWT com a chave
 			// "jwt-token". Isso será enviado de volta ao cliente após o login bem-sucedido.
 			return Collections.singletonMap("jwt-token", token);
-			
+
 		} catch (AuthenticationException authExc) {
 			throw new RuntimeException("Credenciais Invalidas");
 		}
