@@ -1,0 +1,130 @@
+<!-- <html>
+
+<head>
+   <style>
+      * {
+         padding: 0;
+         margin: 0;
+         box-sizing: border-box;
+      }
+
+      .conteinerCarrousel {
+         position: relative;
+         padding: 20px;
+         max-width: 640px;
+         margin: 0 auto;
+         border: 3px solid var(--cor04);
+         border-radius: 5px;
+         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.466);
+      }
+
+      .carrousel {
+         overflow-x: auto;
+         -ms-overflow-style: none;
+      }
+
+      .carrousel::-webkit-scrollbar {
+         display: none;
+      }
+
+      .galeria {
+         display: flex;
+         flex-flow: row nowrap;
+         gap: 15px;
+      }
+
+      .setaEsquerda,
+      .setaDireita {
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: auto;
+         bottom: 0;
+         font-size: 20px;
+         line-height: 250px;
+         width: 30px;
+         border: none;
+         color: black;
+         opacity: 1;
+      }
+
+      .setaDireita {
+         left: auto;
+         right: 0;
+      }
+
+      .item {
+         width: 400px;
+         height: 400px;
+         flex-shrink: 0;
+         opacity: 1;
+         background-color: var(--cor04);
+         padding: 1.5px;
+      }
+   </style>
+</head>
+
+<body>
+   <h1 style="text-align: center;">Veja nossas ofertas!</h1>
+   <div class="conteinerCarrousel"
+      id="FOTOS">
+      <button class="setaEsquerda control"
+         aria-label="Previous image">⬅️</button>
+      <button class="setaDireita control"
+         aria-label="Next image">➡️</button>
+      <div class="carrousel">
+         <div class="galeria">
+            <img src="../img/Logo-G6-TechStore.png"
+               alt="Teste carrousel"
+               class="item currentItem">
+            <img src="../img/Logo-G6-TechStore.png"
+               alt="Teste carrousel"
+               class="item">
+            <img src="../img/Logo-G6-TechStore.png"
+               alt="Teste carrousel"
+               class="item">
+            <img src="../img/Logo-G6-TechStore.png"
+               alt="Teste carrousel"
+               class="item">
+         </div>
+      </div>
+   </div>
+   <script>
+      const controls = document.querySelectorAll(".control");
+      let currentItem = 0;
+      const items = document.querySelectorAll(".item");
+      const maxItems = items.length;
+
+      controls.forEach((control) => {
+         control.addEventListener("click", (e) => {
+            isLeft = e.target.classList.contains("setaEsquerda");
+
+            if (isLeft) {
+               currentItem -= 1;
+            } else {
+               currentItem += 1;
+            }
+
+            if (currentItem >= maxItems) {
+               currentItem = 0;
+            }
+
+            if (currentItem < 0) {
+               currentItem = maxItems - 1;
+            }
+
+            items.forEach((item) => item.classList.remove("currentItem"));
+
+            items[currentItem].scrollIntoView({
+               behavior: "smooth",
+               inline: "center",
+               block: "nearest"
+            });
+
+            items[currentItem].classList.add("currentItem");
+         });
+      });
+   </script>
+</body>
+
+</html> -->
