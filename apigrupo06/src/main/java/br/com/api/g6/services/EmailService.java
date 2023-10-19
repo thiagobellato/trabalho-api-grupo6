@@ -65,7 +65,7 @@ public class EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("grupo6apiserratec@gmail.com");
-			helper.setTo("tfbellato@hotmail.com");
+			helper.setTo("taamiresferreiraa38@gmail.com");
 			helper.setSubject("Cadastro concluido!");
 
 			StringBuilder builder = new StringBuilder();
@@ -94,7 +94,7 @@ public class EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("grupo6apiserratec@gmail.com");
-			helper.setTo("tfbellato@hotmail.com");
+			helper.setTo("taamiresferreiraa38@gmail.com");
 			helper.setSubject("VASCO 5 X 0 FORTALEZA!!!");
 
 			LocalDate localDate = LocalDate.now();
@@ -147,6 +147,5 @@ public class EmailService {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
