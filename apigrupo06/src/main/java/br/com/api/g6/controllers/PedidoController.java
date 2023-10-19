@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.api.g6.entities.Pedido;
+import br.com.api.g6.services.EmailService;
 import br.com.api.g6.services.PedidoService;
 
 @RestController
@@ -23,11 +24,13 @@ public class PedidoController {
 
 	@GetMapping("/count")
 	public Integer getCount() {
+		//EmailService.envioEmailPedidoFinalizado();
 		return pedidoService.getCount();
 	}
 
 	@PostMapping("/salvar")
 	public Pedido salvar(@RequestBody Pedido objetoPedido) {
+		//EmailService.envioEmailPedidoFinalizado();
 		return pedidoService.salvar(objetoPedido);
 	}
 
