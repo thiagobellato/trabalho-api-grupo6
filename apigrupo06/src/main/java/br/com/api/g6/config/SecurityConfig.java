@@ -51,39 +51,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeHttpRequests()
 				/* PERMISSÃO TOTAL CATEGORIA */
 				.antMatchers(
-						"/categoria/count",
-						"/endereco/count",
-						"/pedido/count",
-						"/produto/count",
-						"/usuario/count")
-				.permitAll()
+						"/categoria/count", "/categoria/{id}", "/categoria/listar",
+						"/pedido/{id}", "/pedido/listar",
+						"/produto/listar", "/produto/listar", "/produto/count", "/produto/{id}",
+						"/usuario/registro", "/usuario/login",
+						"/usuario/count").permitAll()
 				/* ACESSOS NA ENTIDADE CATEGORIA */
-				.antMatchers(
-						"/categoria/")
-				.hasRole("VENDEDOR")
-				.antMatchers(
-						"/categoria/")
-				.hasRole("COMPRADOR")
+				.antMatchers("/categoria/salvar/{id}", "/categoria/atualizar/{id}", "/categoria/delete/{id}").hasRole("VENDEDOR")
 				/* ACESSOS NA ENTIDADE ENDEREÇO */
-				.antMatchers("/endereco/")
-				.hasRole("VENDEDOR")
-				.antMatchers("/endereco/")
-				.hasRole("COMPRADOR")
+				.antMatchers("endereco/count", "/endereco/{id}", "/endereco/listar").hasRole("VENDEDOR")
+				.antMatchers("endereco/count", "endereco/listar", "endereco/delete/{id}", "endereco/atualizar/{id}", "/endereco/salvar").hasRole("COMPRADOR")
 				/* ACESSOS NA ENTIDADE PEDIDO */
-				.antMatchers("/pedido/")
-				.hasRole("VENDEDOR")
-				.antMatchers("/pedido/")
-				.hasRole("COMPRADOR")
+				.antMatchers("pedido/count").hasRole("VENDEDOR")
+				.antMatchers("pedido/count", "pedido/salvar", "pedido/desativar/{id}", "pedido/atualizar/{id}").hasRole("COMPRADOR")
 				/* ACESSOS NA ENTIDADE PRODUTO */
-				.antMatchers("/produto/")
-				.hasRole("VENDEDOR")
-				.antMatchers("/produto/")
-				.hasRole("COMPRADOR")
+				.antMatchers("produto/salvar", "produto/delete/{id}", "produto/atualizar/{id}").hasRole("VENDEDOR")
+				.antMatchers("/produto/").hasRole("COMPRADOR")
 				/* ACESSOS NA ENTIDADE USUARIO */
-				.antMatchers("/usuario/")
-				.hasRole("VENDEDOR")
-				.antMatchers("/usuario/")
-				.hasRole("COMPRADOR")
+				.antMatchers("usuario/count", "usuario/{id}", "usuario/listar").hasRole("VENDEDOR")
+				.antMatchers("usuario/atualizar/{id}", "usuario/desativar/{id}").hasRole("COMPRADOR")
 				.and()
 				.userDetailsService(uds)
 				.exceptionHandling()
