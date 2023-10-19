@@ -55,35 +55,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						"/endereco/count",
 						"/pedido/count",
 						"/produto/count",
-						"/usuario/count")
-				.permitAll()
+						"/usuario/count").permitAll()
 				/* ACESSOS NA ENTIDADE CATEGORIA */
 				.antMatchers(
-						"/categoria/")
-				.hasRole("VENDEDOR")
+						"/categoria/").hasRole("VENDEDOR")
 				.antMatchers(
-						"/categoria/")
-				.hasRole("COMPRADOR")
+						"/categoria/").hasRole("COMPRADOR")
 				/* ACESSOS NA ENTIDADE ENDEREÇO */
-				.antMatchers("/endereco/")
-				.hasRole("VENDEDOR")
-				.antMatchers("/endereco/")
-				.hasRole("COMPRADOR")
+				.antMatchers("/endereco/").hasRole("VENDEDOR")
+				.antMatchers("/endereco/").hasRole("COMPRADOR")
 				/* ACESSOS NA ENTIDADE PEDIDO */
-				.antMatchers("/pedido/")
-				.hasRole("VENDEDOR")
-				.antMatchers("/pedido/")
-				.hasRole("COMPRADOR")
+				.antMatchers("/pedido/").hasRole("VENDEDOR")
+				.antMatchers("/pedido/").hasRole("COMPRADOR")
 				/* ACESSOS NA ENTIDADE PRODUTO */
-				.antMatchers("/produto/")
-				.hasRole("VENDEDOR")
-				.antMatchers("/produto/")
-				.hasRole("COMPRADOR")
+				.antMatchers("/produto/").hasRole("VENDEDOR")
+				.antMatchers("/produto/").hasRole("COMPRADOR")
 				/* ACESSOS NA ENTIDADE USUARIO */
-				.antMatchers("/usuario/")
-				.hasRole("VENDEDOR")
-				.antMatchers("/usuario/")
-				.hasRole("COMPRADOR")
+				.antMatchers("/usuario/").hasRole("VENDEDOR")
+				.antMatchers("/usuario/").hasRole("COMPRADOR")
 				.and()
 				.userDetailsService(uds)
 				.exceptionHandling()
