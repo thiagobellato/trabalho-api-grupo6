@@ -30,6 +30,7 @@ import br.com.api.g6.entities.Usuario;
 import br.com.api.g6.enums.TipoRoleEnum;
 import br.com.api.g6.repositories.EnderecoRepository;
 import br.com.api.g6.repositories.RoleRepository;
+import br.com.api.g6.services.EmailService;
 import br.com.api.g6.services.EnderecoService;
 import br.com.api.g6.services.UsuarioService;
 
@@ -84,6 +85,7 @@ public class UsuarioController {
 
 	@DeleteMapping("/desativar/{id}")
 	public void apagarLogico(@PathVariable Integer id) {
+		EmailService.envioEmailContaDesativada();
 		usuarioService.apagarLogico(id);
 	}
 

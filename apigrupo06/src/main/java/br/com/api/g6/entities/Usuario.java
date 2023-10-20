@@ -152,7 +152,7 @@ public class Usuario {
 		this.telefoneSecundario = telefoneSecundario;
 	}
 
-	public String getNomeUsuario() {
+	public static String getNomeUsuario() {
 		return nomeUsuario;
 	}
 
