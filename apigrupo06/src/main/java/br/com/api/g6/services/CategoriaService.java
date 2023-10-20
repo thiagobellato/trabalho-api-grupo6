@@ -1,8 +1,11 @@
 package br.com.api.g6.services;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import br.com.api.g6.dto.CategoriaDTO;
 import br.com.api.g6.entities.Categoria;
 import br.com.api.g6.repositories.CategoriaRepository;
 
@@ -16,8 +19,11 @@ public class CategoriaService {
 		return categoriaRepository.contar();
 	}
 
-	public Categoria salvar(Categoria objetoCategoria) {
-		return categoriaRepository.save(objetoCategoria);
+	public Categoria salvar(CategoriaDTO objetoCategoria) {
+		Categoria categoriaNovo = new Categoria();
+		categoriaNovo.setNome(objetoCategoria.getNome());
+		categoriaNovo.setDescricao(objetoCategoria.getDescricao());
+		return categoriaRepository.save(categoriaNovo);
 	}
 
 	public Categoria acharId(Integer id) {
@@ -25,6 +31,9 @@ public class CategoriaService {
 	}
 
 	public List<Categoria> listar() {
+//		Categoria categoriaNovo = new Categoria();	
+//		categoriaNovo.getNome();
+//		categoriaNovo.getDescricao();
 		return categoriaRepository.findAll();
 	}
 
