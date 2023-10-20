@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "nomeUsuario")
+@Table(name = "usuario")
 public class Usuario {
 
 	@Id
@@ -152,7 +152,7 @@ public class Usuario {
 		this.telefoneSecundario = telefoneSecundario;
 	}
 
-	public static String getNomeUsuario() {
+	public  String getNomeUsuario() {
 		return nomeUsuario;
 	}
 

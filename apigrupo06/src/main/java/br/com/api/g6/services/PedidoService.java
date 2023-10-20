@@ -45,7 +45,7 @@ public class PedidoService {
 		return pedidoRepository.findById(id).get();
 	}
 
-	public static List<Pedido> listar() {
+	public List<Pedido> listar() {
 		return pedidoRepository.findAll();
 	}
 

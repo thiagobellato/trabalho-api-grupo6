@@ -46,7 +46,7 @@ public class Pedido {
 		this.produtos = produtos;
 	}
 
-	public static Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 

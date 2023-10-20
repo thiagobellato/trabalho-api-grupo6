@@ -1,6 +1,5 @@
 package br.com.api.g6.services;
 
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -158,12 +157,12 @@ public class EmailService {
 	 * }
 	 */
 
-	public static void envioEmailPedidoFinalizado() {
+	public void envioEmailPedidoFinalizado(Usuario usuario,Integer idPedido) {
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("grupo6apiserratec@gmail.com");
-			helper.setTo("julialimafc048@gmail.com");
+			helper.setTo(usuario.getEmail());
 			helper.setSubject("PEDIDO REALIZADO COM SUCESSO!");
 
 			LocalDate localDate = LocalDate.now();
@@ -197,32 +196,33 @@ public class EmailService {
 					"    <div style=\"margin-left: 30px;\">\r\n" + //
 					"        <br>\r\n" + //
 					"        <p style=\"size: 19px;\"><b>");
-			builder.append(Usuario.getNomeUsuario());
+			builder.append(usuario.getNomeUsuario());
 			builder.append(",</b></p>\r\n" + //
 					"        <p>Obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido #[");
-			builder.append(Pedido.getId());
+			builder.append(idPedido);
 			builder.append("] foi recebido e está em processo de verificação.</p>\r\n");
-
-			List<Pedido> listaProdutos = PedidoService.listar();
-			for (Pedido produtos : listaProdutos) {
+			Double valorTotal = 0.0;
+			/*List<Produto> listaProdutos = produtoService.listar(idPedido);
+			for (Produto produto : listaProdutos) {
 				builder.append("		    <tr>\r\n");
 				builder.append("			<td>\r\n");
-				builder.append(Produto.getNome());
+				builder.append(produto.getNome());
 				builder.append("			</td>\r\n");
 				builder.append("			<td>\r\n");
-				builder.append(Produto.getQuantidade());
+				builder.append(produto.getQuantidade());
 				builder.append("			</td>\r\n");
 				builder.append("		    <td>\r\n");
-				builder.append(Produto.getValorUnitario());
+				builder.append(produto.getValorUnitario());
 				builder.append("			</td>\r\n");
 				builder.append("			<td>\r\n");
 				builder.append("			</td>\r\n");
-			}
+				valorTotal += produto.getValorUnitario();
+			}*/
 
 			builder.append("Previsão para entrega: ");
 			builder.append(dataEntrega);
 			builder.append("        <p>Valor total: R$ ");
-			builder.append(Pedido.getValorTotal()); // PRECISA CRIAR
+			builder.append(valorTotal); // PRECISA CRIAR
 			builder.append("        <br>\r\n" + //
 					"        <hr style=\"margin-right: 30px;\">\r\n" + //
 					"        <p><b style=\"color: orange;\">#Dica:</b> Através do nosso WhatsApp você consegue também tirar dúvidas sobre o status do seu pedido.</p>\r\n"
@@ -276,7 +276,7 @@ public class EmailService {
 					"    </header>\r\n" + //
 					"    <div style=\"margin-left: 30px;\">\r\n" + //
 					"        <br>\r\n<p>Ei, <b>"); //
-			builder.append(Usuario.getNomeUsuario());
+//			builder.append(Usuario.getNomeUsuario());
 			builder.append(",</b></p>\r\n" + //
 					"        <br>\r\n" + //
 					"        <p>Esperamos que está mensagem <b>não seja o nosso adeus definitivo</b>, mas se você realmente deseja desativar sua conta, vamos sentir sua falta.</p>\r\n"

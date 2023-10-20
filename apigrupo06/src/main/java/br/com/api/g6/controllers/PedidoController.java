@@ -1,6 +1,7 @@
 package br.com.api.g6.controllers;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +11,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.api.g6.entities.Pedido;
+import br.com.api.g6.entities.Usuario;
 import br.com.api.g6.services.EmailService;
 import br.com.api.g6.services.PedidoService;
+import br.com.api.g6.services.UsuarioService;
 
 @RestController
 @RequestMapping("/pedido")
@@ -21,6 +26,15 @@ public class PedidoController {
 
 	@Autowired
 	PedidoService pedidoService;
+	
+	@Autowired
+	UsuarioService usuarioService;
+	
+	private EmailService emailService;
+    @Autowired
+    public void setEmailService(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
 	@GetMapping("/count")
 	public Integer getCount() {
@@ -29,9 +43,10 @@ public class PedidoController {
 	}
 
 	@PostMapping("/salvar")
-	public Pedido salvar(@RequestBody Pedido objetoPedido) {
-		EmailService.envioEmailPedidoFinalizado();
-		return pedidoService.salvar(objetoPedido);
+	public void salvar(@RequestParam String email, @RequestBody Pedido objetoPedido) {
+		pedidoService.salvar(objetoPedido);
+		Usuario usuario = usuarioService.findByEmail(email);
+		emailService.envioEmailPedidoFinalizado(usuario,objetoPedido.getId());
 	}
 
 	@GetMapping("/{id}")
