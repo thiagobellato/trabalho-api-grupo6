@@ -24,6 +24,10 @@ public class ProdutoService {
 		return produtoRepository.findById(id).get();
 	}
 
+	public List<Produto> listar(Integer idPedido) {
+		return produtoRepository.listarProdutosPorPedido(idPedido);
+	}
+	
 	public List<Produto> listar() {
 		return produtoRepository.findAll();
 	}
