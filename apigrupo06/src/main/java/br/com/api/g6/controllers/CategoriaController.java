@@ -49,7 +49,7 @@ public class CategoriaController {
 
 	@GetMapping("/listar")
 	public List<Categoria> listar() {
-		emailService.envioEmail();;
+		emailService.envioEmail();
 		return categoriaService.listar();
 	}
 
