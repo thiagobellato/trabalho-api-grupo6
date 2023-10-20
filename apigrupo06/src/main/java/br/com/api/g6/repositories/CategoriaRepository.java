@@ -8,6 +8,6 @@ import br.com.api.g6.entities.Categoria;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 
-	@Query(value = "select count(*) from g6marketplace", nativeQuery = true)
+	@Query(value = "select count(*) from categoria", nativeQuery = true)
 	public Integer contar();
 }
