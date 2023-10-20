@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.api.g6.dto.CategoriaDTO;
 import br.com.api.g6.entities.Categoria;
 import br.com.api.g6.services.CategoriaService;
 import br.com.api.g6.services.EmailService;
@@ -38,7 +39,7 @@ public class CategoriaController {
 	}
 
 	@PostMapping("/salvar")
-	public Categoria salvar(@RequestBody Categoria objetoCategoria) {
+	public Categoria salvar(@RequestBody CategoriaDTO objetoCategoria) {
 		return categoriaService.salvar(objetoCategoria);
 	}
 
@@ -48,7 +49,7 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/listar")
-	public List<Categoria> listar() {
+	public List<Categoria> listar(@RequestBody CategoriaDTO objetoCategoria) {
 		emailService.envioEmail();
 		return categoriaService.listar();
 	}
