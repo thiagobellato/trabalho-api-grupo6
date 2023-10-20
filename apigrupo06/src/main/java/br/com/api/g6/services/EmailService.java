@@ -27,7 +27,13 @@ import br.com.api.g6.entities.Usuario;
 public class EmailService {
 
 	@Autowired
+	static UsuarioService usuarioService;
+
+	@Autowired
 	static ProdutoService produtoService;
+
+	@Autowired
+	static PedidoService pedidoService;
 
 	private static JavaMailSender emailSender;
 
@@ -166,6 +172,20 @@ public class EmailService {
 
 			StringBuilder builder = new StringBuilder();
 			builder.append("<html>\r\n" + //
+					"    <head>\r\n" + //
+					"        <style>\r\n" + //
+					"        .container {\r\n" + //
+					"            display: inline-block;\r\n" + //
+					"            justify-content: center;\r\n" + //
+					"            align-items: center;\r\n" + //
+					"            position: relative;\r\n" + //
+					"            top: -600px;\r\n" + //
+					"            justify-items: center; \r\n" + //
+					"            display: flex; \r\n" + //
+					"            left: 10px;\r\n" + //
+					"        }\r\n" + //
+					"    </style>\r\n" + //
+					"    </head>\r\n" + //
 					"<body>\r\n" + //
 					"    <header style=\"background-color: orange; width: 100%; height: 100px; padding: 0px; margin: 0px;\"> \r\n"
 					+ //
@@ -176,42 +196,107 @@ public class EmailService {
 					"    </header>\r\n" + //
 					"    <div style=\"margin-left: 30px;\">\r\n" + //
 					"        <br>\r\n" + //
-					"        <p style=\"size: 19px;\"><b>Fulano,</b></p>\r\n" + //
-					"        <p>Obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido: #");
-			// builder.append(produto.getId());
-			builder.append(" , foi recebido e está em processo de verificação.</p>\r\n");
+					"        <p style=\"size: 19px;\"><b>");
+			builder.append(Usuario.getNomeUsuario());
+			builder.append(",</b></p>\r\n" + //
+					"        <p>Obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido #[");
+			builder.append(Pedido.getId());
+			builder.append("] foi recebido e está em processo de verificação.</p>\r\n");
 
-			// List<Produto> listaProdutos = produtoService.listar();
+			List<Pedido> listaProdutos = PedidoService.listar();
+			for (Pedido produtos : listaProdutos) {
+				builder.append("		    <tr>\r\n");
+				builder.append("			<td>\r\n");
+				builder.append(Produto.getNome());
+				builder.append("			</td>\r\n");
+				builder.append("			<td>\r\n");
+				builder.append(Produto.getQuantidade());
+				builder.append("			</td>\r\n");
+				builder.append("		    <td>\r\n");
+				builder.append(Produto.getValorUnitario());
+				builder.append("			</td>\r\n");
+				builder.append("			<td>\r\n");
+				builder.append("			</td>\r\n");
+			}
 
-			// for (Produto produto : listaProdutos) {
-			// 	builder.append("		    <tr>\r\n");
-			// 	builder.append("			<td>\r\n");
-			// 	builder.append(produto.getNome());
-			// 	builder.append("			</td>\r\n");
-			// 	builder.append("			<td>\r\n");
-			// 	builder.append(produto.getQuantidade());
-			// 	builder.append("			</td>\r\n");
-			// 	builder.append("		    <td>\r\n");
-			// 	builder.append(produto.getValorUnitario());
-			// 	builder.append("			</td>\r\n");
-			// 	builder.append("			<td>\r\n");
-			// 	builder.append("			</td>\r\n");
-			// }
-			builder.append(
-					"<p>Assim que seu pedido for aprovado, você receberá um e-mail com a data de entrega prevista para o dia: ");
+			builder.append("Previsão para entrega: ");
 			builder.append(dataEntrega);
-			builder.append("</p>\r\n");
-			builder.append(
+			builder.append("        <p>Valor total: R$ ");
+			builder.append(Pedido.getValorTotal()); // PRECISA CRIAR
+			builder.append("        <br>\r\n" + //
+					"        <hr style=\"margin-right: 30px;\">\r\n" + //
+					"        <p><b style=\"color: orange;\">#Dica:</b> Através do nosso WhatsApp você consegue também tirar dúvidas sobre o status do seu pedido.</p>\r\n"
+					+ //
 					"        <br>\r\n" + //
-							"        <hr style=\"margin-right: 30px;\">\r\n" + //
-							"        <p><b style=\"color: orange;\">#Dica:</b> Através do nosso WhatsApp você consegue também tirar dúvidas sobre o status do seu pedido.</p>\r\n"
-							+ //
-							"        <br>\r\n" + //
-							"        <p style=\"color: orange; text-align: center; justify-items: center; margin: 0px; height: 100vh; display: flex; flex-direction: column;\"><b>CONTE COM A GENTE!</b></p>\r\n"
-							+ //
-							"    </div>  \r\n" + //
-							"</body>\r\n" + //
-							"</html>");
+					"        <br>\r\n" + //
+					"        <p style=\"color: orange; text-align: center; justify-items: center; margin: 0px; height: 100vh; display: flex; flex-direction: column; margin-top: 80px;\"><b>CONTE COM A GENTE!</b></p>\r\n"
+					+ //
+					"    </div>  \r\n" + //
+					"    <div class=\"container\">\r\n" + //
+					"    <img src=\"/outros_arquivos/imagens/icons8-instagram-96.png\" alt=\"instagram\" width=\"30\">\r\n" + //
+					"    <img src=\"/outros_arquivos/imagens/icons8-whatsapp-ios-16-filled-96.png\" alt=\"WhatsApp\" width=\"27\">\r\n"
+					+ //
+					"    </div>\r\n" + //
+					"</body>\r\n" + //
+					"</html>");
+			helper.setText(builder.toString(), true);
+			emailSender.send(mensagemCadastro);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void envioEmailContaDesativada() {
+		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
+			helper.setFrom("grupo6apiserratec@gmail.com");
+			helper.setTo("julialimafc048@gmail.com");
+			helper.setSubject("PEDIDO REALIZADO COM SUCESSO!");
+
+			LocalDate localDate = LocalDate.now();
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String dataEntrega = localDate.plusDays(7).format(format);
+
+			StringBuilder builder = new StringBuilder();
+			builder.append("<html>\r\n" + //
+					"<head>\r\n" + //
+					"    <style>\r\n" + //
+					"        .container {\r\n" + //
+					"            position: relative;\r\n" + //
+					"            top: -600px;\r\n" + //
+					"            left: 50px;\r\n" + //
+					"        }\r\n" + //
+					"    </style>\r\n" + //
+					"</head>\r\n" + //
+					"<body>\r\n" + //
+					"    <header style=\"background-color: orange; width: 100%; height: 100px; padding: 0px; margin: 0px;\"> \r\n"
+					+ //
+					"       \r\n" + //
+					"    </header>\r\n" + //
+					"    <div style=\"margin-left: 30px;\">\r\n" + //
+					"        <br>\r\n<p>Ei, <b>"); //
+			builder.append(Usuario.getNomeUsuario());
+			builder.append(",</b></p>\r\n" + //
+					"        <br>\r\n" + //
+					"        <p>Esperamos que está mensagem <b>não seja o nosso adeus definitivo</b>, mas se você realmente deseja desativar sua conta, vamos sentir sua falta.</p>\r\n"
+					+ //
+					"        <br>\r\n" + //
+					"        <p><a href=\"https://www.google.com.br/\">Clique aqui</a> caso deseja nos abandonar! &#x1F61E;</p>\r\n"
+					+ //
+					"        <br>\r\n" + //
+					"        <div>\r\n" + //
+					"            <p style=\"color: black; justify-items: center; margin: 0px; height: 100vh; display: flex; flex-direction: column; margin-top: 80px;\"><b>Nos siga nas redes sociais!</b></p>\r\n"
+					+ //
+					"    </div>  \r\n" + //
+					"    <div class=\"container\">\r\n" + //
+					"    <img src=\"/outros_arquivos/imagens/icons8-instagram-96.png\" alt=\"instagram\" width=\"30\">\r\n" + //
+					"    <img src=\"/outros_arquivos/imagens/icons8-whatsapp-ios-16-filled-96.png\" alt=\"WhatsApp\" width=\"27\">\r\n"
+					+ //
+					"        </div>\r\n" + //
+					"</body>\r\n" + //
+					"</html>");
+
 			helper.setText(builder.toString(), true);
 			emailSender.send(mensagemCadastro);
 		} catch (MessagingException e) {
