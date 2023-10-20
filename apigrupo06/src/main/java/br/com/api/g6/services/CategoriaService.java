@@ -21,6 +21,8 @@ public class CategoriaService {
 
 	public Categoria salvar(CategoriaDTO objetoCategoria) {
 		Categoria categoriaNovo = new Categoria();
+		categoriaNovo.setNome(objetoCategoria.getNome());
+		categoriaNovo.setDescricao(objetoCategoria.getDescricao());
 		return categoriaRepository.save(categoriaNovo);
 	}
 
@@ -28,8 +30,10 @@ public class CategoriaService {
 		return categoriaRepository.findById(id).get();
 	}
 
-	public List<Categoria> listar(CategoriaDTO objetoCategoria) {
-		Categoria categoriaNovo = new Categoria();
+	public List<Categoria> listar() {
+//		Categoria categoriaNovo = new Categoria();	
+//		categoriaNovo.getNome();
+//		categoriaNovo.getDescricao();
 		return categoriaRepository.findAll();
 	}
 
