@@ -55,9 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						"/pedido/{id}", "/pedido/listar",
 						"/produto/listar", "/produto/listar", "/produto/count", "/produto/{id}",
 						"/usuario/registro", "/usuario/login",
-						"/usuario/count").permitAll()
+						"/usuario/count","/categoria/delete/{id}").permitAll()
 				/* ACESSOS NA ENTIDADE CATEGORIA */
-				.antMatchers("/categoria/salvar/{id}", "/categoria/atualizar/{id}", "/categoria/delete/{id}").hasRole("VENDEDOR")
+				.antMatchers("/categoria/salvar/{id}", "/categoria/atualizar/{id}").hasRole("VENDEDOR")
 				/* ACESSOS NA ENTIDADE ENDEREÇO */
 				.antMatchers("endereco/count", "/endereco/{id}", "/endereco/listar").hasRole("VENDEDOR")
 				.antMatchers("endereco/count", "endereco/listar", "endereco/delete/{id}", "endereco/atualizar/{id}", "/endereco/salvar").hasRole("COMPRADOR")
