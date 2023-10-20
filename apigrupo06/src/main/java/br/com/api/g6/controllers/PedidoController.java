@@ -30,7 +30,7 @@ public class PedidoController {
 
 	@PostMapping("/salvar")
 	public Pedido salvar(@RequestBody Pedido objetoPedido) {
-		//EmailService.envioEmailPedidoFinalizado();
+		EmailService.envioEmailPedidoFinalizado();
 		return pedidoService.salvar(objetoPedido);
 	}
 

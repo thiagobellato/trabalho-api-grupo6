@@ -63,7 +63,7 @@ public class Produto {
 		this.id = id;
 	}
 
-	public String getNome() {
+	public static String getNome() {
 		return nome;
 	}
 
@@ -87,7 +87,7 @@ public class Produto {
 		this.dataDeFabricacao = dataDeFabricacao;
 	}
 
-	public Integer getQuantidade() {
+	public static Integer getQuantidade() {
 		return quantidade;
 	}
 
@@ -95,7 +95,7 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 
-	public Double getValorUnitario() {
+	public static Double getValorUnitario() {
 		return valorUnitario;
 	}
 

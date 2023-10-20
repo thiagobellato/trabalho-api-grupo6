@@ -59,6 +59,7 @@ public class SwaggerConfig {
 
 				.version("5.11.1")
 
+
 				.build();
 		return apiInfo;
 	}
