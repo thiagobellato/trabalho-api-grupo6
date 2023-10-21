@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.api.g6.dto.UserDTO;
 import br.com.api.g6.entities.Usuario;
 import br.com.api.g6.repositories.UsuarioRepository;
 
@@ -18,7 +19,8 @@ public class UsuarioService {
 		return usuarioRepository.contar();
 	}
 
-	public Usuario salvar(Usuario objetoUsuario) {
+	public UserDTO salvar(UserDTO objetoUsuario) {
+		
 		return usuarioRepository.save(objetoUsuario);
 	}
 
