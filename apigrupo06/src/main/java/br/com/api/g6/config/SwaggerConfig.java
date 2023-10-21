@@ -40,31 +40,16 @@ public class SwaggerConfig {
 
 	@Bean
 	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.apiInfo(apiInfo())
-				.securityContexts(Collections.singletonList(securityContext()))
-				.securitySchemes(Arrays.asList(apiKey()))
-				.select()
-				.apis(RequestHandlerSelectors.basePackage("br.com.api.g6.controllers"))
-				.paths(PathSelectors.any())
-				.build();
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
+				.securityContexts(Collections.singletonList(securityContext())).securitySchemes(Arrays.asList(apiKey()))
+				.select().apis(RequestHandlerSelectors.basePackage("br.com.api.g6.controllers"))
+				.paths(PathSelectors.any()).build();
 	}
 
 	private ApiInfo apiInfo() {
-		ApiInfo apiInfo = new ApiInfoBuilder()
-				.title("Documentação de API projeto final")
-				.description("Projeto final da disciplina de APIrestful")
-				.license("Apache license version 2.0")
-
-
-<<<<<<< HEAD
-				.version("5.12.3")
-=======
-				.version("5.13.1")
->>>>>>> 89b6effe09735f32b7ae82965d9317a5ad83ba31
-
-
-				.build();
+		ApiInfo apiInfo = new ApiInfoBuilder().title("Documentação de API projeto final")
+				.description("Projeto final da disciplina de APIrestful").license("Apache license version 2.0")
+				.version("5.13.1").build();
 		return apiInfo;
 	}
 }
