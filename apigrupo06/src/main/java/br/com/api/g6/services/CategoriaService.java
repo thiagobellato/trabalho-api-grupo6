@@ -58,52 +58,52 @@ public class CategoriaService {
 		categoriaRepository.deleteById(id);
 	}
 
-	//Put Teste
+	// Put Teste
 	public CategoriaDTO atualizar(Integer id, CategoriaDTO objetoCategoria) {
-	    CategoriaDTO registroAntigo = acharId(id);
+		CategoriaDTO registroAntigo = acharId(id);
 
-	        if (objetoCategoria.getNome() != null) {
-	            registroAntigo.setNome(objetoCategoria.getNome());
-	        }
+		if (objetoCategoria.getNome() != null) {
+			registroAntigo.setNome(objetoCategoria.getNome());
+		}
 
-	        if (objetoCategoria.getDescricao() != null) {
-	            registroAntigo.setDescricao(objetoCategoria.getDescricao());
-	        }
-	        // Use o método save para atualizar o registro no repositório
-	        converterCategoriaDTO(null);
-	        CategoriaDTO categoriaAtualizada = converterCategoriaDTO(registroAntigo); // Converter para Categoria
+		if (objetoCategoria.getDescricao() != null) {
+			registroAntigo.setDescricao(objetoCategoria.getDescricao());
+		}
+		// Use o método save para atualizar o registro no repositório
+		converterCategoriaDTO(null);
+		CategoriaDTO categoriaAtualizada = converterCategoriaDTO(registroAntigo); // Converter para Categoria
 
-	        categoriaRepository.save(categoriaAtualizada);
+		categoriaRepository.save(categoriaAtualizada);
 
-	        return converterCategoriaDTO(categoriaAtualizada); // Converter para CategoriaDTO e retornar
-	    }
+		return converterCategoriaDTO(categoriaAtualizada); // Converter para CategoriaDTO e retornar
+	}
 
 	// Put OK
-//	public CategoriaDTO atualizar(Integer id, CategoriaDTO objetoCategoria) {
-//		Categoria registroAntigo = acharId2(id);
-//
-//		if (registroAntigo != null) {
-//			if (objetoCategoria.getNome() != null) {
-//				registroAntigo.setNome(objetoCategoria.getNome());
-//			}
-//
-//			if (objetoCategoria.getDescricao() != null) {
-//				registroAntigo.setDescricao(objetoCategoria.getDescricao());
-//			}
-//
-//			categoriaRepository.save(registroAntigo);
-//
-//			return converterCategoriaDTO(registroAntigo);
-//
-//		}
-//		return objetoCategoria;
-//	}
+	// public CategoriaDTO atualizar(Integer id, CategoriaDTO objetoCategoria) {
+	// Categoria registroAntigo = acharId2(id);
+	//
+	// if (registroAntigo != null) {
+	// if (objetoCategoria.getNome() != null) {
+	// registroAntigo.setNome(objetoCategoria.getNome());
+	// }
+	//
+	// if (objetoCategoria.getDescricao() != null) {
+	// registroAntigo.setDescricao(objetoCategoria.getDescricao());
+	// }
+	//
+	// categoriaRepository.save(registroAntigo);
+	//
+	// return converterCategoriaDTO(registroAntigo);
+	//
+	// }
+	// return objetoCategoria;
+	// }
 
-//Conversor
-	public CategoriaDTO converterCategoriaDTO(Categoria categoria) {
+	// Conversor
+	public CategoriaDTO converterCategoriaDTO(CategoriaDTO registroAntigo) {
 		CategoriaDTO categoriaConvertida = new CategoriaDTO();
-		categoriaConvertida.setNome(categoria.getNome());
-		categoriaConvertida.setDescricao(categoria.getDescricao());
+		categoriaConvertida.setNome(registroAntigo.getNome());
+		categoriaConvertida.setDescricao(registroAntigo.getDescricao());
 
 		return categoriaConvertida;
 	}
