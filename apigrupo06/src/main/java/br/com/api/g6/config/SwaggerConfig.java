@@ -57,7 +57,7 @@ public class SwaggerConfig {
 				.license("Apache license version 2.0")
 
 
-				.version("5.12.3")
+				.version("5.13.0")
 
 
 				.build();
