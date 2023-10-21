@@ -51,7 +51,7 @@ public class CategoriaController {
 
 	@GetMapping("/listar")
 	public List<CategoriaDTO> listar() {
-		emailService.envioEmail();
+		emailService.envioEmail(null);
 		return categoriaService.listar();
 	}
 

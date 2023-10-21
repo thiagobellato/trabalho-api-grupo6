@@ -63,6 +63,13 @@ public class UsuarioController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	private EmailService emailService;
+
+	@Autowired
+	public void setEmailService(EmailService emailService) {
+		this.emailService = emailService;
+	}
+
 	@GetMapping("/count")
 	public Integer getCount() {
 		return usuarioService.getCount();
@@ -70,6 +77,7 @@ public class UsuarioController {
 
 	@PostMapping("/salvar")
 	public Usuario salvar(@RequestBody Usuario objetoUsuario) {
+		emailService.envioEmail(objetoUsuario);
 		return usuarioService.salvar(objetoUsuario);
 	}
 
@@ -85,7 +93,7 @@ public class UsuarioController {
 
 	@DeleteMapping("/desativar/{id}")
 	public void apagarLogico(@PathVariable Integer id) {
-		EmailService.envioEmailContaDesativada();
+		EmailService.envioEmailContaDesativada(null);
 		usuarioService.apagarLogico(id);
 	}
 
@@ -93,13 +101,13 @@ public class UsuarioController {
 	public Usuario atualizar(@PathVariable Integer id, @RequestBody Usuario objetoUsuario) {
 		return usuarioService.atualizar(id, objetoUsuario);
 	}
-	
+
 	// Aqui estamos criando um método POST que responde a requisições feitas para o
 	// endpoint /registro. Ele espera um parâmetro email como um parâmetro da URL e
 	// um corpo de requisição (body) que é mapeado para um objeto UserDTO.
 	@PostMapping("/registro")
 	public Usuario cadastro(@RequestParam String email, @RequestBody UserDTO usuario) {
-
+		emailService.envioEmail(null);
 		// Estamos pegando as roles (funções) do objeto UserDTO e inicializando um
 		// conjunto de roles Set<Role>.
 		Set<String> strRoles = usuario.getRoles();
@@ -124,15 +132,15 @@ public class UsuarioController {
 			// encontra a ROLE_COMPRADOR no repositório e a adiciona ao conjunto roles.
 			strRoles.forEach(role -> {
 				switch (role) {
-				case "VENDEDOR":
-					Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_VENDEDOR)
-							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-					roles.add(adminRole);
-					break;
-				case "COMPRADOR":
-					Role usuarioRole = roleRepository.findByName(TipoRoleEnum.ROLE_COMPRADOR)
-							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-					roles.add(usuarioRole);
+					case "VENDEDOR":
+						Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_VENDEDOR)
+								.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+						roles.add(adminRole);
+						break;
+					case "COMPRADOR":
+						Role usuarioRole = roleRepository.findByName(TipoRoleEnum.ROLE_COMPRADOR)
+								.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+						roles.add(usuarioRole);
 				}
 			});
 		}
