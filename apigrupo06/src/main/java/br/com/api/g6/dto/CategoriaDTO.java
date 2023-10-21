@@ -4,6 +4,7 @@ public class CategoriaDTO {
 
 	private String nome;
 	private String descricao;
+	
 	public CategoriaDTO() {
 		super();
 		// TODO Auto-generated constructor stub

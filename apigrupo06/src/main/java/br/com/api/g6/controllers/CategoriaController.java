@@ -44,13 +44,13 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/{id}")
-	public Categoria acharId(@PathVariable Integer id) {
+	public CategoriaDTO acharId(@PathVariable Integer id) {
 		return categoriaService.acharId(id);
 	}
 
 	@GetMapping("/listar")
-	public List<Categoria> listar() {
-		emailService.envioEmail();
+	public List<CategoriaDTO> listar() {
+	emailService.envioEmail();
 		return categoriaService.listar();
 	}
 
@@ -64,8 +64,8 @@ public class CategoriaController {
 	// categoriaService.apagarLogico(id);
 	// }
 
-	@PutMapping("/atualizar/{id}")
-	public Categoria atualizar(@PathVariable Integer id, @RequestBody Categoria objetoCategoria) {
-		return categoriaService.atualizar(id, objetoCategoria);
-	}
+//	@PutMapping("/atualizar/{id}")
+//	public Categoria atualizar(@PathVariable Integer id, @RequestBody Categoria objetoCategoria) {
+//		return categoriaService.atualizar(id, objetoCategoria);
+//	}
 }
