@@ -23,18 +23,19 @@ import javax.mail.MessagingException;
 public class CategoriaController {
 
 	private EmailService emailService;
-    @Autowired
-    public void setEmailService(EmailService emailService) {
-        this.emailService = emailService;
-    }
-	
+
+	@Autowired
+	public void setEmailService(EmailService emailService) {
+		this.emailService = emailService;
+	}
+
 	@Autowired
 	CategoriaService categoriaService;
 
 	@GetMapping("/count")
 	public Integer getCount() throws MessagingException {
-		//emailService.envioEmail();
-		//emailService.envioEmailTeste();
+		// emailService.envioEmail();
+		// emailService.envioEmailTeste();
 		return categoriaService.getCount();
 	}
 
@@ -50,7 +51,7 @@ public class CategoriaController {
 
 	@GetMapping("/listar")
 	public List<CategoriaDTO> listar() {
-	emailService.envioEmail();
+		emailService.envioEmail();
 		return categoriaService.listar();
 	}
 
@@ -59,13 +60,8 @@ public class CategoriaController {
 		categoriaService.apagar(id);
 	}
 
-	// @DeleteMapping("/desativar/{id}")
-	// public void apagarLogico(@PathVariable Integer id) {
-	// categoriaService.apagarLogico(id);
-	// }
-
-//	@PutMapping("/atualizar/{id}")
-//	public Categoria atualizar(@PathVariable Integer id, @RequestBody Categoria objetoCategoria) {
-//		return categoriaService.atualizar(id, objetoCategoria);
-//	}
+	@PutMapping("/atualizar/{id}")
+	public CategoriaDTO atualizar(@PathVariable Integer id, @RequestBody CategoriaDTO objetoCategoria) {
+		return categoriaService.atualizar(id, objetoCategoria);
+	}
 }
