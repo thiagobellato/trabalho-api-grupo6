@@ -76,8 +76,8 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/salvar")
-	public Usuario salvar(@RequestBody Usuario objetoUsuario) {
-		emailService.envioEmail(objetoUsuario);
+	public UserDTO salvar(@RequestBody UserDTO objetoUsuario) {
+//		emailService.envioEmail(objetoUsuario);
 		return usuarioService.salvar(objetoUsuario);
 	}
 
