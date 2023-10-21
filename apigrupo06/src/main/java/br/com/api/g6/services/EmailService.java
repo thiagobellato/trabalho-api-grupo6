@@ -2,7 +2,6 @@ package br.com.api.g6.services;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Properties;
 
 import javax.mail.MessagingException;
@@ -17,8 +16,6 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import br.com.api.g6.entities.Pedido;
-import br.com.api.g6.entities.Produto;
 import br.com.api.g6.entities.Usuario;
 
 @Configuration

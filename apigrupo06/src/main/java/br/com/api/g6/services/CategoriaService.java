@@ -5,13 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.api.g6.dto.CategoriaDTO;
 import br.com.api.g6.entities.Categoria;
-import br.com.api.g6.entities.Endereco;
 import br.com.api.g6.repositories.CategoriaRepository;
 
 @Service
@@ -58,46 +54,25 @@ public class CategoriaService {
 		categoriaRepository.deleteById(id);
 	}
 
-	//Put Teste
 	public CategoriaDTO atualizar(Integer id, CategoriaDTO objetoCategoria) {
-	    CategoriaDTO registroAntigo = acharId(id);
+		Categoria registroAntigo = acharId2(id);
 
-	        if (objetoCategoria.getNome() != null) {
-	            registroAntigo.setNome(objetoCategoria.getNome());
-	        }
+		if (registroAntigo != null) {
+			if (objetoCategoria.getNome() != null) {
+				registroAntigo.setNome(objetoCategoria.getNome());
+			}
 
-	        if (objetoCategoria.getDescricao() != null) {
-	            registroAntigo.setDescricao(objetoCategoria.getDescricao());
-	        }
-	        // Use o método save para atualizar o registro no repositório
-	        converterCategoriaDTO(null);
-	        CategoriaDTO categoriaAtualizada = converterCategoriaDTO(registroAntigo); // Converter para Categoria
+			if (objetoCategoria.getDescricao() != null) {
+				registroAntigo.setDescricao(objetoCategoria.getDescricao());
+			}
 
-	        categoriaRepository.save(categoriaAtualizada);
+			categoriaRepository.save(registroAntigo);
 
-	        return converterCategoriaDTO(categoriaAtualizada); // Converter para CategoriaDTO e retornar
-	    }
+			return converterCategoriaDTO(registroAntigo);
 
-	// Put OK
-//	public CategoriaDTO atualizar(Integer id, CategoriaDTO objetoCategoria) {
-//		Categoria registroAntigo = acharId2(id);
-//
-//		if (registroAntigo != null) {
-//			if (objetoCategoria.getNome() != null) {
-//				registroAntigo.setNome(objetoCategoria.getNome());
-//			}
-//
-//			if (objetoCategoria.getDescricao() != null) {
-//				registroAntigo.setDescricao(objetoCategoria.getDescricao());
-//			}
-//
-//			categoriaRepository.save(registroAntigo);
-//
-//			return converterCategoriaDTO(registroAntigo);
-//
-//		}
-//		return objetoCategoria;
-//	}
+		}
+		return objetoCategoria;
+	}
 
 //Conversor
 	public CategoriaDTO converterCategoriaDTO(Categoria categoria) {

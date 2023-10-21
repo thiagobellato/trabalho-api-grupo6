@@ -2,6 +2,8 @@ package br.com.api.g6.controllers;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,6 @@ import br.com.api.g6.dto.CategoriaDTO;
 import br.com.api.g6.entities.Categoria;
 import br.com.api.g6.services.CategoriaService;
 import br.com.api.g6.services.EmailService;
-import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("/categoria")
