@@ -10,4 +10,7 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
 
 	@Query(value = "select count(*) from endereco", nativeQuery = true)
 	public Integer contar();
+
+	@Query(value = "select * from endereco e where e.id_usuario = :idUsuario", nativeQuery = true)
+	public Endereco buscarEnderecoPorUsuario(Integer idUsuario);
 }

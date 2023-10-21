@@ -27,6 +27,7 @@ public class CategoriaService {
 		categoriaNovo.setDescricao(objetoCategoria.getDescricao());
 		categoriaRepository.save(categoriaNovo);
 		return objetoCategoria;
+		save(categoriaNovo);
 	}
 
 	// Get (Busca uma categoria por ID)
