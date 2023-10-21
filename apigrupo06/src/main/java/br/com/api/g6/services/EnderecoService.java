@@ -22,6 +22,14 @@ public class EnderecoService {
 		return enderecoRepository.contar();
 	}
 
+	public Endereco buscarEnderecoPorUsuario(Integer id) {
+		return enderecoRepository.buscarEnderecoPorUsuario(id);
+	}
+
+	public Endereco salvarEnderecoCadastroUsuario(Endereco endereco) {
+		return enderecoRepository.save(endereco);
+	}
+
 	public Endereco salvar(EnderecoDTO objetoEndereco) {
 		Endereco viaCep = pesquisarEndereco(objetoEndereco.getCep());
 		Endereco enderecoNovo = new Endereco();
@@ -34,7 +42,7 @@ public class EnderecoService {
 		enderecoNovo.setComplemento2(objetoEndereco.getComplemento2());
 		enderecoNovo.setPais(objetoEndereco.getPais());
 		enderecoNovo.setNumero(objetoEndereco.getNumero());
-		
+
 		return enderecoRepository.save(enderecoNovo);
 	}
 
@@ -79,5 +87,4 @@ public class EnderecoService {
 		params.put("cep", cep);
 		return restTemplate.getForObject(uri, Endereco.class, params);
 	}
-
 }
