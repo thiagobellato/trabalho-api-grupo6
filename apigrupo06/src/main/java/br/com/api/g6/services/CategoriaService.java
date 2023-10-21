@@ -21,13 +21,11 @@ public class CategoriaService {
 	}
 
 	// Post (Salvar, cadastra uma nova categoria)
-	public CategoriaDTO salvar(CategoriaDTO objetoCategoria) {
+	public Categoria salvar(CategoriaDTO objetoCategoria) {
 		Categoria categoriaNovo = new Categoria();
 		categoriaNovo.setNome(objetoCategoria.getNome());
 		categoriaNovo.setDescricao(objetoCategoria.getDescricao());
-		categoriaRepository.save(categoriaNovo);
-		return objetoCategoria;
-		save(categoriaNovo);
+		return objetoCategoria.save(categoriaNovo);
 	}
 
 	// Get (Busca uma categoria por ID)
@@ -57,7 +55,7 @@ public class CategoriaService {
 	}
 
 	public CategoriaDTO atualizar(Integer id, CategoriaDTO objetoCategoria) {
-		Categoria registroAntigo = acharId2(id);
+		CategoriaDTO registroAntigo = acharId(id);
 
 		if (registroAntigo != null) {
 			if (objetoCategoria.getNome() != null) {
