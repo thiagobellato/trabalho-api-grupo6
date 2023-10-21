@@ -5,9 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.api.g6.dto.CategoriaDTO;
 import br.com.api.g6.entities.Categoria;
+import br.com.api.g6.entities.Endereco;
 import br.com.api.g6.repositories.CategoriaRepository;
 
 @Service
@@ -20,6 +24,7 @@ public class CategoriaService {
 		return categoriaRepository.contar();
 	}
 
+	// Post (Salvar, cadastra uma nova categoria)
 	public Categoria salvar(CategoriaDTO objetoCategoria) {
 		Categoria categoriaNovo = new Categoria();
 		categoriaNovo.setNome(objetoCategoria.getNome());
@@ -27,13 +32,19 @@ public class CategoriaService {
 		return categoriaRepository.save(categoriaNovo);
 	}
 
+	// Get (Busca uma categoria por ID)
 	public CategoriaDTO acharId(Integer id) {
-		CategoriaDTO dtoCategoria = new CategoriaDTO();
-		Categoria categoria = new Categoria();
-		dtoCategoria = converterCategoriaDTO(categoria);
+		Categoria categoria = categoriaRepository.findById(id).get();
+		CategoriaDTO dtoCategoria = converterCategoriaDTO(categoria);
 		return dtoCategoria;
 	}
 
+	// Get (Busca uma categoria por ID)
+	public Categoria acharId2(Integer id) {
+		return categoriaRepository.findById(id).get();
+	}
+
+	// Get (Lista todas as categorias)
 	public List<CategoriaDTO> listar() {
 		List<CategoriaDTO> dtoCategorias = new ArrayList<>();
 		List<Categoria> infoCategorias = categoriaRepository.findAll();
@@ -43,6 +54,52 @@ public class CategoriaService {
 		return dtoCategorias;
 	}
 
+	public void apagar(Integer id) {
+		categoriaRepository.deleteById(id);
+	}
+
+	//Put Teste
+	public CategoriaDTO atualizar(Integer id, CategoriaDTO objetoCategoria) {
+	    CategoriaDTO registroAntigo = acharId(id);
+
+	        if (objetoCategoria.getNome() != null) {
+	            registroAntigo.setNome(objetoCategoria.getNome());
+	        }
+
+	        if (objetoCategoria.getDescricao() != null) {
+	            registroAntigo.setDescricao(objetoCategoria.getDescricao());
+	        }
+	        // Use o método save para atualizar o registro no repositório
+	        converterCategoriaDTO(null);
+	        CategoriaDTO categoriaAtualizada = converterCategoriaDTO(registroAntigo); // Converter para Categoria
+
+	        categoriaRepository.save(categoriaAtualizada);
+
+	        return converterCategoriaDTO(categoriaAtualizada); // Converter para CategoriaDTO e retornar
+	    }
+
+	// Put OK
+//	public CategoriaDTO atualizar(Integer id, CategoriaDTO objetoCategoria) {
+//		Categoria registroAntigo = acharId2(id);
+//
+//		if (registroAntigo != null) {
+//			if (objetoCategoria.getNome() != null) {
+//				registroAntigo.setNome(objetoCategoria.getNome());
+//			}
+//
+//			if (objetoCategoria.getDescricao() != null) {
+//				registroAntigo.setDescricao(objetoCategoria.getDescricao());
+//			}
+//
+//			categoriaRepository.save(registroAntigo);
+//
+//			return converterCategoriaDTO(registroAntigo);
+//
+//		}
+//		return objetoCategoria;
+//	}
+
+//Conversor
 	public CategoriaDTO converterCategoriaDTO(Categoria categoria) {
 		CategoriaDTO categoriaConvertida = new CategoriaDTO();
 		categoriaConvertida.setNome(categoria.getNome());
@@ -50,32 +107,4 @@ public class CategoriaService {
 
 		return categoriaConvertida;
 	}
-
-	public void apagar(Integer id) {
-		categoriaRepository.deleteById(id);
-	}
-
-	// public void apagarLogico(Integer id) {
-	// Categoria objetoCategoria = acharId(id);
-	// if(objetoCategoria!=null) {
-	// objetoCategoria.setAtivo(false);
-	// categoriaRepository.save(objetoCategoria);
-	// }
-	// }
-
-	//PUT
-//	public Categoria atualizar(Integer id, Categoria objetoCategoria) {
-//		Categoria registroAntigo = acharId(id);
-//		if (objetoCategoria.getNome() != null) {
-//			registroAntigo.setNome(objetoCategoria.getNome());
-//		}
-//
-//		if (objetoCategoria.getDescricao() != null) {
-//			registroAntigo.setDescricao(objetoCategoria.getDescricao());
-//		}
-//
-//		registroAntigo.setId(id);
-//		return categoriaRepository.save(registroAntigo);
-//		// Precisa incluir a lista de produtos?
-//	}
 }
