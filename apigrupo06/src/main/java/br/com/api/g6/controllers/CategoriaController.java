@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.g6.dto.CategoriaDTO;
-import br.com.api.g6.entities.Categoria;
 import br.com.api.g6.services.CategoriaService;
 import br.com.api.g6.services.EmailService;
 

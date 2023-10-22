@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.api.g6.dto.UserDTO;
+import br.com.api.g6.entities.Endereco;
+import br.com.api.g6.entities.Role;
 import br.com.api.g6.entities.Usuario;
 import br.com.api.g6.repositories.UsuarioRepository;
 
@@ -19,9 +21,31 @@ public class UsuarioService {
 		return usuarioRepository.contar();
 	}
 
-	public UserDTO salvar(UserDTO objetoUsuario) {
+	public Usuario salvar(UserDTO objetoUsuario) {
+		Usuario usuarioNovo = new Usuario();
+
+		usuarioNovo.setAtivo(objetoUsuario.getUsuarioDTO().getAtivo());
+		usuarioNovo.setNome(objetoUsuario.getUsuarioDTO().getNome());
+		usuarioNovo.setTelefonePrincipal(objetoUsuario.getUsuarioDTO().getTelefonePrincipal());
+		usuarioNovo.setTelefoneSecundario(objetoUsuario.getUsuarioDTO().getTelefoneSecundario());
+		usuarioNovo.setNomeUsuario(objetoUsuario.getUsuarioDTO().getNomeUsuario());
+		usuarioNovo.setPassword(objetoUsuario.getUsuarioDTO().getPassword());
+		usuarioNovo.setEmail(objetoUsuario.getUsuarioDTO().getEmail());
+		usuarioNovo.setCpf(objetoUsuario.getUsuarioDTO().getCpf());
+		usuarioNovo.setDataDeNascimento(objetoUsuario.getUsuarioDTO().getDataDeNascimento());
 		
-		return usuarioRepository.save(objetoUsuario);
+		Endereco enderecoNovo = new Endereco();
+		
+		enderecoNovo.setCep(objetoUsuario.getEnderecoDTO().getCep());
+		enderecoNovo.setComplemento2(objetoUsuario.getEnderecoDTO().getComplemento2());
+		enderecoNovo.setNumero(objetoUsuario.getEnderecoDTO().getNumero());
+		enderecoNovo.setPais(objetoUsuario.getEnderecoDTO().getPais());
+		
+		Role roleNovo = new Role();
+		
+		roleNovo.setName(objetoUsuario.getRole().getName());
+		
+		return usuarioRepository.save(usuarioNovo);
 	}
 
 	public Usuario acharId(Integer id) {
