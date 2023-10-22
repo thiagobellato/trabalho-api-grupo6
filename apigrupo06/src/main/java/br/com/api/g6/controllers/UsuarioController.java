@@ -1,33 +1,16 @@
 package br.com.api.g6.controllers;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.g6.config.JWTUtil;
-import br.com.api.g6.dto.LoginDTO;
 import br.com.api.g6.dto.UserDTO;
-import br.com.api.g6.entities.Endereco;
-import br.com.api.g6.entities.Role;
-import br.com.api.g6.entities.Usuario;
-import br.com.api.g6.enums.TipoRoleEnum;
 import br.com.api.g6.repositories.EnderecoRepository;
 import br.com.api.g6.repositories.RoleRepository;
 import br.com.api.g6.services.EmailService;
@@ -76,9 +59,8 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/salvar")
-	public void salvar(@RequestBody UserDTO objetoUsuario) {
-		// emailService.envioEmail(objetoUsuario);
-		usuarioService.salvar(objetoUsuario);
+	public UserDTO salvar(@RequestBody UserDTO objetoUsuario) {
+		return usuarioService.salvar(objetoUsuario);
 	}
 
 //	@GetMapping("/{id}")
