@@ -40,7 +40,7 @@ public class CategoriaController {
 	}
 
 	@PostMapping("/salvar")
-	public Categoria salvar(@RequestBody CategoriaDTO objetoCategoria) {
+	public CategoriaDTO salvar(@RequestBody CategoriaDTO objetoCategoria) {
 		return categoriaService.salvar(objetoCategoria);
 	}
 
