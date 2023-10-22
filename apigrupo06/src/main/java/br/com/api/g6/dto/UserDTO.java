@@ -1,23 +1,21 @@
 package br.com.api.g6.dto;
 
-import br.com.api.g6.entities.Role;
-
 public class UserDTO {
 
 	private EnderecoDTO enderecoDTO;
 	private UsuarioDTO usuarioDTO;
-	private Role role;
+	private RoleDTO roleDTO;
 
 	public UserDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserDTO(EnderecoDTO enderecoDTO, UsuarioDTO usuarioDTO, Role role) {
+	public UserDTO(EnderecoDTO enderecoDTO, UsuarioDTO usuarioDTO, RoleDTO roleDTO) {
 		super();
 		this.enderecoDTO = enderecoDTO;
 		this.usuarioDTO = usuarioDTO;
-		this.role = role;
+		this.roleDTO = roleDTO;
 	}
 
 	public EnderecoDTO getEnderecoDTO() {
@@ -36,12 +34,12 @@ public class UserDTO {
 		this.usuarioDTO = usuarioDTO;
 	}
 
-	public Role getRole() {
-		return role;
+	public RoleDTO getRoleDTO() {
+		return roleDTO;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleDTO(RoleDTO roleDTO) {
+		this.roleDTO = roleDTO;
 	}
 
 }

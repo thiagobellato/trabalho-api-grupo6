@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/categoria/count", "/categoria/{id}", "/categoria/listar", "/pedido/{id}",
 						"/pedido/listar", "/produto/listar", "/produto/listar", "/produto/count", "/produto/{id}",
 						"/usuario/registro", "/usuario/login", "/usuario/count", "/categoria/delete/{id}",
-						"/categoria/atualizar/{id}")
+						"/categoria/atualizar/{id}","/usuario/salvar")
 				.permitAll()
 				/* ACESSOS NA ENTIDADE CATEGORIA */
 				.antMatchers("/categoria/salvar/{id}").hasRole("VENDEDOR")
