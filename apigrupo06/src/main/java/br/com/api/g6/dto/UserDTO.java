@@ -1,94 +1,47 @@
 package br.com.api.g6.dto;
 
-import java.util.Set;
+import br.com.api.g6.entities.Role;
 
 public class UserDTO {
 
-	private String nomeUsuario;
-	private String email;
-	private Set<String> roles;
-	private String password;
-
-	private String cep;
-	private String numero;
-	private String complementoAdicional;
+	private EnderecoDTO enderecoDTO;
+	private UsuarioDTO usuarioDTO;
+	private Role role;
 
 	public UserDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public UserDTO(String nomeUsuario, String email, Set<String> roles, String password, String cep, String numero,
-			String complementoAdicional) {
+	public UserDTO(EnderecoDTO enderecoDTO, UsuarioDTO usuarioDTO, Role role) {
 		super();
-		this.nomeUsuario = nomeUsuario;
-		this.email = email;
-		this.roles = roles;
-		this.password = password;
-		this.cep = cep;
-		this.numero = numero;
-		this.complementoAdicional = complementoAdicional;
+		this.enderecoDTO = enderecoDTO;
+		this.usuarioDTO = usuarioDTO;
+		this.role = role;
 	}
 
-	public String getNomeUsuario() {
-		return nomeUsuario;
+	public EnderecoDTO getEnderecoDTO() {
+		return enderecoDTO;
 	}
 
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+	public void setEnderecoDTO(EnderecoDTO enderecoDTO) {
+		this.enderecoDTO = enderecoDTO;
 	}
 
-	public String getEmail() {
-		return email;
+	public UsuarioDTO getUsuarioDTO() {
+		return usuarioDTO;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
+		this.usuarioDTO = usuarioDTO;
 	}
 
-	public Set<String> getRoles() {
-		return roles;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoles(Set<String> roles) {
-		this.roles = roles;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "User [nomeUsuario=" + nomeUsuario + ", email=" + email + ", roles=" + roles + ", password=" + password
-				+ "]";
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public String getComplementoAdicional() {
-		return complementoAdicional;
-	}
-
-	public void setComplementoAdicional(String complementoAdicional) {
-		this.complementoAdicional = complementoAdicional;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 }
