@@ -21,12 +21,9 @@ public class Categoria {
 	@Column(name = "categoria_id")
 	private Integer id;
 
-	@NotNull
 	@Column(name = "categoria_nome")
 	private String nome;
 
-	@NotNull
-	@Size(max = 100)
 	@Column(name = "categoria_descricao")
 	private String descricao;
 
@@ -39,14 +36,13 @@ public class Categoria {
 	}
 
 	public Categoria(Integer id, String nome, String descricao, List<Produto> produtos) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.produtos = produtos;
-	}
+      this.id = id;
+      this.nome = nome;
+      this.descricao = descricao;
+      this.produtos = produtos;
+   }
 
-	public Integer getId() {
+   public Integer getId() {
 		return id;
 	}
 

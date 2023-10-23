@@ -34,38 +34,30 @@ public class Usuario {
 	@Column(name = "ativo_usuario")
 	private Boolean ativo;
 
-	@NotNull
 	@Column(name = "nome_completo_usuario") 
 	private String nome;
 
-	@NotNull
 	@Column(name = "telefone_principal_usuario")
 	private String telefonePrincipal;
 
 	@Column(name = "telefone_secundario_usuario")
 	private String telefoneSecundario;
 
-	@NotNull
 	@Column(name = "login_usuario")
 	private String nomeUsuario;
 
 	@Size(min = 6, max = 15)
-	@NotNull
 	@Column(name = "senha_usuario")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 
 	@Email
-	@NotNull
 	@Column(name = "email_usuario")
 	private String email;
 
-	@NotNull
-	@Size(max = 11, min = 11)
 	@Column(name = "cpf_usuario")
 	private String cpf;
 
-	@NotNull
 	@Column(name = "data_de_nascimento_usuario")
 	private LocalDate dataDeNascimento;
 
@@ -87,32 +79,29 @@ public class Usuario {
 
 	public Usuario() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(Integer idUser, @AssertTrue Boolean ativo, @NotNull String nome, @NotNull String telefonePrincipal,
-			String telefoneSecundario, @NotNull String nomeUsuario, @Size(min = 6, max = 15) @NotNull String password,
-			@Email @NotNull String email, @NotNull @Size(max = 11, min = 11) String cpf,
-			@NotNull LocalDate dataDeNascimento, Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos,
-			List<Pedido> pedidos) {
-		super();
-		this.idUser = idUser;
-		this.ativo = ativo;
-		this.nome = nome;
-		this.telefonePrincipal = telefonePrincipal;
-		this.telefoneSecundario = telefoneSecundario;
-		this.nomeUsuario = nomeUsuario;
-		this.password = password;
-		this.email = email;
-		this.cpf = cpf;
-		this.dataDeNascimento = dataDeNascimento;
-		this.roles = roles;
-		this.produtos = produtos;
-		this.enderecos = enderecos;
-		this.pedidos = pedidos;
-	}
+	public Usuario(Integer idUser, @AssertTrue Boolean ativo, String nome, String telefonePrincipal,
+         String telefoneSecundario, String nomeUsuario, @Size(min = 6, max = 15) String password, @Email String email,
+         String cpf, LocalDate dataDeNascimento, Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos,
+         List<Pedido> pedidos) {
+      this.idUser = idUser;
+      this.ativo = ativo;
+      this.nome = nome;
+      this.telefonePrincipal = telefonePrincipal;
+      this.telefoneSecundario = telefoneSecundario;
+      this.nomeUsuario = nomeUsuario;
+      this.password = password;
+      this.email = email;
+      this.cpf = cpf;
+      this.dataDeNascimento = dataDeNascimento;
+      this.roles = roles;
+      this.produtos = produtos;
+      this.enderecos = enderecos;
+      this.pedidos = pedidos;
+   }
 
-	public Integer getIdUser() {
+   public Integer getIdUser() {
 		return idUser;
 	}
 
@@ -232,5 +221,4 @@ public class Usuario {
 				+ dataDeNascimento + ", roles=" + roles + ", produtos=" + produtos + ", enderecos=" + enderecos
 				+ ", pedidos=" + pedidos + "]";
 	}
-
 }

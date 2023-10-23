@@ -18,7 +18,6 @@ public class Endereco {
 	@Column(name = "id_endereco")
 	private Integer id;
 
-	@NotNull
 	@Size(min = 8, max = 8)
 	@Column(name = "cep_endereco")
 	private String cep;
@@ -26,14 +25,12 @@ public class Endereco {
 	@Column(name = "rua_endereco")
 	private String logradouro;
 
-	@NotNull
 	@Column(name = "numero_endereco")
 	private String numero;
 
 	@Column(name = "complemento_endereco")
 	private String complemento;
 
-   @NotNull
 	@Column(name = "complemento2_endereco")
 	private String complemento2;
 
@@ -46,7 +43,6 @@ public class Endereco {
 	@Column(name = "uf_endereco")
 	private String uf;
 
-	@NotNull
 	@Column(name = "pais_endereco")
 	private String pais;
 
@@ -54,9 +50,8 @@ public class Endereco {
 		super();
 	}
 
-	public Endereco(Integer id, String cep, String logradouro, String numero, String complemento, String complemento2,
-			String bairro, String localidade, String uf, String pais) {
-		super();
+	public Endereco(Integer id, @Size(min = 8, max = 8) String cep, String logradouro, String numero, String complemento,
+			String complemento2, String bairro, String localidade, String uf, String pais) {
 		this.id = id;
 		this.cep = cep;
 		this.logradouro = logradouro;

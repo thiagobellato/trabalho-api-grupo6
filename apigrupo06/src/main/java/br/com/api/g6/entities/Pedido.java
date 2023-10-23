@@ -23,7 +23,6 @@ public class Pedido {
 	@Column(name = "pedido_id")
 	private Integer id;
 
-	@NotNull
 	@Column(name = "pedido_date")
 	private LocalDate data;
 
@@ -39,7 +38,7 @@ public class Pedido {
 		super();
 	}
 
-	public Pedido(Integer id, LocalDate data, Boolean ativo, List<Produto> produtos) {
+	public Pedido(Integer id, LocalDate data, @AssertTrue Boolean ativo, List<Produto> produtos) {
 		this.id = id;
 		this.data = data;
 		this.ativo = ativo;

@@ -17,6 +17,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import br.com.api.g6.controllers.CarrouselController;
 import br.com.api.g6.entities.Usuario;
 
 @Configuration
@@ -31,6 +32,9 @@ public class EmailService {
 
 	@Autowired
 	static PedidoService pedidoService;
+
+	@Autowired
+	static CarrouselController carrouselController;
 
 	private static JavaMailSender emailSender;
 
@@ -72,24 +76,68 @@ public class EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("grupo6apiserratec@gmail.com");
-			// helper.setTo(usuario.getEmail());
-			helper.setTo("julialimafc048@gmail.com");
+			helper.setTo(usuario.getEmail());
+			// helper.setTo("julialimafc048@gmail.com");
 			helper.setSubject("Cadastro concluido!");
 
 			StringBuilder builder = new StringBuilder();
-			builder.append("<html>\r\n");
-			builder.append("	<body>\r\n");
-			builder.append("		<div align=\"center\">\r\n");
-			builder.append("			<h1>Cadastro realizado com sucesso!</h1>\r\n");
-			builder.append("		</div>\r\n");
-			builder.append("		<br/>\r\n");
-			builder.append("		<div align=\"center\">\r\n");
-			builder.append("			Em caso de erro, favor contatar o suporte: grupo6apiserratec@gmail.com");
-			builder.append("		</div>\r\n");
-			builder.append("	</body>\r\n");
-			builder.append("</html>\r\n");
+			builder.append("<html>\r\n" + //
+					"\r\n" + //
+					"<head>\r\n" + //
+					"   <style>\r\n" + //
+					"      body {\r\n" + //
+					"         text-align: center;\r\n" + //
+					"         display: flex;\r\n" + //
+					"         justify-content: center;\r\n" + //
+					"         align-items: center;\r\n" + //
+					"         background-color: orange;\r\n" + //
+					"         height: 100px;\r\n" + //
+					"         color: white;\r\n" + //
+					"         flex-direction: column;\r\n" + //
+					"         box-sizing: border-box;\r\n" + //
+					"         margin-top: 40vh;\r\n" + //
+					"         font-size: 1.2em;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      .container {\r\n" + //
+					"         position: relative;\r\n" + //
+					"         top: -600px;\r\n" + //
+					"         left: 50px;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      strong {\r\n" + //
+					"         text-decoration: underline;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      img {\r\n" + //
+					"         width: 150px;\r\n" + //
+					"         height: 150px;\r\n" + //
+					"      }\r\n" + //
+					"   </style>\r\n" + //
+					"</head>\r\n" + //
+					"\r\n" + //
+					"<body>\r\n" + //
+					"   <h1>Cadastro realizado com sucesso!</h1>");
+			builder.append("<img src=\"cid:\">");
+			builder.append("<p>\r\n" + //
+					"      Em caso de erro, favor contatar o suporte: <strong>grupo6apiserratec@gmail.com</strong>\r\n" + //
+					"   </p>\r\n" + //
+					"   <div class=\"container\">");
+			builder.append("<img src=\"cid:\">");
+			builder.append("<img src=\"cid:\">");
+			builder.append("</div>\r\n" + //
+					"</body>\r\n" + //
+					"\r\n" + //
+					"</html>");
 
 			helper.setText(builder.toString(), true);
+
+			ClassPathResource iconWhatsapp = new ClassPathResource("img/icons8-whatsapp.png");
+			helper.addInline("icons8-whatsapp", iconWhatsapp);
+
+			ClassPathResource iconInstagram = new ClassPathResource("img/icons8-instagram.png");
+			helper.addInline("icons8-instagram", iconInstagram);
+
 			emailSender.send(mensagemCadastro);
 
 		} catch (MessagingException e) {
@@ -102,8 +150,8 @@ public class EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("grupo6apiserratec@gmail.com");
-			// helper.setTo(usuario.getEmail());
-			helper.setTo("julialimafc048@gmail.com");
+			helper.setTo(usuario.getEmail());
+			// helper.setTo("julialimafc048@gmail.com");
 			helper.setSubject("PEDIDO REALIZADO COM SUCESSO!");
 
 			LocalDate localDate = LocalDate.now();
@@ -175,12 +223,12 @@ public class EmailService {
 					+
 					" <img src=\"cid: logo\"> \r\n   </div>  \r\n" + //
 					"    <div class=\"container\">\r\n");
-			builder.append("    <img src=\"cid: icon-instagram\" width=\"30\">\r\n" +
-					"    <img src=\"cid: icon-whatsapp\" width=\"30\">\r\n"
-					+
+			builder.append("<img src=\"cid: icon-instagram\">\r\n");
+			builder.append("<img src=\"cid: icon-whatsapp\">\r\n");
+			builder.append(
 					"    </div>\r\n" +
-					"</body>\r\n" +
-					"</html>");
+							"</body>\r\n" +
+							"</html>");
 
 			helper.setText(builder.toString(), true);
 
@@ -241,8 +289,8 @@ public class EmailService {
 					+ //
 					"    </div>  \r\n" + //
 					"    <div class=\"container\">\r\n" + //
-					"    <img src=\\\"cid: icon-instagram\\\" width=\\\"30\\\">\r\n" + //
-					"    <img src=\\\"cid: icon-whatsapp\\\" width=\\\"30\\\">\r\n"
+					"    <img src=\"cid: icon-instagram\">\r\n" + //
+					"    <img src=\"cid: icon-whatsapp\">\r\n"
 					+ //
 					"        </div>\r\n" + //
 					"</body>\r\n" + //
@@ -257,7 +305,28 @@ public class EmailService {
 			helper.addInline("icons8-whatsapp", iconWhatsapp);
 
 			emailSender.send(mensagemCadastro);
-			
+
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void envioEmailPromocional(Usuario usuario) {
+
+		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
+			helper.setFrom("grupo6apiserratec@gmail.com");
+			//helper.setTo(usuario.getEmail());
+			helper.setTo("julialimafc048@gmail.com");
+			helper.setSubject("Cadastro concluido!");
+
+			StringBuilder builder = new StringBuilder();
+			builder.append(carrouselController.index());
+
+			helper.setText(builder.toString(), true);
+			emailSender.send(mensagemCadastro);
+
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
