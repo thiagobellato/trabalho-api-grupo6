@@ -43,7 +43,7 @@ public class EnderecoService {
 		enderecoNovo.setPais(objetoEndereco.getPais());
 		enderecoNovo.setNumero(objetoEndereco.getNumero());
 
-		return enderecoRepository.save(enderecoNovo);
+		return enderecoRepository.save(enderecoNovo);//como não return o id
 	}
 
 	public Endereco acharId(Integer id) {

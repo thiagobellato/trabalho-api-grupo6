@@ -23,12 +23,10 @@ public class CategoriaService {
 	// Post (Salvar, cadastra uma nova categoria)
 	public CategoriaDTO salvar(CategoriaDTO objetoCategoria) {
 		Categoria categoriaNovo = new Categoria();
-		converterCategoriaDTO(categoriaNovo);
 		categoriaNovo.setNome(objetoCategoria.getNome());
 		categoriaNovo.setDescricao(objetoCategoria.getDescricao());
 		categoriaRepository.save(categoriaNovo);
 		return objetoCategoria;
-
 	}
 
 	// Get (Busca uma categoria por ID)
