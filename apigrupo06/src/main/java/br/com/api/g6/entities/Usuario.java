@@ -16,8 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,11 +28,11 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	private Integer idUser;
 
-	@AssertTrue /* diz que o boolean começa ativo */
+	// @AssertTrue /* diz que o boolean começa ativo */
 	@Column(name = "ativo_usuario")
 	private Boolean ativo;
 
-	@Column(name = "nome_completo_usuario") 
+	@Column(name = "nome_completo_usuario")
 
 	private String nome;
 
@@ -47,8 +45,6 @@ public class Usuario {
 	@Column(name = "login_usuario")
 	private String nomeUsuario;
 
-	@Size(min = 6, max = 15)
-
 	@Column(name = "senha_usuario")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
@@ -56,7 +52,6 @@ public class Usuario {
 	@Email
 	@Column(name = "email_usuario")
 	private String email;
-
 
 	@Column(name = "cpf_usuario")
 	private String cpf;
@@ -82,31 +77,30 @@ public class Usuario {
 
 	public Usuario() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
+	public Usuario(Integer idUser, Boolean ativo, String nome, String telefonePrincipal, String telefoneSecundario,
+			String nomeUsuario, String password, @Email String email, String cpf, LocalDate dataDeNascimento,
+			Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos, List<Pedido> pedidos) {
+		super();
+		this.idUser = idUser;
+		this.ativo = ativo;
+		this.nome = nome;
+		this.telefonePrincipal = telefonePrincipal;
+		this.telefoneSecundario = telefoneSecundario;
+		this.nomeUsuario = nomeUsuario;
+		this.password = password;
+		this.email = email;
+		this.cpf = cpf;
+		this.dataDeNascimento = dataDeNascimento;
+		this.roles = roles;
+		this.produtos = produtos;
+		this.enderecos = enderecos;
+		this.pedidos = pedidos;
+	}
 
-	public Usuario(Integer idUser, @AssertTrue Boolean ativo, String nome, String telefonePrincipal,
-         String telefoneSecundario, String nomeUsuario, @Size(min = 6, max = 15) String password, @Email String email,
-         String cpf, LocalDate dataDeNascimento, Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos,
-         List<Pedido> pedidos) {
-      this.idUser = idUser;
-      this.ativo = ativo;
-      this.nome = nome;
-      this.telefonePrincipal = telefonePrincipal;
-      this.telefoneSecundario = telefoneSecundario;
-      this.nomeUsuario = nomeUsuario;
-      this.password = password;
-      this.email = email;
-      this.cpf = cpf;
-      this.dataDeNascimento = dataDeNascimento;
-      this.roles = roles;
-      this.produtos = produtos;
-      this.enderecos = enderecos;
-      this.pedidos = pedidos;
-   }
-
-   public Integer getIdUser() {
-
+	public Integer getIdUser() {
 		return idUser;
 	}
 
@@ -218,12 +212,4 @@ public class Usuario {
 		this.pedidos = pedidos;
 	}
 
-	@Override
-	public String toString() {
-		return "Usuario [idUser=" + idUser + ", ativo=" + ativo + ", nome=" + nome + ", telefonePrincipal="
-				+ telefonePrincipal + ", telefoneSecundario=" + telefoneSecundario + ", nomeUsuario=" + nomeUsuario
-				+ ", password=" + password + ", email=" + email + ", cpf=" + cpf + ", dataDeNascimento="
-				+ dataDeNascimento + ", roles=" + roles + ", produtos=" + produtos + ", enderecos=" + enderecos
-				+ ", pedidos=" + pedidos + "]";
-	}
 }

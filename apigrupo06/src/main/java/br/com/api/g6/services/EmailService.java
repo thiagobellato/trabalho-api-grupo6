@@ -18,6 +18,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import br.com.api.g6.controllers.CarrouselController;
+import br.com.api.g6.dto.UsuarioRequestCadastroDTO;
 import br.com.api.g6.entities.Usuario;
 
 @Configuration
@@ -70,7 +71,7 @@ public class EmailService {
 		return emailSender;
 	}
 
-	public void envioEmail(Usuario usuario) {
+	public void envioEmailCadastro(String email, UsuarioRequestCadastroDTO usuario) {
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 
 		try {
@@ -110,6 +111,10 @@ public class EmailService {
 					"      }\r\n" + //
 					"\r\n" + //
 					"      img {\r\n" + //
+					"         width: 50px;\r\n" + //
+					"         height: 50px;\r\n" + //
+					"      }\r\n" + //
+					"      img.logo {\r\n" + //
 					"         width: 150px;\r\n" + //
 					"         height: 150px;\r\n" + //
 					"      }\r\n" + //
@@ -118,20 +123,22 @@ public class EmailService {
 					"\r\n" + //
 					"<body>\r\n" + //
 					"   <h1>Cadastro realizado com sucesso!</h1>");
-			builder.append("<img src=\"cid:\">");
+			builder.append("<img class = \"logo\"S src=\"cid:logo_g6\">");
 			builder.append("<p>\r\n" + //
-					"      Em caso de erro, favor contatar o suporte: <strong>grupo6apiserratec@gmail.com</strong>\r\n" + //
+					"      Em caso de erro, favor contatar o suporte: <strong>grupo6apiserratec@gmail.com</strong>\r\n"
+					+ //
 					"   </p>\r\n" + //
 					"   <div class=\"container\">");
-			builder.append("<img src=\"cid:\">");
-			builder.append("<img src=\"cid:\">");
+			builder.append("<img src=\"cid:icons8-whatsapp\">");
+			builder.append("<img src=\"cid:icons8-instagram\">");
 			builder.append("</div>\r\n" + //
 					"</body>\r\n" + //
 					"\r\n" + //
 					"</html>");
 
 			helper.setText(builder.toString(), true);
-
+			ClassPathResource logo_g6 = new ClassPathResource("img/logo_g6.png");
+			helper.addInline("logo_g6", logo_g6);
 			ClassPathResource iconWhatsapp = new ClassPathResource("img/icons8-whatsapp.png");
 			helper.addInline("icons8-whatsapp", iconWhatsapp);
 
@@ -179,8 +186,7 @@ public class EmailService {
 					+ //
 					"        <p style=\"float: left; font-family: Arial, Helvetica, sans-serif; padding: 30px;\"> <b>N° do pedido:");
 			builder.append(idPedido);
-			builder.append("</b></p>\r\n"
-					+ //
+			builder.append("</b></p>\r\n" + //
 					"        <h1 style=\"float: right; padding-right: 50px; font-family: Arial, Helvetica, sans-serif; font-size: 22px; line-height: 70px;\">Confirmação de Pedido</h1>\r\n"
 					+ //
 					"    </header>\r\n" + //
@@ -215,20 +221,14 @@ public class EmailService {
 			builder.append(valorTotal);
 			builder.append("<br>Previsão para entrega: ");
 			builder.append(dataEntrega);
-			builder.append("        <br>\r\n" +
-					"        <hr style=\"margin-right: 30px;\">\r\n" +
-					"        <p><b style=\"color: orange;\">#Dica:</b> Através do nosso WhatsApp você consegue também tirar dúvidas sobre o status do seu pedido.</p>\r\n"
-					+
-					"        <p style=\"color: orange; text-align: center; justify-items: center; margin: 0px; display: flex; flex-direction: column;\"><b>CONTE COM A GENTE!</b></p>\r\n"
-					+
-					" <img src=\"cid: logo\"> \r\n   </div>  \r\n" + //
+			builder.append("        <br>\r\n" + "        <hr style=\"margin-right: 30px;\">\r\n"
+					+ "        <p><b style=\"color: orange;\">#Dica:</b> Através do nosso WhatsApp você consegue também tirar dúvidas sobre o status do seu pedido.</p>\r\n"
+					+ "        <p style=\"color: orange; text-align: center; justify-items: center; margin: 0px; display: flex; flex-direction: column;\"><b>CONTE COM A GENTE!</b></p>\r\n"
+					+ " <img src=\"cid: logo\"> \r\n   </div>  \r\n" + //
 					"    <div class=\"container\">\r\n");
 			builder.append("<img src=\"cid: icon-instagram\">\r\n");
 			builder.append("<img src=\"cid: icon-whatsapp\">\r\n");
-			builder.append(
-					"    </div>\r\n" +
-							"</body>\r\n" +
-							"</html>");
+			builder.append("    </div>\r\n" + "</body>\r\n" + "</html>");
 
 			helper.setText(builder.toString(), true);
 
@@ -248,7 +248,7 @@ public class EmailService {
 		}
 	}
 
-	public static void envioEmailContaDesativada(Usuario usuario) {
+	public static void envioEmailContaDesativada(Integer id, Usuario usuario) {
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
@@ -290,8 +290,7 @@ public class EmailService {
 					"    </div>  \r\n" + //
 					"    <div class=\"container\">\r\n" + //
 					"    <img src=\"cid: icon-instagram\">\r\n" + //
-					"    <img src=\"cid: icon-whatsapp\">\r\n"
-					+ //
+					"    <img src=\"cid: icon-whatsapp\">\r\n" + //
 					"        </div>\r\n" + //
 					"</body>\r\n" + //
 					"</html>");
@@ -331,4 +330,5 @@ public class EmailService {
 			e.printStackTrace();
 		}
 	}
+
 }

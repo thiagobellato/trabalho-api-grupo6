@@ -48,7 +48,7 @@ public class ProdutoController {
 
 	@GetMapping("/listar")
 	public List<Produto> listar() {
-		//emailService.envioEmailPromocional();
+		emailService.envioEmailPromocional();
 		return produtoService.listar();
 	}
 
