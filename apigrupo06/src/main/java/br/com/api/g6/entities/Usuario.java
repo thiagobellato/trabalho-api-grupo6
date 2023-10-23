@@ -35,6 +35,7 @@ public class Usuario {
 	private Boolean ativo;
 
 	@Column(name = "nome_completo_usuario") 
+
 	private String nome;
 
 	@Column(name = "telefone_principal_usuario")
@@ -47,6 +48,7 @@ public class Usuario {
 	private String nomeUsuario;
 
 	@Size(min = 6, max = 15)
+
 	@Column(name = "senha_usuario")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
@@ -54,6 +56,7 @@ public class Usuario {
 	@Email
 	@Column(name = "email_usuario")
 	private String email;
+
 
 	@Column(name = "cpf_usuario")
 	private String cpf;
@@ -64,7 +67,7 @@ public class Usuario {
 	@ManyToMany
 	@JoinTable(name = "usuario_role", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
-	
+
 	@OneToMany
 	@JoinColumn(name = "id_usuario")
 	private List<Produto> produtos;
@@ -80,6 +83,7 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
+
 
 	public Usuario(Integer idUser, @AssertTrue Boolean ativo, String nome, String telefonePrincipal,
          String telefoneSecundario, String nomeUsuario, @Size(min = 6, max = 15) String password, @Email String email,
@@ -102,6 +106,7 @@ public class Usuario {
    }
 
    public Integer getIdUser() {
+
 		return idUser;
 	}
 
@@ -141,7 +146,7 @@ public class Usuario {
 		this.telefoneSecundario = telefoneSecundario;
 	}
 
-	public  String getNomeUsuario() {
+	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
 
