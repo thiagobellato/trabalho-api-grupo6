@@ -35,7 +35,7 @@ public class Usuario {
 	private Boolean ativo;
 
 	@NotNull
-	@Column(name = "nome_completo_usuario") 
+	@Column(name = "nome_completo_usuario")
 	private String nome;
 
 	@NotNull
@@ -49,7 +49,7 @@ public class Usuario {
 	@Column(name = "login_usuario")
 	private String nomeUsuario;
 
-	@Size(min = 6, max = 15)
+	// @Size(min = 6, max = 15)
 	@NotNull
 	@Column(name = "senha_usuario")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -61,7 +61,7 @@ public class Usuario {
 	private String email;
 
 	@NotNull
-	@Size(max = 11, min = 11)
+	// @Size(max = 11, min = 11)
 	@Column(name = "cpf_usuario")
 	private String cpf;
 
@@ -72,7 +72,7 @@ public class Usuario {
 	@ManyToMany
 	@JoinTable(name = "usuario_role", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
-	
+
 	@OneToMany
 	@JoinColumn(name = "id_usuario")
 	private List<Produto> produtos;
@@ -91,10 +91,9 @@ public class Usuario {
 	}
 
 	public Usuario(Integer idUser, @AssertTrue Boolean ativo, @NotNull String nome, @NotNull String telefonePrincipal,
-			String telefoneSecundario, @NotNull String nomeUsuario, @Size(min = 6, max = 15) @NotNull String password,
-			@Email @NotNull String email, @NotNull @Size(max = 11, min = 11) String cpf,
-			@NotNull LocalDate dataDeNascimento, Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos,
-			List<Pedido> pedidos) {
+			String telefoneSecundario, @NotNull String nomeUsuario, @NotNull String password,
+			@Email @NotNull String email, @NotNull String cpf, @NotNull LocalDate dataDeNascimento, Set<Role> roles,
+			List<Produto> produtos, List<Endereco> enderecos, List<Pedido> pedidos) {
 		super();
 		this.idUser = idUser;
 		this.ativo = ativo;
@@ -152,7 +151,7 @@ public class Usuario {
 		this.telefoneSecundario = telefoneSecundario;
 	}
 
-	public  String getNomeUsuario() {
+	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
 
