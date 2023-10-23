@@ -49,7 +49,7 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 		ApiInfo apiInfo = new ApiInfoBuilder().title("Documentação de API projeto final")
 				.description("Projeto final da disciplina de APIrestful").license("Apache license version 2.0")
-				.version("5.15.1").build();
+				.version("6.0.1").build();
 		return apiInfo;
 	}
 }
