@@ -26,12 +26,14 @@ public class UsuarioService {
 //	public UserDTO salvar(UserDTO objetoUsuario) {
 //		Usuario usuarioNovo = new Usuario();
 
+
 //		usuarioNovo.setUsuarioDTO(objetoUsuario.getUsuarioDTO());
 //		usuarioNovo.setEnderecoDTO(objetoUsuario.getEnderecoDTO());
 //		usuarioNovo.setRoleDTO(objetoUsuario.getRoleDTO());
 //		usuarioRepository.save(usuarioNovo);
 //		return objetoUsuario;
 //	}
+
 
 	public Usuario acharId(Integer id) {
 		return usuarioRepository.findById(id).get();
