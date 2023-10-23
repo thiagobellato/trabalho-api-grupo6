@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.api.g6.entities.Produto;
+import br.com.api.g6.services.EmailService;
 import br.com.api.g6.services.ProdutoService;
+import br.com.api.g6.services.UsuarioService;
 
 @RestController
 @RequestMapping("/produto")
@@ -19,6 +21,15 @@ public class ProdutoController {
 
 	@Autowired
 	ProdutoService produtoService;
+
+	@Autowired
+	UsuarioService usuarioService;
+
+	private EmailService emailService;
+	@Autowired
+	public void setEmailService(EmailService emailService) {
+		this.emailService = emailService;
+	}
 
 	@GetMapping("/count")
 	public Integer getCount() {
@@ -37,6 +48,7 @@ public class ProdutoController {
 
 	@GetMapping("/listar")
 	public List<Produto> listar() {
+		//emailService.envioEmailPromocional();
 		return produtoService.listar();
 	}
 

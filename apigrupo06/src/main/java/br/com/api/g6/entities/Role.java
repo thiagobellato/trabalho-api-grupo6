@@ -20,7 +20,6 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "name")
 	private TipoRoleEnum name;
@@ -55,5 +54,4 @@ public class Role {
 	public String toString() {
 		return "Role [id=" + id + ", name=" + name + "]";
 	}
-
 }

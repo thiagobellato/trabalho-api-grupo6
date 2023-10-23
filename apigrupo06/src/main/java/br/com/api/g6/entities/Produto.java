@@ -19,24 +19,19 @@ public class Produto {
 	@Column(name = "id_produto")
 	private Integer id;
 
-	@NotNull
 	@Column(name = "nome_produto")
 	private String nome;
 
-	@NotNull
 	@Size(max = 100)
 	@Column(name = "descricao_produto")
 	private String descricao;
 
-	@NotNull
 	@Column(name = "data_de_fabricacao_produto")
 	private LocalDate dataDeFabricacao;
 
-	@NotNull
 	@Column(name = "qntd_produto")
 	private Integer quantidade;
 
-	@NotNull
 	@Column(name = "valor_unitario_produto")
 	private Double valorUnitario;
 
@@ -44,18 +39,17 @@ public class Produto {
 		super();
 	}
 
-	public Produto(Integer id, String nome, String descricao, LocalDate dataDeFabricacao, Integer quantidade,
-			Double valorUnitario) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.dataDeFabricacao = dataDeFabricacao;
-		this.quantidade = quantidade;
-		this.valorUnitario = valorUnitario;
-	}
+	public Produto(Integer id, String nome, @Size(max = 100) String descricao, LocalDate dataDeFabricacao,
+         Integer quantidade, Double valorUnitario) {
+      this.id = id;
+      this.nome = nome;
+      this.descricao = descricao;
+      this.dataDeFabricacao = dataDeFabricacao;
+      this.quantidade = quantidade;
+      this.valorUnitario = valorUnitario;
+   }
 
-	public Integer getId() {
+   public Integer getId() {
 		return id;
 	}
 
