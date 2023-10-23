@@ -58,10 +58,10 @@ public class UsuarioController {
 		return usuarioService.getCount();
 	}
 
-	@PostMapping("/salvar")
-	public UserDTO salvar(@RequestBody UserDTO objetoUsuario) {
-		return usuarioService.salvar(objetoUsuario);
-	}
+//	@PostMapping("/salvar")
+//	public UserDTO salvar(@RequestBody UserDTO objetoUsuario) {
+//		return usuarioService.salvar(objetoUsuario);
+//	}
 
 //	@GetMapping("/{id}")
 //	public Usuario acharId(@PathVariable Integer id) {
