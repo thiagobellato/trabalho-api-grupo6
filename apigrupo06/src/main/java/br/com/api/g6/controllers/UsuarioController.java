@@ -112,6 +112,10 @@ public class UsuarioController {
 	@PostMapping("/login")
 	public Map<String, Object> login(@RequestBody LoginDTO body) {
 		try {
+<<<<<<< Updated upstream
+=======
+			// EmailService.envioEmailContaDesativada(null);
+>>>>>>> Stashed changes
 			// Aqui, você está criando um UsernamePasswordAuthenticationToken com as
 			// credenciais fornecidas no corpo da requisição (e-mail e senha).
 			UsernamePasswordAuthenticationToken authInputToken = new UsernamePasswordAuthenticationToken(
