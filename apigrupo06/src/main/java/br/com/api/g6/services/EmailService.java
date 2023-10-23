@@ -311,13 +311,13 @@ public class EmailService {
 		}
 	}
 
-	public void envioEmailPromocional(Usuario usuario) {
+	public void envioEmailPromocional() {
 
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("grupo6apiserratec@gmail.com");
-			//helper.setTo(usuario.getEmail());
+			// helper.setTo(usuario.getEmail());
 			helper.setTo("julialimafc048@gmail.com");
 			helper.setSubject("Cadastro concluido!");
 
