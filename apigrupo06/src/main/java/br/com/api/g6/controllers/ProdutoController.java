@@ -35,16 +35,6 @@ public class ProdutoController {
 		this.emailService = emailService;
 	}
 
-	@GetMapping("/count")
-	public Integer getCount() {
-		return produtoService.getCount();
-	}
-
-	// @PostMapping("/salvar")
-	// public Produto salvar(@RequestBody Produto objetoProduto) {
-	// return produtoService.salvar(objetoProduto);
-	// }
-
 	@PostMapping("/salvar")
 	public ResponseEntity<MessageResponseDTO> salvar(@RequestBody Produto objetoProduto) {
 		produtoService.salvar(objetoProduto);
@@ -59,11 +49,8 @@ public class ProdutoController {
 
 	@GetMapping("/listar")
 	public List<Produto> listar() {
-<<<<<<< HEAD
-		emailService.envioEmailPromocional();
-=======
+
 		// emailService.envioEmailPromocional();
->>>>>>> 99cd0331d724aa6151077ef6c20b34b0e2be7626
 		return produtoService.listar();
 	}
 
