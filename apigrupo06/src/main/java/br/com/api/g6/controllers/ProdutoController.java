@@ -49,11 +49,8 @@ public class ProdutoController {
 
 	@GetMapping("/listar")
 	public List<Produto> listar() {
-<<<<<<< HEAD
-		emailService.envioEmailPromocional();
-=======
+
 		// emailService.envioEmailPromocional();
->>>>>>> 99cd0331d724aa6151077ef6c20b34b0e2be7626
 		return produtoService.listar();
 	}
 

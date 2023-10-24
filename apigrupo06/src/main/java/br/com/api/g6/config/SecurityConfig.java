@@ -44,29 +44,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da
 																	// API
 		http.cors().and().csrf().disable().httpBasic().disable().authorizeHttpRequests()
-				/* PERMISSÃO TOTAL CATEGORIA */
-				.antMatchers("/categoria/count", "/categoria/{id}", "/categoria/listar", "/pedido/{id}",
-						"/pedido/listar", "/produto/listar", "/produto/listar", "/produto/count", "/produto/{id}",
-						"/usuario/registro", "/usuario/login", "/usuario/count", "/categoria/delete/{id}",
-						"/categoria/atualizar/{id}","/usuario/salvar")
+				
+				/* ACESSO DOS NÃO LOGADOS*/
+				.antMatchers("/usuario/login","/usuario/registro","/produto/listar","/categoria/listar")
 				.permitAll()
-				/* ACESSOS NA ENTIDADE CATEGORIA */
-				.antMatchers("/categoria/salvar/{id}").hasRole("VENDEDOR")
-				/* ACESSOS NA ENTIDADE ENDEREÇO */
-				.antMatchers("endereco/count", "/endereco/{id}", "/endereco/listar").hasRole("VENDEDOR")
-				.antMatchers("endereco/count", "endereco/listar", "endereco/delete/{id}", "endereco/atualizar/{id}",
-						"/endereco/salvar")
-				.hasRole("COMPRADOR")
-				/* ACESSOS NA ENTIDADE PEDIDO */
-				.antMatchers("pedido/count").hasRole("VENDEDOR")
-				.antMatchers("pedido/count", "pedido/salvar", "pedido/desativar/{id}", "pedido/atualizar/{id}")
-				.hasRole("COMPRADOR")
-				/* ACESSOS NA ENTIDADE PRODUTO */
-				.antMatchers("produto/salvar", "produto/delete/{id}", "produto/atualizar/{id}").hasRole("VENDEDOR")
-				.antMatchers("/produto/").hasRole("COMPRADOR")
-				/* ACESSOS NA ENTIDADE USUARIO */
-				.antMatchers("usuario/count", "usuario/{id}", "usuario/listar").hasRole("VENDEDOR")
-				.antMatchers("usuario/atualizar/{id}", "usuario/desativar/{id}").hasRole("COMPRADOR").and()
+		
+				/* ACESSO DOS LOGADOS*/
+				.antMatchers("/categoria/{id}","/pedido/{id}","/produto/{id}","/pedido/listar")
+				.hasAnyRole("COMPRADOR","VENDEDOR")
+				
+				
+				
+				/* ACESSOS VENDEDOR*/
+				.antMatchers("/categoria/salvar/{id}","/categoria/delete/{id}","/categoria/atualizar/{id}",
+						"/endereco/{id}", "/endereco/listar","produto/salvar", "produto/delete/{id}", 
+						"produto/atualizar/{id}","usuario/{id}","usuario/listar").hasRole("VENDEDOR")
+				
+				/* ACESSOS COMPRADOR*/
+				.antMatchers("/endereco/salvar/{id}","endereco/delete/{id}","endereco/atualizar/{id}",
+						"pedido/salvar","pedido/desativar/{id}","pedido/atualizar/{id}","usuario/atualizar/{id}","usuario/desativar/{id}").hasRole("COMPRADOR")
+				
+				.and()
 				.userDetailsService(uds).exceptionHandling()
 				.authenticationEntryPoint((request, response, authException) -> response
 						.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"))
