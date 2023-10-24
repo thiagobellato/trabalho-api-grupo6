@@ -150,14 +150,14 @@ public class EmailService {
 		}
 	}
 
-	public void envioEmailPedidoFinalizado(Usuario usuario, List<Produto> produtos) {
+	public void envioEmailPedidoFinalizado() {
 
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("grupo6apiserratec@gmail.com");
-			helper.setTo(usuario.getEmail());
-			// helper.setTo("julialimafc048@gmail.com");
+			// helper.setTo(usuario.getEmail());
+			helper.setTo("julialimafc048@gmail.com");
 			helper.setSubject("PEDIDO REALIZADO COM SUCESSO!");
 
 			LocalDate localDate = LocalDate.now();
@@ -212,31 +212,70 @@ public class EmailService {
 					"    </header>\r\n" + //
 					"    <div style=\"margin-left: 30px;\">\r\n" + //
 					"        <br>\r\n" + //
-					"        <p style=\"size: 19px;\"><b>Fulano, </b></p>\r\n");
-			builder.append(usuario.getNomeUsuario());
-			builder.append("<img class = \"logo\" src=\"cid:logo_g6\">");
+					"        <p style=\"size: 19px;\"><b>Debora, </b></p>\r\n");
+			// builder.append(usuario.getNomeUsuario());
 			builder.append(
 					"<p>obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido foi recebido e está em processo de verificação.</p>\r\n<ul>");
+					builder.append("<img class = \"logo\" src=\"cid:logo_g6\">");
+			
 			Double valorTotal = 0.0;
 
-			for (Produto produto : produtos) {
-				builder.append(" <tr>\r\n");
-				builder.append(" <td>\r\n");
-				builder.append(produto.getNome());
-				builder.append(" </td>\r\n");
-				builder.append(" <td>\r\n");
-				builder.append(produto.getQuantidade());
-				builder.append(" </td>\r\n");
-				builder.append(" <td>\r\n");
-				builder.append(produto.getValorUnitario());
-				builder.append(" </td>\r\n");
-				builder.append(" <td>\r\n");
-				builder.append(" </td>\r\n");
-				valorTotal += produto.getValorUnitario();
-			}
+			// for (Produto produto : produtos) {
+			// builder.append(" <tr>\r\n");
+			// builder.append(" <td>\r\n");
+			// builder.append("Nome\r\n");
+			// builder.append("<tr>PS4</tr>\r\n");
+			// builder.append(produto.getNome());
+			// builder.append(" </td>\r\n");
+			// builder.append(" <td>\r\n");
+			// builder.append("Quantidade\r\n");
+			// builder.append(produto.getQuantidade());
+			// builder.append(" </td>\r\n");
+			// builder.append("<tr>2</tr>\r\n");
+			// builder.append(" <td>\r\n");
+			// builder.append("Valor\r\n");
+			// builder.append(produto.getValorUnitario());
+			// builder.append(" </td>\r\n");
+			// builder.append("<tr>3.900,99</tr>\r\n");
+			// builder.append(" <td>\r\n");
+			// builder.append(" </td>\r\n");
+			// valorTotal += produto.getValorUnitario();
+			// }
 
-			builder.append("</ul>\r\n        <br><p>Valor total: R$ ");
-			builder.append(valorTotal);
+			builder.append("<table style=\"width: 50%; margin: 20px auto; border-collapse: collapse; text-align: left;\">\r\n" + //
+					"        <thead>\r\n" + //
+					"            <tr style=\"background-color: #f2f2f2;\">\r\n" + //
+					"                <th style=\"padding: 10px;\">Nome</th>\r\n" + //
+					"                <th style=\"padding: 10px;\">Quantidade</th>\r\n" + //
+					"                <th style=\"padding: 10px;\">Valor</th>\r\n" + //
+					"            </tr>\r\n" + //
+					"        </thead>\r\n" + //
+					"        <tbody>\r\n" + //
+					"            <tr>\r\n" + //
+					"                <td style=\"padding: 10px;\">Produto 1</td>\r\n" + //
+					"                <td style=\"padding: 10px;\">2</td>\r\n" + //
+					"                <td style=\"padding: 10px;\">R$ 500,00</td>\r\n" + //
+					"            </tr>\r\n" + //
+					"            <tr>\r\n" + //
+					"                <td style=\"padding: 10px;\">Produto 2</td>\r\n" + //
+					"                <td style=\"padding: 10px;\">1</td>\r\n" + //
+					"                <td style=\"padding: 10px;\">R$ 800,00</td>\r\n" + //
+					"            </tr>\r\n" + //
+					"            <tr>\r\n" + //
+					"                <td style=\"padding: 10px;\">Produto 3</td>\r\n" + //
+					"                <td style=\"padding: 10px;\">3</td>\r\n" + //
+					"                <td style=\"padding: 10px;\">R$ 300,00</td>\r\n" + //
+					"            </tr>\r\n" + //
+					"        </tbody>\r\n" + //
+					"        <tfoot>\r\n" + //
+					"            <tr style=\"background-color: #f2f2f2;\">\r\n" + //
+					"                <td style=\"padding: 10px; font-weight: bold;\">Total</td>\r\n" + //
+					"                <td style=\"padding: 10px;\"></td>\r\n" + //
+					"                <td style=\"padding: 10px; font-weight: bold;\">R$ 2600,00</td>\r\n" + //
+					"            </tr>\r\n" + //
+					"        </tfoot>\r\n" + //
+					"    </table>");
+
 			builder.append("<br>Previsão para entrega: ");
 			builder.append(dataEntrega);
 			builder.append("<hr>\r\n" + //
@@ -251,8 +290,8 @@ public class EmailService {
 					"            <b>CONTE COM A GENTE!</b></p>\r\n" + //
 					"    </div>\r\n" +
 					"    <div class=\"container\">\r\n");
-			builder.append("<img src=\"cid: icon-instagram\">\r\n");
-			builder.append("<img src=\"cid: icon-whatsapp\">\r\n");
+			builder.append("<img src=\"cid:icons8-whatsapp\" >");
+			builder.append("<img src=\"cid:icons8-instagram\">");
 			builder.append("</div>\r\n" + //
 					"</body>\r\n" + //
 					"\r\n" + //
@@ -274,7 +313,7 @@ public class EmailService {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void envioEmailContaDesativada(Usuario usuario) {
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {
