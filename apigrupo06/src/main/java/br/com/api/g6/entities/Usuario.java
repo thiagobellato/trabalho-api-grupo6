@@ -49,8 +49,6 @@ public class Usuario {
 	@Column(name = "login_usuario")
 	private String nomeUsuario;
 
-	@Size(min = 6, max = 15)
-
 	@Column(name = "senha_usuario")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
