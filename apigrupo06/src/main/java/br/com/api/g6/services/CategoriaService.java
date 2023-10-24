@@ -20,7 +20,6 @@ public class CategoriaService {
 		return categoriaRepository.contar();
 	}
 
-	// Post (Salvar, cadastra uma nova categoria)
 	public CategoriaDTO salvar(CategoriaDTO objetoCategoria) {
 		Categoria categoriaNovo = new Categoria();
 		categoriaNovo.setNome(objetoCategoria.getNome());
@@ -29,19 +28,16 @@ public class CategoriaService {
 		return objetoCategoria;
 	}
 
-	// Get (Busca uma categoria por ID)
 	public CategoriaDTO acharId(Integer id) {
 		Categoria categoria = categoriaRepository.findById(id).get();
 		CategoriaDTO dtoCategoria = converterCategoriaDTO(categoria);
 		return dtoCategoria;
 	}
 
-	// Get (Busca uma categoria por ID)
 	public Categoria acharId2(Integer id) {
 		return categoriaRepository.findById(id).get();
 	}
 
-	// Get (Lista todas as categorias)
 	public List<CategoriaDTO> listar() {
 		List<CategoriaDTO> dtoCategorias = new ArrayList<>();
 		List<Categoria> infoCategorias = categoriaRepository.findAll();
@@ -65,12 +61,10 @@ public class CategoriaService {
 			registroAntigo.setDescricao(objetoCategoria.getDescricao());
 		}
 		categoriaRepository.save(registroAntigo);
-		// return converterCategoriaDTO(registroAntigo);
-
+		
 		return objetoCategoria;
 	}
 
-	// Conversor
 	public CategoriaDTO converterCategoriaDTO(Categoria categoria) {
 		CategoriaDTO categoriaConvertida = new CategoriaDTO();
 		categoriaConvertida.setNome(categoria.getNome());

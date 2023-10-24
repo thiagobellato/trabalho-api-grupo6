@@ -12,14 +12,7 @@
 	<groupId>br.com.api</groupId>
 	<artifactId>g6</artifactId>
 
-
-
-
-
-
-	<version>6.2.0</version>
-
-
+	<version>6.2.1</version>
 
 	<name>apigrupo06</name>
 	<description>Trabalho final API G6</description>

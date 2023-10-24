@@ -21,4 +21,9 @@ public class PedidoProduto {
    public void setQnt_item(Integer qnt_item) {
       this.qnt_item = qnt_item;
    }
+
+   @Override
+   public String toString() {
+      return "PedidoProduto [qnt_item=" + qnt_item + "]";
+   }
 }

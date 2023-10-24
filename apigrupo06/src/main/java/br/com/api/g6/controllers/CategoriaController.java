@@ -2,8 +2,6 @@ package br.com.api.g6.controllers;
 
 import java.util.List;
 
-import javax.mail.MessagingException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,21 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.g6.dto.CategoriaDTO;
-import br.com.api.g6.entities.Categoria;
 import br.com.api.g6.services.CategoriaService;
 import br.com.api.g6.services.EmailService;
 
 @RestController
 @RequestMapping("/categoria")
 public class CategoriaController {
-
-	private EmailService emailService;
-
-	@Autowired
-	public void setEmailService(EmailService emailService) {
-		this.emailService = emailService;
-	}
-
+	
 	@Autowired
 	CategoriaService categoriaService;
 
@@ -45,7 +35,6 @@ public class CategoriaController {
 
 	@GetMapping("/listar")
 	public List<CategoriaDTO> listar() {
-//		emailService.envioEmail(null);
 		return categoriaService.listar();
 	}
 

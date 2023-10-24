@@ -13,5 +13,4 @@ public enum TipoRoleEnum {
 	public String getTipo() {
 		return tipo;
 	}
-
 }

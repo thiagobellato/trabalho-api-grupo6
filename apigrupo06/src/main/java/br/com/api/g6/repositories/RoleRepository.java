@@ -20,5 +20,4 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
 			"inner join roles r on ur.role_id = r.id\r\n" + //
 			"where u.email_usuario  = :email", nativeQuery = true)
 	Set<Role> roles(String email);
-
 }

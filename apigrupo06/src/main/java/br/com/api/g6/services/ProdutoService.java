@@ -20,6 +20,7 @@ public class ProdutoService {
 	}
 
 	public Produto salvar(ProdutoDTO objProduto) {
+		/* SO TA PREENCHENDO ID E NOME */
 		Produto produtoNovo = new Produto();
 		produtoNovo.setNome(objProduto.getNome());
 		produtoNovo.setDescricao(objProduto.getDescricao());

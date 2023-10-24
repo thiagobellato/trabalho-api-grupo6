@@ -274,7 +274,7 @@ public class EmailService {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static void envioEmailContaDesativada(Usuario usuario) {
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {

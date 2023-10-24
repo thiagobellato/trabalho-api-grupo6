@@ -37,5 +37,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				roleRepo.roles(email).stream().map(role -> new SimpleGrantedAuthority(role.getName().name()))
 						.collect(Collectors.toList())); // Define, de forma estatica, o perfil do user encontrado
 	}
-
 }

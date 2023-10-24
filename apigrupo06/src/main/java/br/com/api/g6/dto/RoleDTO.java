@@ -8,7 +8,6 @@ public class RoleDTO {
 
 	public RoleDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public RoleDTO(TipoRoleEnum name) {
@@ -23,5 +22,4 @@ public class RoleDTO {
 	public void setName(TipoRoleEnum name) {
 		this.name = name;
 	}
-
 }
