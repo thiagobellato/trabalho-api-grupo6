@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.api.g6.dto.PedidoDTO;
 import br.com.api.g6.entities.Pedido;
+import br.com.api.g6.entities.Produto;
 import br.com.api.g6.entities.Usuario;
 import br.com.api.g6.services.EmailService;
 import br.com.api.g6.services.PedidoService;
+import br.com.api.g6.services.ProdutoService;
 import br.com.api.g6.services.UsuarioService;
 
 @RestController
@@ -26,21 +29,27 @@ public class PedidoController {
 
 	@Autowired
 	PedidoService pedidoService;
-	
+
 	@Autowired
 	UsuarioService usuarioService;
-	
+
+	@Autowired
+	ProdutoService produtoService;
+
 	private EmailService emailService;
-    @Autowired
-    public void setEmailService(EmailService emailService) {
-        this.emailService = emailService;
-    }
+
+	@Autowired
+	public void setEmailService(EmailService emailService) {
+		this.emailService = emailService;
+	}
 
 	@PostMapping("/salvar")
-	public void salvar(@RequestParam String email, @RequestBody Pedido objetoPedido) {
-		//pedidoService.salvar(objetoPedido);
+	public void salvar(@RequestParam String email, @RequestBody PedidoDTO objetoPedido) {
+		// pedidoService.salvar(objetoPedido);
 		Usuario usuario = usuarioService.findByEmail(email);
-		//emailService.envioEmailPedidoFinalizado(usuario,objetoPedido.getId());
+		Integer idPedido = pedidoService.salvar(objetoPedido);
+		List<Produto> produtos = produtoService.listar(idPedido);
+		emailService.envioEmailPedidoFinalizado(usuario, produtos);
 	}
 
 	@GetMapping("/{id}")

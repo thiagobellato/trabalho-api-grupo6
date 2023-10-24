@@ -41,31 +41,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da
-																	// API
-		http.cors().and().csrf().disable().httpBasic().disable().authorizeHttpRequests()
-				
-				/* ACESSO DOS NÃO LOGADOS*/
-				.antMatchers("/categoria/salvar","/usuario/login","/usuario/registro","/produto/listar","/categoria/listar")
+	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da API
+		http.cors().and().csrf().disable().httpBasic().disable()
+				.authorizeHttpRequests()
+				.antMatchers("/categoria/salvar", "/usuario/login", "/usuario/registro", "/produto/listar",
+						"/categoria/listar")
 				.permitAll()
-		
-				/* ACESSO DOS LOGADOS*/
-				.antMatchers("/categoria/{id}","/pedido/{id}","/produto/{id}","/pedido/listar")
-				//.hasAnyRole("COMPRADOR","VENDEDOR")
-				.permitAll()
-				
-				/* ACESSOS VENDEDOR*/
-				.antMatchers("/categoria/salvar","/categoria/delete/{id}","/categoria/atualizar/{id}",
-						"/endereco/{id}", "/endereco/listar","produto/salvar", "produto/delete/{id}", 
-						"produto/atualizar/{id}","usuario/{id}","usuario/listar")
-				//.hasRole("VENDEDOR")
-				.permitAll()
-				
-				/* ACESSOS COMPRADOR*/
-				.antMatchers("/endereco/salvar","endereco/delete/{id}","endereco/atualizar/{id}",
-						"pedido/salvar","pedido/desativar/{id}","pedido/atualizar/{id}","usuario/atualizar/{id}","usuario/desativar/{id}")
-				//.hasRole("COMPRADOR")
-				.permitAll()
+				.antMatchers("categoria/{id}", "pedido/{id}", "produto/{id}", "pedido/listar")
+				.hasAnyRole("COMPRADOR", "VENDEDOR")
+				.antMatchers("categoria/salvar", "categoria/delete/{id}", "categoria/atualizar/{id}", "endereco/{id}",
+						"endereco/listar", "produto/salvar", "produto/delete/{id}", "produto/atualizar/{id}", "usuario/{id}",
+						"usuario/listar")
+				.hasRole("VENDEDOR")
+				.antMatchers("endereco/salvar", "endereco/delete/{id}", "endereco/atualizar/{id}", "pedido/salvar",
+						"pedido/desativar/{id}", "pedido/atualizar/{id}", "usuario/atualizar/{id}",
+						"usuario/desativar/{id}")
+				.hasRole("COMPRADOR")
 				.and()
 				.userDetailsService(uds).exceptionHandling()
 				.authenticationEntryPoint((request, response, authException) -> response

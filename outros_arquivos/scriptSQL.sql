@@ -1,5 +1,5 @@
 create view pedido_finalizado as 
-select p.pedido_id , p2.nome_produto , p2.qntd_produto , p2.valor_unitario_produto
+select p.pedido_id , p2.id_produto , p2.qntd_produto , p2.valor_unitario_produto
 from
 	pedido p
 inner join pedido_produto pp on

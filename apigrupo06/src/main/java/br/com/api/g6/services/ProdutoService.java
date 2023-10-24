@@ -14,7 +14,7 @@ public class ProdutoService {
 
 	@Autowired
 	ProdutoRepository produtoRepository;
-	
+
 	public Integer getCount() {
 		return produtoRepository.contar();
 	}
@@ -22,6 +22,10 @@ public class ProdutoService {
 	public Produto salvar(ProdutoDTO objProduto) {
 		Produto produtoNovo = new Produto();
 		produtoNovo.setNome(objProduto.getNome());
+		produtoNovo.setDescricao(objProduto.getDescricao());
+		produtoNovo.setDataDeFabricacao(objProduto.getDataDeFabricacao());
+		produtoNovo.setQuantidade(objProduto.getQuantidade());
+		produtoNovo.setValorUnitario(objProduto.getValorUnitario());
 		return produtoRepository.save(produtoNovo);
 	}
 
