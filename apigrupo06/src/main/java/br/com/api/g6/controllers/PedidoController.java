@@ -36,12 +36,6 @@ public class PedidoController {
         this.emailService = emailService;
     }
 
-	@GetMapping("/count")
-	public Integer getCount() {
-		//EmailService.envioEmailPedidoFinalizado();
-		return pedidoService.getCount();
-	}
-
 	@PostMapping("/salvar")
 	public void salvar(@RequestParam String email, @RequestBody Pedido objetoPedido) {
 		pedidoService.salvar(objetoPedido);
@@ -58,11 +52,6 @@ public class PedidoController {
 	public List<Pedido> listar() {
 		return pedidoService.listar();
 	}
-
-	// @DeleteMapping("/delete/{id}")
-	// public void apagar(@PathVariable Integer id) {
-	// pedidoService.apagar(id);
-	// }
 
 	@DeleteMapping("/desativar/{id}")
 	public void apagarLogico(@PathVariable Integer id) {
