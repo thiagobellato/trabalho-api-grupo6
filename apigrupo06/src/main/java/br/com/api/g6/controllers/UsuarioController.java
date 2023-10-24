@@ -59,18 +59,11 @@ public class UsuarioController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-<<<<<<< Updated upstream
 	private EmailService emailService;
 
 	@Autowired
 	public void setEmailService(EmailService emailService) {
 		this.emailService = emailService;
-	}
-
-=======
-	@PostMapping("/salvar")
-	public Usuario salvar(@RequestBody Usuario objetoUsuario) {
-		return usuarioService.salvar(objetoUsuario);
 	}
 
 	@GetMapping("/{id}")
@@ -85,7 +78,7 @@ public class UsuarioController {
 
 	@DeleteMapping("/desativar/{id}")
 	public void apagarLogico(@PathVariable Integer id) {
-		EmailService.envioEmailContaDesativada(null);
+		// EmailService.envioEmailContaDesativada(null);
 		usuarioService.apagarLogico(id);
 	}
 
@@ -93,11 +86,10 @@ public class UsuarioController {
 	public Usuario atualizar(@PathVariable Integer id, @RequestBody Usuario objetoUsuario) {
 		return usuarioService.atualizar(id, objetoUsuario);
 	}
-	
+
 	// Aqui estamos criando um método POST que responde a requisições feitas para o
 	// endpoint /registro. Ele espera um parâmetro email como um parâmetro da URL e
 	// um corpo de requisição (body) que é mapeado para um objeto UserDTO.
->>>>>>> Stashed changes
 	@PostMapping("/registro")
 	public ResponseEntity<String> cadastro(@RequestParam String email, @RequestBody UsuarioRequestCadastroDTO usuario) {
 		// responsável pelo envio de um e-mail de confirmação ou notificação após o
@@ -156,30 +148,4 @@ public class UsuarioController {
 			throw new RuntimeException("Credenciais Invalidas");
 		}
 	}
-
-	@GetMapping("/{id}")
-	public Usuario acharId(@PathVariable Integer id) {
-		return usuarioService.acharId(id);
-	}
-
-	@GetMapping("/listar")
-	public List<Usuario> listar() {
-		return usuarioService.listar();
-	}
-
-	@DeleteMapping("/desativar/{id}")
-	public void apagarLogico(@PathVariable Integer id, @RequestBody Usuario usuario) {
-		EmailService.envioEmailContaDesativada(id, usuario);
-		usuarioService.apagarLogico(id);
-	}
-
-	@PutMapping("/atualizar/{id}")
-	public Usuario atualizar(@PathVariable Integer id, @RequestBody Usuario objetoUsuario) {
-		return usuarioService.atualizar(id, objetoUsuario);
-	}
-
-	// Aqui estamos criando um método POST que responde a requisições feitas para o
-	// endpoint /registro. Ele espera um parâmetro email como um parâmetro da URL e
-	// um corpo de requisição (body) que é mapeado para um objeto UserDTO.
-
 }
