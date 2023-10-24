@@ -33,13 +33,6 @@ public class CategoriaController {
 	@Autowired
 	CategoriaService categoriaService;
 
-	@GetMapping("/count")
-	public Integer getCount() throws MessagingException {
-		// emailService.envioEmail();
-		// emailService.envioEmailTeste();
-		return categoriaService.getCount();
-	}
-
 	@PostMapping("/salvar")
 	public CategoriaDTO salvar(CategoriaDTO objetoCategoria) {
 		return categoriaService.salvar(objetoCategoria);

@@ -23,11 +23,6 @@ public class EnderecoController {
 	@Autowired
 	EnderecoService enderecoService;
 
-	@GetMapping("/count")
-	public Integer getCount() {
-		return enderecoService.getCount();
-	}
-
 	@PostMapping("/salvar")
 	public Endereco salvar(@RequestBody EnderecoDTO objetoEndereco) {
 		return enderecoService.salvar(objetoEndereco);

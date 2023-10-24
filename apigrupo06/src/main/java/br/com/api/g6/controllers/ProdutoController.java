@@ -35,16 +35,6 @@ public class ProdutoController {
 		this.emailService = emailService;
 	}
 
-	@GetMapping("/count")
-	public Integer getCount() {
-		return produtoService.getCount();
-	}
-
-	// @PostMapping("/salvar")
-	// public Produto salvar(@RequestBody Produto objetoProduto) {
-	// return produtoService.salvar(objetoProduto);
-	// }
-
 	@PostMapping("/salvar")
 	public ResponseEntity<MessageResponseDTO> salvar(@RequestBody Produto objetoProduto) {
 		produtoService.salvar(objetoProduto);
