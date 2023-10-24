@@ -36,14 +36,12 @@ public class ProdutoController {
 	}
 
 	@PostMapping("/salvar")
-	// public ResponseEntity<MessageResponseDTO> salvar(@RequestBody Produto
-	// objetoProduto)
-	public Produto salvar(@RequestBody Produto objProduto) {
+	//public ResponseEntity<MessageResponseDTO> salvar(@RequestBody Produto
+	//objetoProduto)
+	public Produto salvar(@RequestBody ProdutoDTO objProduto) {
 		return produtoService.salvar(objProduto);
-		// mensagem para retorno positivo
-		// return ResponseEntity.ok(new MessageResponseDTO("Produto salvo com
-		// sucesso!"));
-
+		//return ResponseEntity.ok(new MessageResponseDTO("Produto salvo com
+		//sucesso!"));
 	}
 
 	@GetMapping("/{id}")

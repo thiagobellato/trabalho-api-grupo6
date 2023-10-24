@@ -33,8 +33,6 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	private Integer idUser;
 
-	@AssertTrue
-
 	@Column(name = "ativo_usuario")
 	private Boolean ativo;
 
@@ -223,5 +221,9 @@ public class Usuario {
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
+
+   public String getBairro() {
+      return null;
+   }
 
 }

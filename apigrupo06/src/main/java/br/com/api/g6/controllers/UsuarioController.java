@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.api.g6.config.JWTUtil;
 import br.com.api.g6.dto.LoginDTO;
 import br.com.api.g6.dto.UsuarioRequestCadastroDTO;
+import br.com.api.g6.dto.UsuarioResponseCadastroDTO;
 import br.com.api.g6.entities.Usuario;
 import br.com.api.g6.repositories.EnderecoRepository;
 import br.com.api.g6.repositories.RoleRepository;
@@ -67,7 +68,7 @@ public class UsuarioController {
 	}
 
 	@GetMapping("/{id}")
-	public Usuario acharId(@PathVariable Integer id) {
+	public UsuarioResponseCadastroDTO acharId(@PathVariable Integer id) {
 		return usuarioService.acharId(id);
 	}
 
@@ -78,12 +79,15 @@ public class UsuarioController {
 
 	@DeleteMapping("/desativar/{id}")
 	public void apagarLogico(@PathVariable Integer id) {
-		// EmailService.envioEmailContaDesativada(null);
+
+		Usuario usuario = usuarioService.acharId2(id);
+		EmailService.envioEmailContaDesativada(usuario);
 		usuarioService.apagarLogico(id);
 	}
 
 	@PutMapping("/atualizar/{id}")
-	public Usuario atualizar(@PathVariable Integer id, @RequestBody Usuario objetoUsuario) {
+	public UsuarioRequestCadastroDTO atualizar(@PathVariable Integer id,
+			@RequestBody UsuarioRequestCadastroDTO objetoUsuario) {
 		return usuarioService.atualizar(id, objetoUsuario);
 	}
 
@@ -111,7 +115,7 @@ public class UsuarioController {
 	public Map<String, Object> login(@RequestBody LoginDTO body) {
 		try {
 
-//			EmailService.envioEmailContaDesativada(null);
+			// EmailService.envioEmailContaDesativada(null);
 
 			// Aqui, você está criando um UsernamePasswordAuthenticationToken com as
 			// credenciais fornecidas no corpo da requisição (e-mail e senha).

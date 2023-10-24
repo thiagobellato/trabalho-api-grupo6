@@ -190,4 +190,6 @@ public class UsuarioResponseCadastroDTO {
 		this.roles = roles;
 	}
 
+
+
 }

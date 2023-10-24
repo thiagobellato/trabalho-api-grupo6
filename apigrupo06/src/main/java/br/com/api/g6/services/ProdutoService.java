@@ -19,8 +19,8 @@ public class ProdutoService {
 		return produtoRepository.contar();
 	}
 
-	public Produto salvar(Produto objProduto) {
-		ProdutoDTO produtoNovo = new ProdutoDTO();
+	public Produto salvar(ProdutoDTO objProduto) {
+		Produto produtoNovo = new Produto();
 		produtoNovo.setNome(objProduto.getNome());
 		return produtoRepository.save(produtoNovo);
 	}

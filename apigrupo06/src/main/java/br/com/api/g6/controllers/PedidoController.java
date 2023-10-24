@@ -38,9 +38,9 @@ public class PedidoController {
 
 	@PostMapping("/salvar")
 	public void salvar(@RequestParam String email, @RequestBody Pedido objetoPedido) {
-		pedidoService.salvar(objetoPedido);
+		//pedidoService.salvar(objetoPedido);
 		Usuario usuario = usuarioService.findByEmail(email);
-		emailService.envioEmailPedidoFinalizado(usuario,objetoPedido.getId());
+		//emailService.envioEmailPedidoFinalizado(usuario,objetoPedido.getId());
 	}
 
 	@GetMapping("/{id}")

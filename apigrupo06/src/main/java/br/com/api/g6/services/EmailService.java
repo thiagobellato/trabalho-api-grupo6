@@ -2,6 +2,7 @@ package br.com.api.g6.services;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.MessagingException;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.api.g6.controllers.CarrouselController;
 import br.com.api.g6.dto.UsuarioRequestCadastroDTO;
+import br.com.api.g6.entities.Produto;
 import br.com.api.g6.entities.Usuario;
 
 @Configuration
@@ -152,7 +154,8 @@ public class EmailService {
 		}
 	}
 
-	public void envioEmailPedidoFinalizado(Usuario usuario, Integer idPedido) {
+	public void envioEmailPedidoFinalizado(Usuario usuario) {
+
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
@@ -185,7 +188,7 @@ public class EmailService {
 					"    <header style=\"background-color: orange; width: 100%; height: 100px; padding: 0px; margin: 0px;\"> \r\n"
 					+ //
 					"        <p style=\"float: left; font-family: Arial, Helvetica, sans-serif; padding: 30px;\"> <b>N° do pedido:");
-			builder.append(idPedido);
+			//builder.append(idPedido);
 			builder.append("</b></p>\r\n" + //
 					"        <h1 style=\"float: right; padding-right: 50px; font-family: Arial, Helvetica, sans-serif; font-size: 22px; line-height: 70px;\">Confirmação de Pedido</h1>\r\n"
 					+ //
@@ -196,12 +199,12 @@ public class EmailService {
 			builder.append(usuario.getNomeUsuario());
 			builder.append(",</b></p>\r\n" + //
 					"        <p>Obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido número #");
-			builder.append(idPedido);
+			//builder.append(idPedido);
 			builder.append(" foi recebido e está em processo de verificação.</p>\r\n");
 			Double valorTotal = 0.0;
 
-			// List<Produto> listaProdutos = produtoService.listar(idPedido);
-			// for (Produto produto : listaProdutos) {
+			//List<Produto> listaProdutos = produtoService.listar(idPedido);
+			//for (Produto produto : listaProdutos) {
 			// builder.append(" <tr>\r\n");
 			// builder.append(" <td>\r\n");
 			// builder.append(produto.getNome());
@@ -215,7 +218,7 @@ public class EmailService {
 			// builder.append(" <td>\r\n");
 			// builder.append(" </td>\r\n");
 			// valorTotal += produto.getValorUnitario();
-			// }
+			//}
 
 			builder.append("        <br><p>Valor total: R$ ");
 			builder.append(valorTotal);
@@ -248,13 +251,13 @@ public class EmailService {
 		}
 	}
 
-	public static void envioEmailContaDesativada(Integer id, Usuario usuario) {
+	public static void envioEmailContaDesativada(Usuario usuario) {
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
-			helper.setFrom("grupo6apiserratec@gmail.com");
+			//helper.setFrom("grupo6apiserratec@gmail.com");
 			helper.setTo("julialimafc048@gmail.com");
-			// helper.setTo(usuario.getEmail());
+			helper.setTo(usuario.getEmail());
 			helper.setSubject("CONTA DESATIVADA!");
 
 			StringBuilder builder = new StringBuilder();

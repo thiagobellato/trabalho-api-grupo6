@@ -147,5 +147,9 @@ public class UsuarioRequestCadastroDTO {
 		this.complemento2 = complemento2;
 	}
 
+   public Object getAtivo() {
+      return null;
+   }
+
 	
 }
