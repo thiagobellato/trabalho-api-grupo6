@@ -1,7 +1,5 @@
 package br.com.api.g6.services;
 
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,4 @@ public class RoleService {
 		return roleRepository.save(role);
 	}
 
-	public Set<String> buscarRolesPorUsuario(String email) {
-		return roleRepository.buscarRolesPorUsuario(email);
-	}
 }

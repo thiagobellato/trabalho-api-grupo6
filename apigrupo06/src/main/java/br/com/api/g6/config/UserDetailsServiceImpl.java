@@ -30,15 +30,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Optional<Usuario> userRes = userRepo.findByEmail(email);
-//		if (userRes.isEmpty()) {
-//			throw new UsernameNotFoundException("Não foi possível encontrar usuário com o email = " + email);
-//		}
-//		return new org.springframework.security.core.userdetails.User(email, userRes.get().getPassword(),
-//				roleRepo.roles(email).stream().map(role -> new SimpleGrantedAuthority(role.getName().name()))
-//						.collect(Collectors.toList())); // Define, de forma estatica, o perfil do user encontrado
-//	}
-		return null;
-
-		
+		if (userRes.isEmpty()) {
+			throw new UsernameNotFoundException("Não foi possível encontrar usuário com o email = " + email);
+		}
+		return new org.springframework.security.core.userdetails.User(email, userRes.get().getPassword(),
+				roleRepo.roles(email).stream().map(role -> new SimpleGrantedAuthority(role.getName().name()))
+						.collect(Collectors.toList())); // Define, de forma estatica, o perfil do user encontrado
 	}
+
 }
