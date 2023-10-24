@@ -8,8 +8,13 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import br.com.api.g6.dto.UsuarioDTO;
 import br.com.api.g6.dto.UsuarioRequestCadastroDTO;
+import br.com.api.g6.dto.UsuarioResponseCadastroDTO;
+import br.com.api.g6.entities.Categoria;
 import br.com.api.g6.entities.Endereco;
 import br.com.api.g6.entities.Role;
 import br.com.api.g6.entities.Usuario;
@@ -23,31 +28,29 @@ public class UsuarioService {
 
 	@Autowired
 	UsuarioRepository usuarioRepository;
-	
+
 	@Autowired
 	EnderecoService enderecoService;
-	
+
 	@Autowired
 	RoleService roleService;
-	
+
 	@Autowired
 	RoleRepository roleRepository;
-	
+
 	@Autowired
 	EnderecoRepository enderecoRepository;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	public Integer getCount() {
-		return usuarioRepository.contar();
+	public UsuarioResponseCadastroDTO acharId(Integer id) {
+		Usuario usuario = usuarioRepository.findById(id).get();
+		UsuarioResponseCadastroDTO dtoUsuario = converterUsuarioDTO(usuario);
+		return dtoUsuario;
 	}
 
-	public Usuario salvar(Usuario objetoUsuario) {
-		return usuarioRepository.save(objetoUsuario);
-	}
-
-	public Usuario acharId(Integer id) {
+	public Usuario acharId2(Integer id) {
 		return usuarioRepository.findById(id).get();
 	}
 
@@ -56,7 +59,7 @@ public class UsuarioService {
 	}
 
 	public void apagarLogico(Integer id) {
-		Usuario objetoUsuario = acharId(id);
+		Usuario objetoUsuario = acharId2(id);
 
 		if (objetoUsuario != null) {
 			objetoUsuario.setAtivo(false);
@@ -64,8 +67,9 @@ public class UsuarioService {
 		}
 	}
 
-	public Usuario atualizar(Integer id, Usuario objetoUsuario) {
-		Usuario registroAntigo = acharId(id);
+	public UsuarioRequestCadastroDTO atualizar(Integer id,
+			UsuarioRequestCadastroDTO objetoUsuario) {
+		Usuario registroAntigo = acharId2(id);
 
 		if (objetoUsuario.getAtivo() != null) {
 			registroAntigo.setAtivo(null);
@@ -88,7 +92,9 @@ public class UsuarioService {
 		}
 
 		registroAntigo.setIdUser(id);
-		return usuarioRepository.save(registroAntigo);
+		usuarioRepository.save(registroAntigo);
+
+		return objetoUsuario;
 	}
 
 	public Usuario findByEmail(String email) {
@@ -97,111 +103,99 @@ public class UsuarioService {
 
 	public void save(UsuarioRequestCadastroDTO usuario) {
 		// Estamos pegando as roles (funções) do objeto UserDTO e inicializando um
-				// conjunto de roles Set<Role>.
-				Set<String> strRoles = usuario.getRoles();
-				Set<Role> roles = new HashSet<>();
+		// conjunto de roles Set<Role>.
+		Set<String> strRoles = usuario.getRoles();
+		Set<Role> roles = new HashSet<>();
 
-				// Aqui, estamos verificando se as roles fornecidas estão vazias. Se estiverem
-				// vazias, adicionamos a role de COMPRADOR. Se não estiverem vazias, iteramos
-				// sobre as roles e adicionamos as roles correspondentes ao conjunto roles.
+		// Aqui, estamos verificando se as roles fornecidas estão vazias. Se estiverem
+		// vazias, adicionamos a role de COMPRADOR. Se não estiverem vazias, iteramos
+		// sobre as roles e adicionamos as roles correspondentes ao conjunto roles.
 
-				// Se a lista de strings de roles (strRoles) for nula, isso significa que o
-				// usuário não especificou nenhuma role. Nesse caso, o código encontra a role de
-				// ROLE_COMPRADOR no repositório (roleRepository) e a adiciona ao conjunto de
-				// roles (roles).
-				if (strRoles == null) {
-					Role usuarioRole = roleRepository.findByName(TipoRoleEnum.ROLE_COMPRADOR)
-							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-					roles.add(usuarioRole);
-				} else {
-					// Se strRoles não for nulo, o código itera sobre as roles fornecidas. Se a
-					// string de role for "VENDEDOR", ele encontra a ROLE_VENDEDOR no repositório e
-					// a adiciona ao conjunto roles. Se a string de role for "COMPRADOR", ele
-					// encontra a ROLE_COMPRADOR no repositório e a adiciona ao conjunto roles.
-					strRoles.forEach(role -> {
-						switch (role) {
-						case "VENDEDOR":
-							Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_VENDEDOR)
-									.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-							roles.add(adminRole);
-							break;
-						case "COMPRADOR":
-							Role usuarioRole = roleRepository.findByName(TipoRoleEnum.ROLE_COMPRADOR)
-									.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-							roles.add(usuarioRole);
-						}
-					});
+		// Se a lista de strings de roles (strRoles) for nula, isso significa que o
+		// usuário não especificou nenhuma role. Nesse caso, o código encontra a role de
+		// ROLE_COMPRADOR no repositório (roleRepository) e a adiciona ao conjunto de
+		// roles (roles).
+		if (strRoles == null) {
+			Role usuarioRole = roleRepository.findByName(TipoRoleEnum.ROLE_COMPRADOR)
+					.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+			roles.add(usuarioRole);
+		} else {
+			// Se strRoles não for nulo, o código itera sobre as roles fornecidas. Se a
+			// string de role for "VENDEDOR", ele encontra a ROLE_VENDEDOR no repositório e
+			// a adiciona ao conjunto roles. Se a string de role for "COMPRADOR", ele
+			// encontra a ROLE_COMPRADOR no repositório e a adiciona ao conjunto roles.
+			strRoles.forEach(role -> {
+				switch (role) {
+					case "VENDEDOR":
+						Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_VENDEDOR)
+								.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+						roles.add(adminRole);
+						break;
+					case "COMPRADOR":
+						Role usuarioRole = roleRepository.findByName(TipoRoleEnum.ROLE_COMPRADOR)
+								.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+						roles.add(usuarioRole);
 				}
+			});
+		}
 
-				// Estamos usando o serviço enderecoService para pesquisar informações de
-				// endereço com base no CEP fornecido pelo usuário.
-				Endereco viaCep = enderecoService.pesquisarEndereco(usuario.getCep());
+		// Estamos usando o serviço enderecoService para pesquisar informações de
+		// endereço com base no CEP fornecido pelo usuário.
+		Endereco viaCep = enderecoService.pesquisarEndereco(usuario.getCep());
 
-				// Aqui, estamos criando um novo objeto Endereco com as informações do CEP
-				// pesquisado e salvando-o no repositório enderecoRepository.
-				Endereco enderecoNovo = new Endereco();
-				enderecoNovo.setBairro(viaCep.getBairro());
-				enderecoNovo.setCep(usuario.getCep());
-				enderecoNovo.setComplemento(viaCep.getComplemento());
-				enderecoNovo.setLocalidade(viaCep.getLocalidade());
-				enderecoNovo.setLogradouro(viaCep.getLogradouro());
-				enderecoNovo.setUf(viaCep.getUf());
-				enderecoNovo.setNumero(usuario.getNumero());
-				enderecoNovo.setPais(usuario.getPais());
-				enderecoNovo.setComplemento2(usuario.getComplemento2());
-				enderecoService.salvarEnderecoCadastroUsuario(enderecoNovo);
+		// Aqui, estamos criando um novo objeto Endereco com as informações do CEP
+		// pesquisado e salvando-o no repositório enderecoRepository.
+		Endereco enderecoNovo = new Endereco();
+		enderecoNovo.setBairro(viaCep.getBairro());
+		enderecoNovo.setCep(usuario.getCep());
+		enderecoNovo.setComplemento(viaCep.getComplemento());
+		enderecoNovo.setLocalidade(viaCep.getLocalidade());
+		enderecoNovo.setLogradouro(viaCep.getLogradouro());
+		enderecoNovo.setUf(viaCep.getUf());
+		enderecoNovo.setNumero(usuario.getNumero());
+		enderecoNovo.setPais(usuario.getPais());
+		enderecoNovo.setComplemento2(usuario.getComplemento2());
+		enderecoService.salvarEnderecoCadastroUsuario(enderecoNovo);
 
-				// Estamos criando um novo objeto Usuario com as informações fornecidas pelo
-				// usuário e a senha é criptografada antes de ser armazenada.
-				Usuario usuarioResumido = new Usuario();
-				usuarioResumido.setNomeUsuario(usuario.getNomeUsuario());
-				usuarioResumido.setEmail(usuario.getEmail());
-				usuarioResumido.setRoles(roles);
-				usuarioResumido.setCpf(usuario.getCpf());
-				usuarioResumido.setDataDeNascimento(usuario.getDataDeNascimento());
-				usuarioResumido.setNome(usuario.getNome());
-				usuarioResumido.setTelefonePrincipal(usuario.getTelefonePrincipal());
-				usuarioResumido.setTelefoneSecundario(usuario.getTelefoneSecundario());
-				usuarioResumido.setAtivo(true);
-				
-				String encodedPass = passwordEncoder.encode(usuario.getPassword());
-				usuarioResumido.setPassword(encodedPass);
-				
-				List<Endereco> enderecosUsuario = new ArrayList<>();
-				enderecosUsuario.add(enderecoNovo);
-				usuarioResumido.setEnderecos(enderecosUsuario);
-				
-				usuarioRepository.save(usuarioResumido);
-				
-		//return converterUsuarioDTO(usuario, enderecoNovo, strRoles);
+		// Estamos criando um novo objeto Usuario com as informações fornecidas pelo
+		// usuário e a senha é criptografada antes de ser armazenada.
+		Usuario usuarioResumido = new Usuario();
+		usuarioResumido.setNomeUsuario(usuario.getNomeUsuario());
+		usuarioResumido.setEmail(usuario.getEmail());
+		usuarioResumido.setRoles(roles);
+		usuarioResumido.setCpf(usuario.getCpf());
+		usuarioResumido.setDataDeNascimento(usuario.getDataDeNascimento());
+		usuarioResumido.setNome(usuario.getNome());
+		usuarioResumido.setTelefonePrincipal(usuario.getTelefonePrincipal());
+		usuarioResumido.setTelefoneSecundario(usuario.getTelefoneSecundario());
+		usuarioResumido.setAtivo(true);
+
+		String encodedPass = passwordEncoder.encode(usuario.getPassword());
+		usuarioResumido.setPassword(encodedPass);
+
+		List<Endereco> enderecosUsuario = new ArrayList<>();
+		enderecosUsuario.add(enderecoNovo);
+		usuarioResumido.setEnderecos(enderecosUsuario);
+
+		usuarioRepository.save(usuarioResumido);
 	}
 
-	/*public UsuarioResponseCadastroDTO converterUsuarioDTO(UsuarioRequestCadastroDTO usuario, Endereco endereco, Set<String> roles) {
+	public List<Usuario> listarTodos() {
+		return usuarioRepository.findAll();
+	}
+
+	public UsuarioResponseCadastroDTO converterUsuarioDTO(Usuario usuario) { 
 		UsuarioResponseCadastroDTO usuarioConvertido = new UsuarioResponseCadastroDTO();
+
 		usuarioConvertido.setCpf(usuario.getCpf());
 		usuarioConvertido.setDataDeNascimento(usuario.getDataDeNascimento());
 		usuarioConvertido.setEmail(usuario.getEmail());
+		usuarioConvertido.setBairro(usuario.getBairro());
 		usuarioConvertido.setNome(usuario.getNome());
 		usuarioConvertido.setNomeUsuario(usuario.getNomeUsuario());
 		usuarioConvertido.setTelefonePrincipal(usuario.getTelefonePrincipal());
 		usuarioConvertido.setTelefoneSecundario(usuario.getTelefoneSecundario());
-
-		usuarioConvertido.setCep(endereco.getCep());
-		usuarioConvertido.setNumero(endereco.getNumero());
-		usuarioConvertido.setBairro(endereco.getBairro());
-		usuarioConvertido.setComplemento(endereco.getComplemento());
-		usuarioConvertido.setComplemento2(endereco.getComplemento2());
-		usuarioConvertido.setLocalidade(endereco.getLocalidade());
-		usuarioConvertido.setLogradouro(endereco.getLogradouro());
-		usuarioConvertido.setPais(endereco.getPais());
-		usuarioConvertido.setUf(endereco.getUf());
-		
-		usuarioConvertido.setRoles(roles);
-		
+	
 		return usuarioConvertido;
-	}*/
-
-	public List<Usuario> listarTodos() {
-		return usuarioRepository.findAll();
 	}
 }
