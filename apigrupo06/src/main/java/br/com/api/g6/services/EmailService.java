@@ -154,7 +154,7 @@ public class EmailService {
 		}
 	}
 
-	public void envioEmailPedidoFinalizado(Usuario usuario) {
+	public void envioEmailPedidoFinalizado(Usuario usuario, List<Produto> produtos) {
 
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {
@@ -188,7 +188,7 @@ public class EmailService {
 					"    <header style=\"background-color: orange; width: 100%; height: 100px; padding: 0px; margin: 0px;\"> \r\n"
 					+ //
 					"        <p style=\"float: left; font-family: Arial, Helvetica, sans-serif; padding: 30px;\"> <b>N° do pedido:");
-			//builder.append(idPedido);
+			// builder.append(idPedido);
 			builder.append("</b></p>\r\n" + //
 					"        <h1 style=\"float: right; padding-right: 50px; font-family: Arial, Helvetica, sans-serif; font-size: 22px; line-height: 70px;\">Confirmação de Pedido</h1>\r\n"
 					+ //
@@ -199,26 +199,26 @@ public class EmailService {
 			builder.append(usuario.getNomeUsuario());
 			builder.append(",</b></p>\r\n" + //
 					"        <p>Obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido número #");
-			//builder.append(idPedido);
+			// builder.append(idPedido);
 			builder.append(" foi recebido e está em processo de verificação.</p>\r\n");
 			Double valorTotal = 0.0;
 
-			//List<Produto> listaProdutos = produtoService.listar(idPedido);
-			//for (Produto produto : listaProdutos) {
-			// builder.append(" <tr>\r\n");
-			// builder.append(" <td>\r\n");
-			// builder.append(produto.getNome());
-			// builder.append(" </td>\r\n");
-			// builder.append(" <td>\r\n");
-			// builder.append(produto.getQuantidade());
-			// builder.append(" </td>\r\n");
-			// builder.append(" <td>\r\n");
-			// builder.append(produto.getValorUnitario());
-			// builder.append(" </td>\r\n");
-			// builder.append(" <td>\r\n");
-			// builder.append(" </td>\r\n");
-			// valorTotal += produto.getValorUnitario();
-			//}
+			// List<Produto> listaProdutos = produtoService.listar(idPedido);
+			for (Produto produto : produtos) {
+				builder.append(" <tr>\r\n");
+				builder.append(" <td>\r\n");
+				builder.append(produto.getNome());
+				builder.append(" </td>\r\n");
+				builder.append(" <td>\r\n");
+				builder.append(produto.getQuantidade());
+				builder.append(" </td>\r\n");
+				builder.append(" <td>\r\n");
+				builder.append(produto.getValorUnitario());
+				builder.append(" </td>\r\n");
+				builder.append(" <td>\r\n");
+				builder.append(" </td>\r\n");
+				valorTotal += produto.getValorUnitario();
+			}
 
 			builder.append("        <br><p>Valor total: R$ ");
 			builder.append(valorTotal);
@@ -255,7 +255,7 @@ public class EmailService {
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
-			//helper.setFrom("grupo6apiserratec@gmail.com");
+			// helper.setFrom("grupo6apiserratec@gmail.com");
 			helper.setTo("julialimafc048@gmail.com");
 			helper.setTo(usuario.getEmail());
 			helper.setSubject("CONTA DESATIVADA!");

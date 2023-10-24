@@ -17,8 +17,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 	@Query(value = "select * from produto where nome_produto = :nome", nativeQuery = true)
 	public Produto findByName(String nome);
 
-	@Query(value = "select * from pedido_finalizado", nativeQuery = true)
+	@Query(value = "select * from pedido_finalizado p where pedido_id = :idPedido", nativeQuery = true)
 	public List<Produto> listarProdutosPorPedido(Integer id);
-
 
 }
