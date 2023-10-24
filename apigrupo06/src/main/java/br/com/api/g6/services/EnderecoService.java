@@ -43,7 +43,7 @@ public class EnderecoService {
 		enderecoNovo.setPais(objetoEndereco.getPais());
 		enderecoNovo.setNumero(objetoEndereco.getNumero());
 
-		return enderecoRepository.save(enderecoNovo);//como não return o id
+		return enderecoRepository.save(enderecoNovo);// como não return o id
 	}
 
 	public Endereco acharId(Integer id) {
@@ -58,11 +58,31 @@ public class EnderecoService {
 		enderecoRepository.deleteById(id);
 	}
 
-	public Endereco atualizar(Integer id, Endereco objetoEndereco) {
+	public Endereco atualizar(Integer id, EnderecoDTO objetoEndereco) {
+		Endereco viaCep = pesquisarEndereco(objetoEndereco.getCep());
 		Endereco registroAntigo = acharId(id);
 
 		if (objetoEndereco.getCep() != null) {
 			registroAntigo.setCep(objetoEndereco.getCep());
+		}
+
+		if (viaCep.getBairro() != null) {
+			registroAntigo.setBairro(viaCep.getBairro());
+		}
+		if (viaCep.getComplemento() != null) {
+			registroAntigo.setComplemento(viaCep.getComplemento());
+		}
+
+		if (viaCep.getLocalidade() != null) {
+			registroAntigo.setLocalidade(viaCep.getLocalidade());
+		}
+
+		if (viaCep.getLogradouro() != null) {
+			registroAntigo.setLogradouro(viaCep.getLogradouro());
+		}
+
+		if (viaCep.getUf() != null) {
+			registroAntigo.setUf(viaCep.getUf());
 		}
 
 		if (objetoEndereco.getComplemento2() != null) {
