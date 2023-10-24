@@ -41,28 +41,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da
-		// API
-		http.cors().and().csrf().disable().httpBasic().disable().authorizeHttpRequests()
-
-				/* ACESSO DOS NÃO LOGADOS */
+	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da API
+		http.cors().and().csrf().disable().httpBasic().disable()
+				.authorizeHttpRequests()
 				.antMatchers("/categoria/salvar", "/usuario/login", "/usuario/registro", "/produto/listar",
 						"/categoria/listar")
 				.permitAll()
-
-				/* ACESSO DOS LOGADOS */
-				.antMatchers("/categoria/{id}", "/pedido/{id}", "/produto/{id}", "/pedido/listar")
+				.antMatchers("categoria/{id}", "pedido/{id}", "produto/{id}", "pedido/listar")
 				.hasAnyRole("COMPRADOR", "VENDEDOR")
-
-				/* ACESSOS VENDEDOR */
-				.antMatchers("/categoria/salvar", "/categoria/delete/{id}", "/categoria/atualizar/{id}",
-						"/endereco/{id}", "/endereco/listar", "produto/salvar", "produto/delete/{id}",
-						"produto/atualizar/{id}", "usuario/{id}", "usuario/listar")
+				.antMatchers("categoria/salvar", "categoria/delete/{id}", "categoria/atualizar/{id}", "endereco/{id}",
+						"endereco/listar", "produto/salvar", "produto/delete/{id}", "produto/atualizar/{id}", "usuario/{id}",
+						"usuario/listar")
 				.hasRole("VENDEDOR")
-
-				/* ACESSOS COMPRADOR */
-				.antMatchers("/endereco/salvar", "endereco/delete/{id}", "endereco/atualizar/{id}",
-						"pedido/salvar", "pedido/desativar/{id}", "pedido/atualizar/{id}", "usuario/atualizar/{id}",
+				.antMatchers("endereco/salvar", "endereco/delete/{id}", "endereco/atualizar/{id}", "pedido/salvar",
+						"pedido/desativar/{id}", "pedido/atualizar/{id}", "usuario/atualizar/{id}",
 						"usuario/desativar/{id}")
 				.hasRole("COMPRADOR")
 				.and()

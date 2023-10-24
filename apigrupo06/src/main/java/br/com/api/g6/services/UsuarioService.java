@@ -8,13 +8,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import br.com.api.g6.dto.UsuarioDTO;
 import br.com.api.g6.dto.UsuarioRequestCadastroDTO;
 import br.com.api.g6.dto.UsuarioResponseCadastroDTO;
-import br.com.api.g6.entities.Categoria;
 import br.com.api.g6.entities.Endereco;
 import br.com.api.g6.entities.Role;
 import br.com.api.g6.entities.Usuario;
