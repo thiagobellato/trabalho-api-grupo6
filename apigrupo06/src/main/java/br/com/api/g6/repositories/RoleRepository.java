@@ -15,9 +15,9 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
 
 	Optional<Role> findByName(TipoRoleEnum roleUser);
 
-	@Query(value = "select r.\"name\" from usuario u \r\n"
-			+ "inner join usuario_role ur on u.id_user = ur.usuario_id\r\n"
-			+ "inner join roles r on ur.role_id = r.id\r\n" + "where u.email = :email", nativeQuery = true)
+	@Query(value = "select r.name from usuario u\r\n" + //
+			"inner join usuario_role ur on u.id_usuario = ur.id_usuario \r\n" + //
+			"inner join roles r on ur.role_id = r.id\r\n" + //
+			"where u.email_usuario  = :email", nativeQuery = true)
 	Set<String> buscarRolesPorUsuario(String email);
-
 }

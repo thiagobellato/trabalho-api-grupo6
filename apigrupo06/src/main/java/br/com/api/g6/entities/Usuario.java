@@ -16,8 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,12 +33,11 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	private Integer idUser;
 
-	@AssertTrue /* diz que o boolean começa ativo */
+	@AssertTrue 
 	@Column(name = "ativo_usuario")
 	private Boolean ativo;
 
-	@Column(name = "nome_completo_usuario") 
-
+	@Column(name = "nome_completo_usuario")
 	private String nome;
 
 	@Column(name = "telefone_principal_usuario")
@@ -55,7 +57,10 @@ public class Usuario {
 	@Column(name = "email_usuario")
 	private String email;
 
-
+	@Size(min = 14, max = 14)
+	@CPF
+	@NotNull(message = "CPF não pode ser nulo")
+	@NotBlank(message = "CPF não pode ser vazio")
 	@Column(name = "cpf_usuario")
 	private String cpf;
 
@@ -82,29 +87,27 @@ public class Usuario {
 		super();
 	}
 
-
 	public Usuario(Integer idUser, @AssertTrue Boolean ativo, String nome, String telefonePrincipal,
-         String telefoneSecundario, String nomeUsuario, @Size(min = 6, max = 15) String password, @Email String email,
-         String cpf, LocalDate dataDeNascimento, Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos,
-         List<Pedido> pedidos) {
-      this.idUser = idUser;
-      this.ativo = ativo;
-      this.nome = nome;
-      this.telefonePrincipal = telefonePrincipal;
-      this.telefoneSecundario = telefoneSecundario;
-      this.nomeUsuario = nomeUsuario;
-      this.password = password;
-      this.email = email;
-      this.cpf = cpf;
-      this.dataDeNascimento = dataDeNascimento;
-      this.roles = roles;
-      this.produtos = produtos;
-      this.enderecos = enderecos;
-      this.pedidos = pedidos;
-   }
+			String telefoneSecundario, String nomeUsuario, @Size(min = 6, max = 15) String password, @Email String email,
+			String cpf, LocalDate dataDeNascimento, Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos,
+			List<Pedido> pedidos) {
+		this.idUser = idUser;
+		this.ativo = ativo;
+		this.nome = nome;
+		this.telefonePrincipal = telefonePrincipal;
+		this.telefoneSecundario = telefoneSecundario;
+		this.nomeUsuario = nomeUsuario;
+		this.password = password;
+		this.email = email;
+		this.cpf = cpf;
+		this.dataDeNascimento = dataDeNascimento;
+		this.roles = roles;
+		this.produtos = produtos;
+		this.enderecos = enderecos;
+		this.pedidos = pedidos;
+	}
 
-   public Integer getIdUser() {
-
+	public Integer getIdUser() {
 		return idUser;
 	}
 
