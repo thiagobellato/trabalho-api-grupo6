@@ -16,9 +16,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
+<<<<<<< HEAD
+=======
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+>>>>>>> 99cd0331d724aa6151077ef6c20b34b0e2be7626
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -33,11 +36,19 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	private Integer idUser;
 
+<<<<<<< HEAD
+	// @AssertTrue /* diz que o boolean começa ativo */
+=======
 	@AssertTrue 
+>>>>>>> 99cd0331d724aa6151077ef6c20b34b0e2be7626
 	@Column(name = "ativo_usuario")
 	private Boolean ativo;
 
 	@Column(name = "nome_completo_usuario")
+<<<<<<< HEAD
+
+=======
+>>>>>>> 99cd0331d724aa6151077ef6c20b34b0e2be7626
 	private String nome;
 
 	@Column(name = "telefone_principal_usuario")
@@ -57,10 +68,13 @@ public class Usuario {
 	@Column(name = "email_usuario")
 	private String email;
 
+<<<<<<< HEAD
+=======
 	@Size(min = 14, max = 14)
 	@CPF
 	@NotNull(message = "CPF não pode ser nulo")
 	@NotBlank(message = "CPF não pode ser vazio")
+>>>>>>> 99cd0331d724aa6151077ef6c20b34b0e2be7626
 	@Column(name = "cpf_usuario")
 	private String cpf;
 
@@ -85,12 +99,20 @@ public class Usuario {
 
 	public Usuario() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
+<<<<<<< HEAD
+	public Usuario(Integer idUser, Boolean ativo, String nome, String telefonePrincipal, String telefoneSecundario,
+			String nomeUsuario, String password, @Email String email, String cpf, LocalDate dataDeNascimento,
+			Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos, List<Pedido> pedidos) {
+		super();
+=======
 	public Usuario(Integer idUser, @AssertTrue Boolean ativo, String nome, String telefonePrincipal,
 			String telefoneSecundario, String nomeUsuario, @Size(min = 6, max = 15) String password, @Email String email,
 			String cpf, LocalDate dataDeNascimento, Set<Role> roles, List<Produto> produtos, List<Endereco> enderecos,
 			List<Pedido> pedidos) {
+>>>>>>> 99cd0331d724aa6151077ef6c20b34b0e2be7626
 		this.idUser = idUser;
 		this.ativo = ativo;
 		this.nome = nome;
@@ -219,12 +241,4 @@ public class Usuario {
 		this.pedidos = pedidos;
 	}
 
-	@Override
-	public String toString() {
-		return "Usuario [idUser=" + idUser + ", ativo=" + ativo + ", nome=" + nome + ", telefonePrincipal="
-				+ telefonePrincipal + ", telefoneSecundario=" + telefoneSecundario + ", nomeUsuario=" + nomeUsuario
-				+ ", password=" + password + ", email=" + email + ", cpf=" + cpf + ", dataDeNascimento="
-				+ dataDeNascimento + ", roles=" + roles + ", produtos=" + produtos + ", enderecos=" + enderecos
-				+ ", pedidos=" + pedidos + "]";
-	}
 }
