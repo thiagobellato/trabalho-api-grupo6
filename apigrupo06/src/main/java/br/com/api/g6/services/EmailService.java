@@ -166,37 +166,57 @@ public class EmailService {
 
 			StringBuilder builder = new StringBuilder();
 			builder.append("<html>\r\n" + //
-					"    <head>\r\n" + //
-					"        <style>\r\n" + //
-					"        .container {\r\n" + //
-					"            display: inline-block;\r\n" + //
-					"            justify-content: center;\r\n" + //
-					"            align-items: center;\r\n" + //
-					"            position: relative;\r\n" + //
-					"            top: -600px;\r\n" + //
-					"            justify-items: center; \r\n" + //
-					"            display: flex; \r\n" + //
-					"            left: 10px;\r\n" + //
-					"        }\r\n" + //
-					"    </style>\r\n" + //
-					"    </head>\r\n" + //
+					"<head>\r\n" + //
+					"   <style>\r\n" + //
+					"      body {\r\n" + //
+					"         text-align: center;\r\n" + //
+					"         display: flex;\r\n" + //
+					"         justify-content: center;\r\n" + //
+					"         align-items: center;\r\n" + //
+					"         background-color: orange;\r\n" + //
+					"         height: 100px;\r\n" + //
+					"         color: white;\r\n" + //
+					"         flex-direction: column;\r\n" + //
+					"         box-sizing: border-box;\r\n" + //
+					"         margin-top: 40vh;\r\n" + //
+					"         font-size: 1.2em;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      .container {\r\n" + //
+					"         position: relative;\r\n" + //
+					"         top: -600px;\r\n" + //
+					"         left: 50px;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      strong {\r\n" + //
+					"         text-decoration: underline;\r\n" + //
+					"      }\r\n" + //
+					"\r\n" + //
+					"      img {\r\n" + //
+					"         width: 50px;\r\n" + //
+					"         height: 50px;\r\n" + //
+					"      }\r\n" + //
+					"      img.logo {\r\n" + //
+					"         width: 150px;\r\n" + //
+					"         height: 150px;\r\n" + //
+					"      }\r\n" + //
+					"   </style>\r\n" + //
+					"</head>\r\n" + //
 					"<body>\r\n" + //
-					"    <header style=\"background-color: orange; width: 100%; height: 100px; padding: 0px; margin: 0px;\"> \r\n"
-					+ //
-					"        <p style=\"float: left; font-family: Arial, Helvetica, sans-serif; padding: 30px;\"> <b>N° do pedido:");
-			// builder.append(idPedido);
-			builder.append("</b></p>\r\n" + //
-					"        <h1 style=\"float: right; padding-right: 50px; font-family: Arial, Helvetica, sans-serif; font-size: 22px; line-height: 70px;\">Confirmação de Pedido</h1>\r\n"
-					+ //
+					"    <header style=\"background-color: orange; width: 100%; height: 100px; padding: 0px; margin: 0px;\">\r\n" + //
+					"        <h1\r\n" + //
+					"            style=\"float: right; padding-right: 50px; font-family: Arial, Helvetica, sans-serif; font-size: 22px; line-height: 70px;\">\r\n" + //
+					"            Confirmação de Pedido</h1>\r\n" + //
 					"    </header>\r\n" + //
 					"    <div style=\"margin-left: 30px;\">\r\n" + //
 					"        <br>\r\n" + //
-					"        <p style=\"size: 19px;\"><b>");
+					"        <p style=\"size: 19px;\"><b>Fulano, </b></p>\r\n");
 			builder.append(usuario.getNomeUsuario());
-			builder.append(",</b></p>\r\n" + //
-					"        <p>Obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido número #");
+			builder.append("<img class = \"logo\" src=\"cid:logo_g6\">");
+			builder.append("<p>obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido #\r\n");
 			// builder.append(idPedido);
-			builder.append(" foi recebido e está em processo de verificação.</p>\r\n");
+			builder.append("foi recebido\r\n" + //
+					"            e está em processo de verificação.</p>\r\n<ul>");
 			Double valorTotal = 0.0;
 
 			// List<Produto> listaProdutos = produtoService.listar(idPedido);
@@ -216,29 +236,36 @@ public class EmailService {
 				valorTotal += produto.getValorUnitario();
 			}
 
-			builder.append("        <br><p>Valor total: R$ ");
+			builder.append("</ul>\r\n        <br><p>Valor total: R$ ");
 			builder.append(valorTotal);
 			builder.append("<br>Previsão para entrega: ");
 			builder.append(dataEntrega);
-			builder.append("        <br>\r\n" + "        <hr style=\"margin-right: 30px;\">\r\n"
-					+ "        <p><b style=\"color: orange;\">#Dica:</b> Através do nosso WhatsApp você consegue também tirar dúvidas sobre o status do seu pedido.</p>\r\n"
-					+ "        <p style=\"color: orange; text-align: center; justify-items: center; margin: 0px; display: flex; flex-direction: column;\"><b>CONTE COM A GENTE!</b></p>\r\n"
-					+ " <img src=\"cid: logo\"> \r\n   </div>  \r\n" + //
+			builder.append("<hr>\r\n" + //
+					"        <p><b style=\"color: orange;\">#Dica:</b> Através do nosso WhatsApp você consegue também tirar dúvidas sobre o\r\n" + //
+					"            status do seu pedido.</p>\r\n" + //
+					"        <br>\r\n" + //
+					"        <br>\r\n" + //
+					"        <p\r\n" + //
+					"            style=\"color: orange; text-align: center; justify-items: center; display: flex; flex-direction: column;\">\r\n" + //
+					"            <b>CONTE COM A GENTE!</b></p>\r\n" + //
+					"    </div>\r\n" + 
 					"    <div class=\"container\">\r\n");
 			builder.append("<img src=\"cid: icon-instagram\">\r\n");
 			builder.append("<img src=\"cid: icon-whatsapp\">\r\n");
-			builder.append("    </div>\r\n" + "</body>\r\n" + "</html>");
+			builder.append("</div>\r\n" + //
+					"</body>\r\n" + //
+					"\r\n" + //
+					"</html>");
 
 			helper.setText(builder.toString(), true);
 
-			ClassPathResource imgLogo = new ClassPathResource("img/logo_g6.png");
-			helper.addInline("logo_g6", imgLogo);
+			ClassPathResource logo_g6 = new ClassPathResource("img/logo_g6.png");
+			helper.addInline("logo_g6", logo_g6);
+			ClassPathResource iconWhatsapp = new ClassPathResource("img/icons8-whatsapp.png");
+			helper.addInline("icons8-whatsapp", iconWhatsapp);
 
 			ClassPathResource iconInstagram = new ClassPathResource("img/icons8-instagram.png");
 			helper.addInline("icons8-instagram", iconInstagram);
-
-			ClassPathResource iconWhatsapp = new ClassPathResource("img/icons8-whatsapp.png");
-			helper.addInline("icons8-whatsapp", iconWhatsapp);
 
 			emailSender.send(mensagemCadastro);
 
