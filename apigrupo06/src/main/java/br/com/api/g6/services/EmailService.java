@@ -203,9 +203,11 @@ public class EmailService {
 					"   </style>\r\n" + //
 					"</head>\r\n" + //
 					"<body>\r\n" + //
-					"    <header style=\"background-color: orange; width: 100%; height: 100px; padding: 0px; margin: 0px;\">\r\n" + //
+					"    <header style=\"background-color: orange; width: 100%; height: 100px; padding: 0px; margin: 0px;\">\r\n"
+					+ //
 					"        <h1\r\n" + //
-					"            style=\"float: right; padding-right: 50px; font-family: Arial, Helvetica, sans-serif; font-size: 22px; line-height: 70px;\">\r\n" + //
+					"            style=\"float: right; padding-right: 50px; font-family: Arial, Helvetica, sans-serif; font-size: 22px; line-height: 70px;\">\r\n"
+					+ //
 					"            Confirmação de Pedido</h1>\r\n" + //
 					"    </header>\r\n" + //
 					"    <div style=\"margin-left: 30px;\">\r\n" + //
@@ -213,13 +215,10 @@ public class EmailService {
 					"        <p style=\"size: 19px;\"><b>Fulano, </b></p>\r\n");
 			builder.append(usuario.getNomeUsuario());
 			builder.append("<img class = \"logo\" src=\"cid:logo_g6\">");
-			builder.append("<p>obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido #\r\n");
-			// builder.append(idPedido);
-			builder.append("foi recebido\r\n" + //
-					"            e está em processo de verificação.</p>\r\n<ul>");
+			builder.append(
+					"<p>obrigado por fazer seu pedido em nossa loja <b>G6 Tech Store</b>. Seu pedido foi recebido e está em processo de verificação.</p>\r\n<ul>");
 			Double valorTotal = 0.0;
 
-			// List<Produto> listaProdutos = produtoService.listar(idPedido);
 			for (Produto produto : produtos) {
 				builder.append(" <tr>\r\n");
 				builder.append(" <td>\r\n");
@@ -241,14 +240,16 @@ public class EmailService {
 			builder.append("<br>Previsão para entrega: ");
 			builder.append(dataEntrega);
 			builder.append("<hr>\r\n" + //
-					"        <p><b style=\"color: orange;\">#Dica:</b> Através do nosso WhatsApp você consegue também tirar dúvidas sobre o\r\n" + //
+					"        <p><b style=\"color: orange;\">#Dica:</b> Através do nosso WhatsApp você consegue também tirar dúvidas sobre o\r\n"
+					+ //
 					"            status do seu pedido.</p>\r\n" + //
 					"        <br>\r\n" + //
 					"        <br>\r\n" + //
 					"        <p\r\n" + //
-					"            style=\"color: orange; text-align: center; justify-items: center; display: flex; flex-direction: column;\">\r\n" + //
+					"            style=\"color: orange; text-align: center; justify-items: center; display: flex; flex-direction: column;\">\r\n"
+					+ //
 					"            <b>CONTE COM A GENTE!</b></p>\r\n" + //
-					"    </div>\r\n" + 
+					"    </div>\r\n" +
 					"    <div class=\"container\">\r\n");
 			builder.append("<img src=\"cid: icon-instagram\">\r\n");
 			builder.append("<img src=\"cid: icon-whatsapp\">\r\n");
@@ -326,7 +327,8 @@ public class EmailService {
 					"<body>\r\n" + //
 					"    <br>\r\n" + //
 					"    <h1>Ei,</h1>\r\n" + //
-					"    <p>Esperamos que está mensagem <strong>não seja o nosso adeus definitivo,<br><br></strong> mas se você realmente\r\n" + //
+					"    <p>Esperamos que está mensagem <strong>não seja o nosso adeus definitivo,<br><br></strong> mas se você realmente\r\n"
+					+ //
 					"        deseja desativarsua conta, vamos sentir sua falta.</p>\r\n" + //
 					"    <br>\r\n" + //
 					"    <p><a href=\"http://www.pudim.com.br/\">Clique aqui</a> caso deseja nos abandonar! <span\r\n" + //
