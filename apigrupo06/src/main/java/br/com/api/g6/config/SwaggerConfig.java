@@ -51,7 +51,7 @@ public class SwaggerConfig {
 				.description("Projeto final da disciplina de APIrestful").license("Apache license version 2.0")
 
 
-				.version("6.1.2").build();
+				.version("6.1.3").build();
 
 
 		return apiInfo;
