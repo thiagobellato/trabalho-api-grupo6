@@ -9,3 +9,8 @@ inner join produto p2 on
 	
 	
 select * from pedido_finalizado pf where  = 4
+
+select r.name from usuario u
+inner join usuario_role ur on u.id_usuario = ur.id_usuario 
+inner join roles r on ur.role_id = r.id
+where u.email_usuario  = :email
