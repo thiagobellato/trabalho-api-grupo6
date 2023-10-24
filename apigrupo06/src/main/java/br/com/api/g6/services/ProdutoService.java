@@ -1,8 +1,11 @@
 package br.com.api.g6.services;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import br.com.api.g6.dto.ProdutoDTO;
 import br.com.api.g6.entities.Produto;
 import br.com.api.g6.repositories.ProdutoRepository;
 
@@ -11,13 +14,15 @@ public class ProdutoService {
 
 	@Autowired
 	ProdutoRepository produtoRepository;
-
+	
 	public Integer getCount() {
 		return produtoRepository.contar();
 	}
 
-	public Produto salvar(Produto objetoProduto) {
-		return produtoRepository.save(objetoProduto);
+	public Produto salvar(Produto objProduto) {
+		ProdutoDTO produtoNovo = new ProdutoDTO();
+		produtoNovo.setNome(objProduto.getNome());
+		return produtoRepository.save(produtoNovo);
 	}
 
 	public Produto acharId(Integer id) {
@@ -27,7 +32,7 @@ public class ProdutoService {
 	public List<Produto> listar(Integer idPedido) {
 		return produtoRepository.listarProdutosPorPedido(idPedido);
 	}
-	
+
 	public List<Produto> listar() {
 		return produtoRepository.findAll();
 	}
