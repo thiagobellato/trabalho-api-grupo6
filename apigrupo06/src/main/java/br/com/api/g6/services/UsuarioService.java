@@ -179,7 +179,7 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 
-	public UsuarioResponseCadastroDTO converterUsuarioDTO(Usuario usuario) { 
+	public UsuarioResponseCadastroDTO converterUsuarioDTO(Usuario usuario) {
 		UsuarioResponseCadastroDTO usuarioConvertido = new UsuarioResponseCadastroDTO();
 
 		usuarioConvertido.setCpf(usuario.getCpf());
@@ -190,7 +190,7 @@ public class UsuarioService {
 		usuarioConvertido.setNomeUsuario(usuario.getNomeUsuario());
 		usuarioConvertido.setTelefonePrincipal(usuario.getTelefonePrincipal());
 		usuarioConvertido.setTelefoneSecundario(usuario.getTelefoneSecundario());
-	
+
 		return usuarioConvertido;
 	}
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.g6.dto.ProdutoDTO;
 import br.com.api.g6.entities.Produto;
-import br.com.api.g6.services.EmailService;
 import br.com.api.g6.services.ProdutoService;
 import br.com.api.g6.services.UsuarioService;
 
@@ -28,20 +27,9 @@ public class ProdutoController {
 	@Autowired
 	UsuarioService usuarioService;
 
-	private EmailService emailService;
-
-	@Autowired
-	public void setEmailService(EmailService emailService) {
-		this.emailService = emailService;
-	}
-
 	@PostMapping("/salvar")
-	//public ResponseEntity<MessageResponseDTO> salvar(@RequestBody Produto
-	//objetoProduto)
 	public Produto salvar(@RequestBody ProdutoDTO objProduto) {
 		return produtoService.salvar(objProduto);
-		//return ResponseEntity.ok(new MessageResponseDTO("Produto salvo com
-		//sucesso!"));
 	}
 
 	@GetMapping("/{id}")
@@ -51,8 +39,6 @@ public class ProdutoController {
 
 	@GetMapping("/listar")
 	public List<Produto> listar() {
-
-		// emailService.envioEmailPromocional();
 		return produtoService.listar();
 	}
 

@@ -189,7 +189,4 @@ public class UsuarioResponseCadastroDTO {
 	public void setRoles(Set<String> roles) {
 		this.roles = roles;
 	}
-
-
-
 }

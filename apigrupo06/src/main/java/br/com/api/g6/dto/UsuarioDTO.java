@@ -16,7 +16,6 @@ public class UsuarioDTO {
 
 	public UsuarioDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public UsuarioDTO(Boolean ativo, String nome, String telefonePrincipal, String telefoneSecundario,
@@ -104,5 +103,4 @@ public class UsuarioDTO {
 	public void setDataDeNascimento(LocalDate dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
 	}
-
 }

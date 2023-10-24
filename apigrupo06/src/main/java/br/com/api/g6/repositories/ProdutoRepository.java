@@ -19,5 +19,4 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 
 	@Query(value = "select * from pedido_finalizado p where pedido_id = :idPedido", nativeQuery = true)
 	public List<Produto> listarProdutosPorPedido(Integer id);
-
 }

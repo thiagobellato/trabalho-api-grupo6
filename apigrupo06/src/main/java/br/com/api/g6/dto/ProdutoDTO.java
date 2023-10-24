@@ -2,12 +2,6 @@ package br.com.api.g6.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Size;
-
-import br.com.api.g6.entities.Categoria;
-import br.com.api.g6.entities.Produto;
-
 public class ProdutoDTO {
 
 	private String nome;
@@ -18,7 +12,6 @@ public class ProdutoDTO {
 
 	public ProdutoDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ProdutoDTO(String nome, String descricao, LocalDate dataDeFabricacao, Integer quantidade,
@@ -70,5 +63,4 @@ public class ProdutoDTO {
 	public void setValorUnitario(Double valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
-
 }

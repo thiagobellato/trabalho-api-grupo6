@@ -15,5 +15,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	public Integer contar();
 
 	Optional<Usuario> findByEmail(String email);
-
 }

@@ -8,7 +8,6 @@ public class UserDTO {
 
 	public UserDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserDTO(EnderecoDTO enderecoDTO, UsuarioDTO usuarioDTO, RoleDTO roleDTO) {
@@ -41,5 +40,4 @@ public class UserDTO {
 	public void setRoleDTO(RoleDTO roleDTO) {
 		this.roleDTO = roleDTO;
 	}
-
 }

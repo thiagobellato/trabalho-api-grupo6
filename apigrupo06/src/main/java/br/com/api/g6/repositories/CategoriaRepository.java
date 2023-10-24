@@ -11,5 +11,4 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 
 	@Query(value = "select count(*) from categoria", nativeQuery = true)
 	public Integer contar();
-
 }

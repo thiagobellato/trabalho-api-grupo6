@@ -28,25 +28,6 @@ public class PedidoService {
 		this.emailService = emailService;
 	}
 
-	// public Pedido salvar(Pedido objetoPedido) {
-
-	// for (Produto produto : objetoPedido.getProdutos()) {
-	// Produto produtoBanco = produtoRepository.findByName(produto.getNome());
-
-	// if (produtoBanco != null) {
-
-	// produto.setId(produtoBanco.getId());
-	// produto.setDescricao(produtoBanco.getDescricao());
-	// produto.setDataDeFabricacao(produtoBanco.getDataDeFabricacao());
-	// produto.setValorUnitario(produtoBanco.getValorUnitario());
-
-	// } else {
-	// // tratamento de erros -> futuro
-	// }
-	// }
-	// return pedidoRepository.save(objetoPedido);
-	// }
-
 	public Integer salvar(PedidoDTO pedidoDTO) {
 		Pedido salvarPedido = new Pedido();
 		PedidoProduto pedidoProduto = new PedidoProduto();
@@ -67,11 +48,6 @@ public class PedidoService {
 		salvarPedido.setData(pedidoDTO.getData());
 		pedidoRepository.save(salvarPedido);
 
-		// pedidoProduto.setValorTotal(valor);
-		// emailService.envioEmailConfirmacaoPedido(null, pedidoDTO);
-		// ResponseEntity.status(HttpStatus.CREATED).body("Pedido efetuado com
-		// sucesso!");
-
 		return salvarPedido.getId();
 	}
 
@@ -82,10 +58,6 @@ public class PedidoService {
 	public List<Pedido> listar() {
 		return pedidoRepository.findAll();
 	}
-
-	// public void apagar(Integer id) {
-	// pedidoRepository.deleteById(id);
-	// }
 
 	public void apagarLogico(Integer id) {
 
@@ -103,10 +75,6 @@ public class PedidoService {
 		if (objetoPedido.getProdutos() != null) {
 			registroAntigo.setProdutos(objetoPedido.getProdutos());
 		}
-
-		// if (objetoPedido.getQuantidade() != null) {
-		// registroAntigo.setQuantidade(objetoPedido.getQuantidade());
-		// }
 
 		if (objetoPedido.getData() != null) {
 			registroAntigo.setData(objetoPedido.getData());

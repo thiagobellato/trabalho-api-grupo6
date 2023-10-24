@@ -14,7 +14,6 @@ public class UsuarioRequestCadastroDTO {
 	private String telefonePrincipal;
 	private String telefoneSecundario;
 	private String nome;
-
 	private String cep;
 	private String numero;
 	private String pais;
@@ -150,6 +149,4 @@ public class UsuarioRequestCadastroDTO {
    public Object getAtivo() {
       return null;
    }
-
-	
 }
