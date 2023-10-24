@@ -5,7 +5,9 @@
 </h4>
 
 ## Descrição do Projeto
-<p>Breve descrição</p>
+<p>O projeto consiste na criação de um marketplace com a implementação de uma API que permite o gerenciamento de informações relacionadas a produtos, usuários e pedidos. A API será desenvolvida para facilitar o controle de vendas e compras de produtos.
+
+Esse sistema, permitirá que os desenvolvedores criem aplicativos de comércio eletrônico, sistemas de gerenciamento de estoque e controle de pedidos, e forneçam uma plataforma eficaz para facilitar a compra e venda de produtos. Além disso, oferecerá a capacidade de consultar informações detalhadas sobre produtos, usuários e pedidos, bem como realizar operações de atualização, exclusão e consulta. </p>
 
 ## Instalação e execução do projeto
 <p>instalçacao e execução</p>
