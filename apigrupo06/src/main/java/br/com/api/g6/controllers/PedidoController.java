@@ -50,7 +50,7 @@ public class PedidoController {
 		Usuario usuario = usuarioService.findByEmail(email);
 		Integer idPedido = pedidoService.salvar(objetoPedido);
 		List<Produto> produtos = produtoService.listar(idPedido);
-		emailService.envioEmailPedidoFinalizado(usuario, produtos);
+		// emailService.envioEmailPedidoFinalizado(usuario, produtos);
 	}
 
 	@GetMapping("/{id}")
@@ -60,6 +60,7 @@ public class PedidoController {
 
 	@GetMapping("/listar")
 	public List<Pedido> listar() {
+		emailService.envioEmailPedidoFinalizado();
 		return pedidoService.listar();
 	}
 
