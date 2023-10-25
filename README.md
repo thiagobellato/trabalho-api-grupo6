@@ -10,7 +10,7 @@
 Esse sistema, permitirá que os desenvolvedores criem aplicativos de comércio eletrônico, sistemas de gerenciamento de estoque e controle de pedidos, e forneçam uma plataforma eficaz para facilitar a compra e venda de produtos. Além disso, oferecerá a capacidade de consultar informações detalhadas sobre produtos, usuários e pedidos, bem como realizar operações de atualização, exclusão e consulta. </p>
 
 ## Instalação e execução do projeto
-<p>instalçacao e execução</p>
+<p>-Git clone </p>
 
 ## Funcionalidades do projeto
 1. O sistema armazena informações sobre os produtos, sendo eles: código, nome, descrição, quantidade em estoque, data de fabricação e valor unitário e código do usuário vendedor.
