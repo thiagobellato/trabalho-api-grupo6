@@ -48,18 +48,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						"/categoria/listar")
 				.permitAll()
 				.antMatchers("categoria/{id}", "pedido/{id}", "produto/{id}", "pedido/listar")
-				.permitAll()
-				// .hasAnyRole("COMPRADOR", "VENDEDOR")
+				.hasAnyRole("COMPRADOR", "VENDEDOR")
 				.antMatchers("categoria/salvar", "categoria/delete/{id}", "categoria/atualizar/{id}", "endereco/{id}",
 						"endereco/listar", "produto/salvar", "produto/delete/{id}", "produto/atualizar/{id}", "usuario/{id}",
 						"usuario/listar")
-				.permitAll()
-				// .hasRole("VENDEDOR")
+				.hasRole("VENDEDOR")
 				.antMatchers("endereco/salvar", "endereco/delete/{id}", "endereco/atualizar/{id}", "pedido/salvar",
 						"pedido/desativar/{id}", "pedido/atualizar/{id}", "usuario/atualizar/{id}",
 						"usuario/desativar/{id}")
-				.permitAll()
-				// .hasRole("COMPRADOR")
+				.hasRole("COMPRADOR")
 				.and()
 				.userDetailsService(uds).exceptionHandling()
 				.authenticationEntryPoint((request, response, authException) -> response
