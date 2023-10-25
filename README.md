@@ -52,8 +52,6 @@ vendedor.
 
 - [Swagger](https://swagger.io/) <img loading="lazy" src="https://cdn4.iconfinder.com/data/icons/colorful-design-basic-icons-1/550/coding_code_green-512.png" width="30" height="30"/>
 
-- [Docker](https://www.docker.com/) <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="30" height="30"/>
-
 - [Git]() <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="30" height="30"/>
 
 - [GitHub]() <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="30" height="30"/>
