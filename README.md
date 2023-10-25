@@ -10,7 +10,7 @@
 Esse sistema, permitirá que os desenvolvedores criem aplicativos de comércio eletrônico, sistemas de gerenciamento de estoque e controle de pedidos, e forneçam uma plataforma eficaz para facilitar a compra e venda de produtos. Além disso, oferecerá a capacidade de consultar informações detalhadas sobre produtos, usuários e pedidos, bem como realizar operações de atualização, exclusão e consulta. </p>
 
 ## Instalação e execução do projeto
-<p>-Git clone </p>
+<p>-Git clone git@github.com:thiagobellato/trabalho-api-grupo6.git</p>
 
 ## Funcionalidades do projeto
 1. O sistema armazena informações sobre os produtos, sendo eles: código, nome, descrição, quantidade em estoque, data de fabricação e valor unitário e código do usuário vendedor.
@@ -57,6 +57,10 @@ vendedor.
 - [Git]() <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="30" height="30"/>
 
 - [GitHub]() <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="30" height="30"/>
+
+- [HTML]() <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" height="40"/> 
+
+- [CSS]() <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" height="40"/>
 
 ## Licença 
 - [APACHE LICENSE](https://www.apache.org/licenses/LICENSE-2.0)
