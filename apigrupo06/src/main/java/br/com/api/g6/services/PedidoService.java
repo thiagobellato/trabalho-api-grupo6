@@ -9,6 +9,7 @@ import br.com.api.g6.dto.PedidoDTO;
 import br.com.api.g6.entities.Pedido;
 import br.com.api.g6.entities.PedidoProduto;
 import br.com.api.g6.entities.Produto;
+import br.com.api.g6.exceptions.EstoqueInsuficienteException;
 import br.com.api.g6.repositories.PedidoRepository;
 import br.com.api.g6.repositories.ProdutoRepository;
 
@@ -82,5 +83,28 @@ public class PedidoService {
 
 		registroAntigo.setId(id);
 		return pedidoRepository.save(registroAntigo);
+	}
+	
+	public Pedido criarPedido(Pedido pedido) {
+		List<Produto> produtos = pedido.getProdutos();
+		
+		for (Produto produto : produtos) {
+			Produto produtoNoBanco = produtoRepository.findById(produto.getId()).orElse(null);
+			if(produtoNoBanco != null)
+			{
+				int estoqueAtual = produtoNoBanco.getQuantidade();
+				int quantidadePedido = produtos.stream().filter(p -> p.getId().equals(produto.getId())).mapToInt(Produto::getQuantidade).sum();
+				
+				if (estoqueAtual >= quantidadePedido) {
+					produtoNoBanco.setQuantidade(estoqueAtual - quantidadePedido);
+					
+					produtoRepository.save(produtoNoBanco);
+				} else {
+					throw new EstoqueInsuficienteException("Estoque insuficiente para o produto: " + produto.getNome());
+				}
+			}
+		}
+		return
+				pedidoRepository.save(pedido);
 	}
 }

@@ -3,6 +3,8 @@ package br.com.api.g6.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ import br.com.api.g6.dto.PedidoDTO;
 import br.com.api.g6.entities.Pedido;
 import br.com.api.g6.entities.Produto;
 import br.com.api.g6.entities.Usuario;
+import br.com.api.g6.exceptions.EstoqueInsuficienteException;
 import br.com.api.g6.services.EmailService;
 import br.com.api.g6.services.PedidoService;
 import br.com.api.g6.services.ProdutoService;
@@ -68,5 +71,18 @@ public class PedidoController {
 	@PutMapping("/atualizar/{id}")
 	public Pedido atualizar(@PathVariable Integer id, @RequestBody Pedido objetoPedido) {
 		return pedidoService.atualizar(id, objetoPedido);
+	}
+	
+	@PostMapping
+	public ResponseEntity<String> criarPedido(@RequestBody Pedido pedido) {
+		try {
+			Pedido novoPedido = pedidoService.criarPedido(pedido);
+			return new ResponseEntity<>("Pedido criado com sucesso.", HttpStatus.CREATED);
+		} catch
+		(EstoqueInsuficienteException e) {
+			return new ResponseEntity<>("Erro: Estoque insuficiente para um ou mais produtos.", HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			return new ResponseEntity<>("Erro ao processar o pedido.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 }
