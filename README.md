@@ -1,9 +1,5 @@
 # Grupo 6/Turma 13 - Serratec
 
-<h4 align="center"> 
-	🚧 Trabalho API - Grupo 6 - Em construção...  🚧
-</h4>
-
 ## Descrição do Projeto
 <p>O projeto consiste na criação de um marketplace com a implementação de uma API que permite o gerenciamento de informações relacionadas a produtos, usuários e pedidos. A API será desenvolvida para facilitar o controle de vendas e compras de produtos.
 
